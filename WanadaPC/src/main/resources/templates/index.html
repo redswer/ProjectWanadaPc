@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/Css/util.css" />
 <title>와나다 PC</title>
 <style type="text/css">
 .index_body {
@@ -202,124 +203,6 @@
 .index_h2:hover {
 	color: red;
 }
-
-.main_logo {
-	display: flex;
-	text-decoration: none;
-	font-style: italic; 
-}
-
-.main_logo svg {
-    width: 50px; /* 아이콘 크기 조정 */
-    height: 50px; /* 아이콘 크기 조정 */
-    fill: red; /* 아이콘 색상 설정 */
-    margin-right: 10px;
-}
-
-.main_logo span {
-	line-height: 50px;
-	color: red;
-	font-size: 30px;
-}
-
-.main_logo span:last-child {
-	color: black;
-	font-style: initial;
-	margin-left: 7px;
-}
-
-.header_body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.header_all {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.header_search_bar {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.search_container {
-    position: relative;
-    width: 500px; /* 검색바 너비 조정 */
-    margin-bottom: 10px;
-}
-
-.header_search_bar input {
-    line-height: 30px;
-    padding: 8px;
-    border: 2px solid red;
-    border-radius:52px;
-    width: 100%; /* 검색창이 부모 컨테이너에 맞게 조정 */
-    outline: none;
-    font-size: 18px;
-}
-
-.header_search_bar button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 0; /* 패딩 제거 */
-    background-color: transparent; /* 배경색 투명으로 설정 */
-    border: none; /* 테두리 제거 */
-    cursor: pointer;
-    height: 100%; /* 버튼 높이를 검색창과 동일하게 설정 */
-    display: flex;
-    align-items: center; /* 버튼 안의 텍스트를 수직 중앙 정렬 */
-}
-
-.header_search_bar button svg {
-    width: 25px; /* 아이콘 크기 조정 */
-    height: 25px; /* 아이콘 크기 조정 */
-    fill: black; /* 아이콘 색상 설정 */
-}
-
-.header_link {
-    display: flex;
-    gap: 15px;
-}
-
-.header_link a {
-    text-decoration: none;
-    color: #333;
-}
-
-.header_link a:hover {
-    color: #007bff;
-}
-
-.header_navigation {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    line-height: 60px;
-}
-
-.header_navigation li {
-    margin: 0 15px;
-}
-
-.header_navigation a {
-    text-decoration: none;
-    color: #333;
-    padding: 10px 0;
-}
-
-.header_navigation a:hover {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
-}
 </style>
 </head>
 <body>
@@ -327,22 +210,22 @@
 	    <header>
 	        <th:block th:replace="Util/header :: header"></th:block>
 	    </header>
-		<section class="main_banner">
-		    <div class="banner_images">
-		        <th:block th:each="i, status : ${indexBannerList}">
-		            <div class="banner_item" th:style="${status.index == 0 ? 'display: block' : 'display: none'}">
-		                <!-- pageLink와 category를 함께 가져오는 부분 -->
-		                <a th:href="@{${i.page_link}(category=${i.category})}">
-		                    <img th:src="@{'/Image/' + ${i.index_image}}" />
-		                </a>
-		                <div class="image-counter" th:text="${status.index + 1} + ' / ' + ${#lists.size(indexBannerList)}"></div>
-		            </div>
-		        </th:block>
-		    </div>
-		    <div class="arrow left" onclick="prevImage()">&#10094;</div>
-		    <div class="arrow right" onclick="nextImage()">&#10095;</div>
-		</section>
-
+	    <main>
+	        <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+			<section class="main_banner">
+			    <div class="banner_images">
+			        <th:block th:each="i, status : ${indexBannerList}">
+			            <div class="banner_item" th:style="${status.index == 0 ? 'display: block' : 'display: none'}">
+			                <a th:href="@{${i.page_link}(category=${i.category})}">
+			                    <img th:src="@{'/Image/' + ${i.index_image}}" />
+			                </a>
+			                <div class="image-counter" th:text="${status.index + 1} + ' / ' + ${#lists.size(indexBannerList)}"></div>
+			            </div>
+			        </th:block>
+			    </div>
+			    <div class="arrow left" onclick="prevImage()">&#10094;</div>
+			    <div class="arrow right" onclick="nextImage()">&#10095;</div>
+			</section>
 	        <section class="sub_section">
 	            <h2><a th:href="@{/gamePC(category=leagueOfLegend)}" class="index_h2">게임용 PC</a></h2>
 	            <div class="game_pc_section">
@@ -350,7 +233,7 @@
 		                <th:block th:each="i : ${indexGamePcList}">
 		                    <div class="game_pc_contents">
 		                        <a th:href="@{/gamePC(category=${i.category})}">
-		                            <img th:alt="" th:src="@{/Image/{imageName}(imageName=${i.image})}" />
+		                            <img th:src="@{/Image/{image}(image=${i.image})}" />
 		                            <span class="index_game_pc_main_txt" th:text="${i.subject}"></span>
 		                            <span class="index_game_pc_sub_txt" th:text="${i.information}"></span>
 		                        </a>
@@ -360,13 +243,13 @@
 	                <div class="windows_guide">
 	            		<h3>초보자를 위한 조립 PC 가이드</h3>
 	            		<div class="windows">
-	            			<a th:href="@{/Pc/windowGuide.jsp}">
+	            			<a th:href="@{windowGuide}">
 	            				<img th:src="@{/Image/windows_guide_1.png}" />
 	            				<span>윈도우 구매 가이드</span>
 	            			</a>
 	            		</div>
 	            		<div class="windows">
-	            			<a th:href="@{/Pc/windowInstall.jsp}">
+	            			<a th:href="@{windowInstall}">
 	            				<img th:src="@{/Image/windows_guide_2.png}" />
 	            				<span>윈도우 설치방법</span>
 	            			</a>
@@ -374,7 +257,7 @@
 	            	</div>
 	            </div>
 	        </section>
-			<!-- <th:block th:replace="Util/ad :: ad"></th:block> -->
+			<th:block th:replace="Util/ad :: ad"></th:block>
 	        <section class="sub_section">
 	            <h2>추천 상품</h2>
 	            <div class="recommend_product_section">
@@ -455,5 +338,13 @@
     }
 
     setInterval(nextImage, 3000); // 3초마다 다음 이미지로 이동
+</script>
+<script>
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 </script>
 </html>
