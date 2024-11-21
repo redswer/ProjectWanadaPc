@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanada.mapper.ProductMapper">
+	<select id="getAllProducts" resultType="com.wanada.dto.ProductDTO">
+		SELECT
+		CPU_IMAGE AS image, CPU_NAME AS title, CPU_PRICE AS price
+		FROM COMPUTER_CPU
+		UNION ALL
+		SELECT
+		GPU_IMAGE AS image, GPU_NAME AS title, GPU_PRICE AS price
+		FROM COMPUTER_GPU
+		UNION ALL
+		SELECT
+		HDD_IMAGE AS image, HDD_NAME AS title, HDD_PRICE AS price
+		FROM COMPUTER_HDD
+		UNION ALL
+		SELECT
+		SSD_IMAGE AS image, SSD_NAME AS title, SSD_PRICE AS price
+		FROM COMPUTER_SSD
+		UNION ALL
+		SELECT
+		COOLER_IMAGE AS image, COOLER_NAME AS title, COOLER_PRICE AS price
+		FROM COMPUTER_COOLER
+		UNION ALL
+		SELECT
+		CASE_IMAGE AS image, CASE_NAME AS title, CASE_PRICE AS price
+		FROM COMPUTER_CASE
+		UNION ALL
+		SELECT
+		MB_IMAGE AS image, MB_NAME AS title, MB_PRICE AS price
+		FROM COMPUTER_MAINBOARD
+		UNION ALL
+		SELECT
+		POWER_IMAGE AS image, POWER_NAME AS title, POWER_PRICE AS price
+		FROM COMPUTER_POWER
+		UNION ALL
+		SELECT
+		RAM_IMAGE AS image, RAM_NAME AS title, RAM_PRICE AS price
+		FROM COMPUTER_RAM
+	</select>
+
+	<select id="getFilteredProducts" resultType="com.wanada.dto.ProductDTO">
+		SELECT CPU_IMAGE AS image, CPU_NAME AS title, CPU_PRICE AS price FROM
+		COMPUTER_CPU WHERE 1=1 <if test="filters != null and !filters.isEmpty()">
+		AND ( <foreach collection="filters" index="key" item="value"
+				separator=" OR ">
+				${key} LIKE CONCAT('%', #{value}, '%')
+			</foreach> ) </if>
+		UNION ALL SELECT GPU_IMAGE AS image, GPU_NAME AS title, GPU_PRICE AS
+		price FROM COMPUTER_GPU WHERE 1=1 <if
+			test="filters != null and !filters.isEmpty()"> AND ( <foreach
+				collection="filters" index="key" item="value" separator=" OR ">
+		${key} LIKE CONCAT('%', #{value}, '%')
+			</foreach> ) </if>
+		UNION ALL SELECT HDD_IMAGE AS image, HDD_NAME AS title, HDD_PRICE AS
+		price FROM COMPUTER_HDD WHERE 1=1 <if
+			test="filters != null and !filters.isEmpty()"> AND ( <foreach
+				collection="filters" index="key" item="value" separator=" OR ">
+		${key} LIKE CONCAT('%', #{value}, '%')
+			</foreach> ) </if>
+		UNION ALL SELECT SSD_IMAGE AS image, SSD_NAME AS title, SSD_PRICE AS
+		price FROM COMPUTER_SSD WHERE 1=1 <if
+			test="filters != null and !filters.isEmpty()"> AND ( <foreach
+				collection="filters" index="key" item="value" separator=" OR ">
+		${key} LIKE CONCAT('%', #{value}, '%')
+			</foreach> ) </if>
+		UNION ALL SELECT COOLER_IMAGE AS image, COOLER_NAME AS title,
+		COOLER_PRICE AS price FROM COMPUTER_COOLER WHERE 1=1 <if
+			test="filters['COOLER'] != null">
+			AND MAKER_COOLER LIKE CONCAT('%', #{filters['COOLER']}, '%')
+		</if>
+		UNION ALL SELECT CASE_IMAGE AS image, CASE_NAME AS title, CASE_PRICE AS
+		price FROM COMPUTER_CASE WHERE 1=1 <if test="filters['CASE'] != null">
+		AND MAKER_CASE LIKE CONCAT('%', #{filters['CASE']}, '%')
+		</if>
+		UNION ALL SELECT MB_IMAGE AS image, MB_NAME AS title, MB_PRICE AS price
+		FROM COMPUTER_MAINBOARD WHERE 1=1 <if
+			test="filters['MAINBOARD'] != null">
+			AND MAKER_MAINBOARD LIKE CONCAT('%', #{filters['MAINBOARD']}, '%')
+		</if>
+		UNION ALL SELECT POWER_IMAGE AS image, POWER_NAME AS title, POWER_PRICE
+		AS price FROM COMPUTER_POWER <if test="filters['POWER'] != null">
+			AND MAKER_POWER LIKE CONCAT('%', #{filters['POWER']}, '%')
+		</if>
+		UNION ALL SELECT RAM_IMAGE AS image, RAM_NAME AS title, RAM_PRICE AS
+		price FROM COMPUTER_RAM <if test="filters['RAM'] != null">
+			AND MAKER_RAM LIKE CONCAT('%', #{filters['RAM']}, '%')
+		</if>
+	</select>
+</mapper>

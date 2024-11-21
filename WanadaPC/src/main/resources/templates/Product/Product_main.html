@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>컴퓨터 부품 선택</title>
@@ -143,7 +140,7 @@
 </Style>
 </head>
 <body class="Product_body">
-	<%@ include file="/Util/header.jsp"%>
+	 <th:block th:replace="Util/header :: header"></th:block>
 	<div class="header">
 		<header>
 			<div class="Product_main">
@@ -649,6 +646,6 @@
 	    }
 	}); // $(document).ready 닫는 괄호
 </script>
-	<%@ include file="/Util/footer.jsp"%>
+	 <th:block th:replace="Util/footer :: footer"></th:block>
 </body>
 </html>
