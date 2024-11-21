@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wanada.dto.IndexBannerDTO;
 import com.wanada.dto.IndexGamePcDTO;
+import com.wanada.dto.RecommandPcDTO;
 import com.wanada.service.IndexService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,9 +30,13 @@ public class IndexController {
 		
 		List<IndexBannerDTO> list = service.indexBannerList();
 		List<IndexGamePcDTO> list2 = service.indexGamePcList();
+		List<RecommandPcDTO> list3 = service.recommandPcGameList();
+		List<RecommandPcDTO> list4 = service.recommandPcPartsList();
 		
 		model.addAttribute("indexBannerList", list);
 		model.addAttribute("indexGamePcList", list2);
+		model.addAttribute("recommandPcGameList", list3);
+		model.addAttribute("recommandPcPartsList", list4);
 		
 		return "index";
 	}
