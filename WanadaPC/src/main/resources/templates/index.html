@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/Css/util.css" />
 <title>와나다 PC</title>
+<script type="text/javascript" src="/Script/script"></script>
 <style type="text/css">
 .index_body {
     width: 1260px;
@@ -186,6 +187,10 @@
 	width: calc((100% - 2px - 40px) / 2);
 }
 
+.index_board_table td {
+	padding-left: 20px;
+}
+
 .index_board_table td a {
 	text-decoration: none;
 	color: black;
@@ -287,11 +292,11 @@
 		            		<th>제목</th>
 		            		<th>내용</th>
 		            	</tr>
-						<th:block th:each="i : ${indexBoardList1}">
-			            	<tr>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.person}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.theme}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.content}"></a></td>
+						<th:block th:each="i : ${indexBoardList_1}">
+			            	<tr class="index_board_table_contents">
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.person}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.content}"></a></td>
 			            	</tr>
 						</th:block>
 		            </table>
@@ -302,11 +307,11 @@
 		            		<th>제목</th>
 		            		<th>내용</th>
 		            	</tr>
-						<th:block th:each="i : ${indexBoardList2}">
-			            	<tr>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.person}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.theme}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.content}"></a></td>
+						<th:block th:each="i : ${indexBoardList_2}">
+			            	<tr class="index_board_table_contents">
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.person}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.content}"></a></td>
 			            	</tr>
 						</th:block>
 		            </table>
@@ -339,13 +344,5 @@
     }
 
     setInterval(nextImage, 3000); // 3초마다 다음 이미지로 이동
-</script>
-<script>
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
 </script>
 </html>
