@@ -11,6 +11,6 @@ import com.wanada.dto.ProductDTO;
 @Mapper
 public interface ProductMapper {
 	List<ProductDTO> getAllProducts();
-
-	List<ProductDTO> getFilteredProducts(@Param("filters") Map<String, Object> filters);
+    List<ProductDTO> getFilteredProducts(Map<String, Object> filters);
+	
 }

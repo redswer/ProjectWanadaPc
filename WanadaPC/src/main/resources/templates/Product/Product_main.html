@@ -11,7 +11,7 @@
 	width: 1260px;
 	margin: 0 auto;
 	margin-top: 10px;
-	background-color: #f9f9f9;
+	background-color: rgb(255, 255, 255);
 }
 
 .Product_main {
@@ -562,6 +562,7 @@
 			</section>
 		</div>
 	</div>
+</body>
 	<script>
 	
 	$(document).ready(function () {
@@ -611,12 +612,14 @@
 	        let productListHtml = ``;
 	        
 	        $.ajax({
-	            url: "/ProductController",  // 요청 URL 설정
+	         
+	        	url: "/ProductController/filtered",  // 요청 URL 설정
+	        	//url: "/product",  // 요청 URL 설정
 	            type: "POST",
 	            data: $.param(selectedFilters),
 	            contentType: "application/x-www-form-urlencoded",
 	            dataType: "json",
-	            
+	               
 	            success: function (data) {
 	            	//console.log(data);
 	                //console.log("Selected Filters:", selectedFilters);
@@ -645,7 +648,9 @@
 	       
 	    }
 	}); // $(document).ready 닫는 괄호
+
+	
 </script>
 	 <th:block th:replace="Util/footer :: footer"></th:block>
-</body>
+
 </html>
