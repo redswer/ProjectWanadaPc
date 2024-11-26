@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanada.mapper.IndexMapper">
+	<select id="indexBannerList" resultType="com.wanada.dto.IndexBannerDTO">
+		select * from index_banner
+	</select>
+	<select id="indexGamePcList" resultType="com.wanada.dto.IndexGamePcDTO">
+		select * from (select * from index_game_pc order by game_pc_index desc) where rownum &lt;= 4
+	</select>
+	<select id="recommandPcGameList" resultType="com.wanada.dto.RecommandPcDTO">
+		select * from recommand_pc where subject='game'
+	</select>
+	<select id="recommandPcPartsList" resultType="com.wanada.dto.RecommandPcDTO">
+		select * from recommand_pc where subject='parts'
+	</select>
+	<select id="indexBoardList" resultType="com.wanada.dto.BoardDTO">
+		select * from boardcomment where rownum &lt;= 8 order by board_index desc
+	</select>
+	<select id="searchBoard" resultType="com.wanada.dto.BoardDTO">
+		select * from boardcomment where theme like '%' || #{text} || '%' or content like '%' || #{text} || '%'
+	</select>
+	<select id="etcPC" resultType="com.wanada.dto.IndexBannerDTO">
+		select * from index_banner where category = #{category}
+	</select>
+	<select id="gamePC" resultType="com.wanada.dto.IndexGamePcDTO">
+		select * from index_game_pc where category = #{category}
+	</select>
+</mapper>
