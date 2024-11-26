@@ -107,6 +107,7 @@
 						<li th:each="i : ${index_game_pc_list}" class="pc-item">
 							<a th:href="@{/gamePC(category=${i.category})}" th:text="${i.game_pc_menu}"></a>
 						</li>
+						<li class="pc-item"><a href="etcPC?category=home">조립 PC</a></li>
                     </ul>
                 </div>
                 <div th:object="${dto}" class="image-section">
