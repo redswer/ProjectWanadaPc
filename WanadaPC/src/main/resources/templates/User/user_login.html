@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,7 +95,7 @@
 </head>
 <body class="login_body">
     <div class="login-container">
-        <div th:insert="fragments/main_logo :: logo"></div>
+        <th:block th:replace="Util/main_logo :: main_logo"></th:block>
         <h2>로그인</h2>
         <form th:action="@{/user_login}" method="POST" name="userlogin">
             <div class="form-group">
