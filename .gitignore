@@ -1,0 +1,10 @@
+/.metadata/
+WanadaPC/.gitattributes
+WanadaPC/.gitignore
+WanadaPC/mvnw
+WanadaPC/mvnw.cmd
+WanadaPC/pom.xml
+WanadaPC/.mvn/wrapper/maven-wrapper.properties
+WanadaPC/src/main/java/com/wanada/WanadaPcApplication.java
+WanadaPC/src/main/resources/application.properties
+WanadaPC/src/test/java/com/wanada/WanadaPcApplicationTests.java

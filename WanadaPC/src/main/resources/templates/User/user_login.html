@@ -1,10 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
+    <link rel="stylesheet" href="/Css/util.css" />
+    <script type="text/javascript" src="/Script/script"></script>
     <style>
         .login_body {
             font-family: Arial, sans-serif;
@@ -94,9 +95,9 @@
 </head>
 <body class="login_body">
     <div class="login-container">
-		<%@ include file="/Util/main_logo.jsp" %>
+        <div th:insert="fragments/main_logo :: logo"></div>
         <h2>로그인</h2>
-        <form action="/user_login" method="POST" name="userlogin">
+        <form th:action="@{/user_login}" method="POST" name="userlogin">
             <div class="form-group">
                 <label>아이디 (e-mail)</label>
                 <input type="text" name="userEmail" placeholder="아이디를 입력하세요">
@@ -116,9 +117,7 @@
                 <input type="password" name="userPassword" placeholder="비밀번호를 입력하세요">
             </div>
             <button type="submit" class="login-button">로그인</button>
-            <% if (request.getAttribute("loginError") != null) { %>
-                <p class="error-message"><%= request.getAttribute("loginError") %></p>
-            <% } %>
+            <p th:if="${loginError}" class="error-message" th:text="${loginError}"></p>
         </form>
     </div>
 </body>
