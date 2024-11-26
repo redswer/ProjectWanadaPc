@@ -65,6 +65,7 @@ public class IndexController {
 		String url = "Pc/etcPC_rtx";
 		IndexBannerDTO dto = service.etcPC(category);
 		List<IndexBannerDTO> list = service.indexBannerList();
+		List<RecommandPcDTO> list2 = service.recommandPcPartsList();
 		
 		if(category.equals("home")) {
 			url = "Pc/etcPC_home";
@@ -81,6 +82,7 @@ public class IndexController {
 		model.addAttribute("index_banner_list", list);
 		model.addAttribute("dto", dto);
 		model.addAttribute("index_category", category);
+		model.addAttribute("recommand_pc_parts_list", list2);
 		
 		return url;
 	}
@@ -91,6 +93,7 @@ public class IndexController {
 		String url = "Pc/gamePC_legueOfLegend";
 		IndexGamePcDTO dto = service.gamePC(category);
 		List<IndexGamePcDTO> list = service.indexGamePcList();
+		List<RecommandPcDTO> list2 = service.recommandPcGameList();
 		
 		if(category.equals("leagueOfLegend")) {
 			url = "Pc/gamePC_leagueOfLegend";
@@ -105,6 +108,7 @@ public class IndexController {
 		model.addAttribute("index_game_pc_list", list);
 		model.addAttribute("dto", dto);
 		model.addAttribute("category", category);
+		model.addAttribute("recommand_pc_game_list", list2);
 		
 		return url;
 	}

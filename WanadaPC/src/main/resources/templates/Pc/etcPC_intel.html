@@ -121,13 +121,13 @@
 	                </div>
                 </div>
                 <div class="recommend_product_section">
-                    <c:forEach var="i" items="${recommand_pc_parts_list}">
+                    <th:block th:each="i : ${recommand_pc_parts_list}">
                         <div>
-                            <a href="/etcPC?category=${i.category}">
-                                <img src="/Image/${i.image}">
+                            <a th:href="@{etcPC(category=${i.category})}">
+                                <img th:src="@{'/Image/' + ${i.image}}">
                             </a>
                         </div>
-                    </c:forEach>
+                    </th:block>
                 </div>
             </div>
         </main>
