@@ -58,7 +58,7 @@ public class IndexController {
 	@RequestMapping("/etcPC")
 	public String etcPC(HttpServletRequest request, Model model) {
 		String category = request.getParameter("category");
-		String url = "Pc/etcPC_rtx";
+		String url = "Pc/etcPC_1";
 		IndexBannerDTO dto = service.etcPC(category);
 		List<IndexBannerDTO> list = service.indexBannerList();
 		List<RecommandPcDTO> list2 = service.recommandPcPartsList();
@@ -68,7 +68,7 @@ public class IndexController {
 		} else if (category.equals("office")) {
 			url = "Pc/etcPC_office";
 		} else if (category.equals("ryzen")) {
-			url = "Pc/etcPC_ryzen";
+			url = "Pc/etcPC_2";
 		} else if (category.equals("intel")) {
 			url = "Pc/etcPC_intel";
 		} else if (category.equals("edit")) {
@@ -86,19 +86,19 @@ public class IndexController {
 	@RequestMapping("/gamePC")
 	public String gamePC(HttpServletRequest request, Model model) {
 		String category = request.getParameter("category");
-		String url = "Pc/gamePC_legueOfLegend";
+		String url = "Pc/gamePC_4";
 		IndexGamePcDTO dto = service.gamePC(category);
 		List<IndexGamePcDTO> list = service.indexGamePcList();
 		List<RecommandPcDTO> list2 = service.recommandPcGameList();
 		
 		if(category.equals("leagueOfLegend")) {
-			url = "Pc/gamePC_leagueOfLegend";
+			url = "Pc/gamePC_4";
 		} else if (category.equals("battleGround")) {
-			url = "Pc/gamePC_battleGround";
+			url = "Pc/gamePC_1";
 		} else if (category.equals("blackMyth")) {
-			url = "Pc/gamePC_blackMyth";
+			url = "Pc/gamePC_3";
 		} else if (category.equals("godOfWar")) {
-			url = "Pc/gamePC_godOfWar";
+			url = "Pc/gamePC_2";
 		}
 		
 		model.addAttribute("index_game_pc_list", list);

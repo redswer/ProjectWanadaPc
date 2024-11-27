@@ -101,7 +101,7 @@
                 </a>
             </div>
             <div class="etcPC_main_contents">
-	            <h2>편집용 PC</h2>
+	            <h2 th:text="${dto.subject}"></h2>
                 <div class="pc_list_container">
                     <ul class="pc-list">
 						<li th:each="i : ${index_banner_list}" class="pc-item">
