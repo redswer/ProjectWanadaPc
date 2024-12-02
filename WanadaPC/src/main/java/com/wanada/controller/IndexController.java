@@ -70,7 +70,7 @@ public class IndexController {
 		} else if (category.equals("ryzen")) {
 			url = "Pc/etcPC_2";
 		} else if (category.equals("intel")) {
-			url = "Pc/etcPC_intel";
+			url = "Pc/etcPC_3";
 		} else if (category.equals("edit")) {
 			url = "Pc/etcPC_edit";
 		}
