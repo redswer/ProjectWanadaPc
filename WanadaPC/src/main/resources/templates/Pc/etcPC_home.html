@@ -101,12 +101,13 @@
                 </a>
             </div>
             <div class="etcPC_main_contents">
-                <h2>조립 PC</h2>
+	            <h2 th:text="${dto.subject}"></h2>
                 <div class="pc_list_container">
                     <ul class="pc-list">
 						<li th:each="i : ${index_banner_list}" class="pc-item">
 							<a th:href="@{${i.page_link}(category=${i.category})}" th:text="${i.subject}"></a>
 						</li>
+						<li class="pc-item"><a href="gamePC?category=leagueOfLegend">게임용 PC</a></li>
                     </ul>
                 </div>
                 <div th:object="${dto}" class="image-section">
@@ -121,13 +122,13 @@
 	                </div>
                 </div>
                 <div class="recommend_product_section">
-                    <c:forEach var="i" items="${recommand_pc_parts_list}">
+                    <th:block th:each="i : ${recommand_pc_parts_list}">
                         <div>
-                            <a href="/etcPC?category=${i.category}">
-                                <img src="/Image/${i.image}">
+                            <a th:href="@{etcPC(category=${i.category})}">
+                                <img th:src="@{'/Image/' + ${i.image}}">
                             </a>
                         </div>
-                    </c:forEach>
+                    </th:block>
                 </div>
             </div>
         </main>
