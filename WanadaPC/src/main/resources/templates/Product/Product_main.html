@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>컴퓨터 부품 선택</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<link rel="stylesheet" href="/Css/util.css"/>
 <Style>
 .Product_body {
 	font-family: Arial, sans-serif;
@@ -149,19 +149,20 @@
 					<!-- 큰 카테고리 선택 -->
 					<div class="Product_Kategorie">
 						<ul id="categoryList">
-							<li data-category="CPU_Product_list" class="active">CPU</li>
-							<li data-category="Mainboard_Product_list">메인보드</li>
-							<li data-category="GPU_Product_list">그래픽카드</li>
-							<li data-category="RAM_Product_list">램</li>
-							<li data-category="COOLER_Product_list">쿨러</li>
-							<li data-category="SSD_Product_list">SSD</li>
-							<li data-category="HDD_Product_list">HDD</li>
-							<li data-category="CASE_Product_list">케이스</li>
-							<li data-category="POWER_Product_list">파워</li>
+							<li data-category="COMPUTER_CPU" class="active">CPU</li>
+							<li data-category="COMPUTER_Mainboard">메인보드</li>
+							<li data-category="COMPUTER_GPU">그래픽카드</li>
+							<li data-category="COMPUTER_RAM">램</li>
+							<li data-category="COMPUTER_COOLER">쿨러</li>
+							<li data-category="COMPUTER_SSD">SSD</li>
+							<li data-category="COMPUTER_HDD">HDD</li>
+							<li data-category="COMPUTER_CASE">케이스</li>
+							<li data-category="COMPUTER_POWER">파워</li>
 						</ul>
 					</div>
 					<!-- CPU 옵션 -->
-					<div id="CPU_Product_list" class="Product_list">
+					
+					<div id="COMPUTER_CPU" class="Product_list">
 
 						<form id="CPUForm">
 							<table>
@@ -194,9 +195,9 @@
 					</div>
 
 					<!-- Mainboard 옵션 -->
-					<div id="Mainboard_Product_list" class="Product_list">
+					<div id="COMPUTER_Mainboard" class="Product_list">
 
-						<form id="MainboardForm">
+						 <form id="MainboardForm">
 							<table>
 								<tr>
 									<th>제조사</th>
@@ -238,9 +239,9 @@
 					</div>
 
 					<!-- GPU 옵션 -->
-					<div id="GPU_Product_list" class="Product_list">
+					<div id="COMPUTER_GPU" class="Product_list">
 
-						<form id="GPUForm">
+					<form id="GPUForm">
 							<table>
 								<tr>
 									<th>제조사</th>
@@ -281,8 +282,8 @@
 					</div>
 
 					<!-- RAM 옵션 -->
-					<div id="RAM_Product_list" class="Product_list">
-						<form id="RAMForm">
+					<div id="COMPUTER_RAM" class="Product_list">
+					 <form id="RAMForm">
 							<table>
 								<tr>
 									<th>제조사</th>
@@ -320,9 +321,9 @@
 					</div>
 
 					<!-- COOLER 옵션 -->
-					<div id="COOLER_Product_list" class="Product_list">
+					<div id="COMPUTER_COOLER" class="Product_list">
 
-						<form id="CoolerForm">
+				 <form id="CoolerForm">
 							<table>
 								<tr>
 									<th>제조사</th>
@@ -359,9 +360,9 @@
 					</div>
 
 					<!-- SSD 옵션 -->
-					<div id="SSD_Product_list" class="Product_list">
+					<div id="COMPUTER_SSD" class="Product_list">
 
-						<form id="SSDForm">
+					 <form id="SSDForm">
 							<table>
 								<tr>
 									<th>제조사</th>
@@ -406,7 +407,7 @@
 					</div>
 
 					<!-- HDD 옵션 -->
-					<div id="HDD_Product_list" class="Product_list">
+					<div id="COMPUTER_HDD" class="Product_list">
 
 						<form id="HDDForm">
 							<table>
@@ -446,9 +447,9 @@
 					</div>
 
 					<!-- CASE 옵션 -->
-					<div id="CASE_Product_list" class="Product_list">
+					<div id="COMPUTER_CASE" class="Product_list">
 
-						<form id="CaseForm">
+					 <form id="CaseForm">
 							<table>
 								<tr>
 									<th>제조사</th>
@@ -488,7 +489,7 @@
 					</div>
 
 					<!-- POWER 옵션 -->
-					<div id="POWER_Product_list" class="Product_list">
+					<div id="COMPUTER_POWER" class="Product_list">
 
 						<form id="PowerForm">
 							<table>
@@ -563,12 +564,13 @@
 		</div>
 	</div>
 </body>
-	<script>
+	
+	<script th:inline="javascript">
 	
 	$(document).ready(function () {
 	    // 초기 설정: CPU 카테고리 옵션만 보이도록 설정
-	    $('#CPU_Product_list').show();
-	    $('.Product_list').not('#CPU_Product_list').hide();
+	    $('#COMPUTER_CPU').show();
+	    $('.Product_list').not('#COMPUTER_CPU').hide();
 	    loadProducts(); // 초기 로드
 
 	    // 카테고리 클릭 시 해당 옵션만 표시하고 다른 옵션은 체크 해제
@@ -611,25 +613,30 @@
 			//console.log("Selected Filters (before Ajax):", selectedFilters);
 	        let productListHtml = ``;
 	        
+	        console.log(selectedFilters);
+	        
 	        $.ajax({
 	         
-	        	url: "/ProductController/filtered",  // 요청 URL 설정
-	        	//url: "/product",  // 요청 URL 설정
-	            type: "POST",
+	        	//url: "/ProductController/filtered",  // 요청 URL 설정
+	        	url: "/AJAX_Product/filtered",  // 요청 URL 설정
+	        	type: "POST",
 	            data: $.param(selectedFilters),
+	            //data: selectedFilters,
 	            contentType: "application/x-www-form-urlencoded",
 	            dataType: "json",
-	               
+	            
 	            success: function (data) {
-	            	//console.log(data);
+	            	console.log("success");
+	            	console.log(data);
+	      
+	            	console.log("Encoded Data:", $.param(selectedFilters));
 	                //console.log("Selected Filters:", selectedFilters);
 	                if (data.length > 0) {
 	                    data.forEach(function (product) {
 	                    	//console.log(product);
 	                    	productListHtml += 
 	                    	    "<tr>" +
-	                    	        "<th><img src=\"" + product.image + "\" alt=\"" + product.title + "\" width=\"100\" height=\"100\"></th>" +
-	                    	        "<td>" + product.title + "</td>" +
+	                    	        "<th><img th:src=\"" + product.image + "\" alt=\"" + product.title + "\" width=\"100\" height=\"100\"></th>" +
 	                    	        "<td>가격:" + product.price + "원</td>" +
 	                    	    "</tr>";
 	                    });
@@ -648,9 +655,6 @@
 	       
 	    }
 	}); // $(document).ready 닫는 괄호
-
-	
 </script>
 	 <th:block th:replace="Util/footer :: footer"></th:block>
-
 </html>

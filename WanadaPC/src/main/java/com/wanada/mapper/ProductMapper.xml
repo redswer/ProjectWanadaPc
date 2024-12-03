@@ -1,203 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wanada.mapper.ProductMapper">
-	  <select id="getAllProducts" resultType="com.wanada.dto.ProductDTO">
-     
-            SELECT CPU_IMAGE AS IMAGE, CPU_NAME AS TITLE, CPU_PRICE AS PRICE FROM COMPUTER_CPU
-            UNION ALL
-            SELECT GPU_IMAGE AS IMAGE, GPU_NAME AS TITLE, GPU_PRICE AS PRICE FROM COMPUTER_GPU
-            UNION ALL
-            SELECT HDD_IMAGE AS IMAGE, HDD_NAME AS TITLE, HDD_PRICE AS PRICE FROM COMPUTER_HDD
-            UNION ALL
-            SELECT SSD_IMAGE AS IMAGE, SSD_NAME AS TITLE, SSD_PRICE AS PRICE FROM COMPUTER_SSD
-            UNION ALL
-            SELECT COOLER_IMAGE AS IMAGE, COOLER_NAME AS TITLE, COOLER_PRICE AS PRICE FROM COMPUTER_COOLER
-            UNION ALL
-            SELECT CASE_IMAGE AS IMAGE, CASE_NAME AS TITLE, CASE_PRICE AS PRICE FROM COMPUTER_CASE
-            UNION ALL
-            SELECT MB_IMAGE AS IMAGE, MB_NAME AS TITLE, MB_PRICE AS PRICE FROM COMPUTER_MAINBOARD
-            UNION ALL
-            SELECT POWER_IMAGE AS IMAGE, POWER_NAME AS TITLE, POWER_PRICE AS PRICE FROM COMPUTER_POWER
-            UNION ALL
-            SELECT RAM_IMAGE AS IMAGE, RAM_NAME AS TITLE, RAM_PRICE AS PRICE FROM COMPUTER_RAM
-        
-    </select>
+	<select id="getAllProducts"
+		resultType="com.wanada.dto.ProductDTO">
+		SELECT CPU_IMAGE AS image, CPU_NAME AS title, CPU_PRICE AS
+		price
+		FROM COMPUTER_CPU
+		UNION ALL
+		SELECT GPU_IMAGE AS image, GPU_NAME AS
+		title, GPU_PRICE AS price
+		FROM COMPUTER_GPU
+		UNION ALL
+		SELECT HDD_IMAGE AS
+		image, HDD_NAME AS title, HDD_PRICE AS price
+		FROM COMPUTER_HDD
+		UNION ALL
+		SELECT SSD_IMAGE AS image, SSD_NAME AS title, SSD_PRICE AS price
+		FROM
+		COMPUTER_SSD
+		UNION ALL
+		SELECT COOLER_IMAGE AS image, COOLER_NAME AS
+		title, COOLER_PRICE AS price
+		FROM COMPUTER_COOLER
+		UNION ALL
+		SELECT
+		CASE_IMAGE AS image, CASE_NAME AS title, CASE_PRICE AS price
+		FROM
+		COMPUTER_CASE
+		UNION ALL
+		SELECT MB_IMAGE AS image, MB_NAME AS title,
+		MB_PRICE AS price
+		FROM COMPUTER_MAINBOARD
+		UNION ALL
+		SELECT POWER_IMAGE AS
+		image, POWER_NAME AS title, POWER_PRICE AS price
+		FROM COMPUTER_POWER
+		UNION ALL
+		SELECT RAM_IMAGE AS image, RAM_NAME AS title, RAM_PRICE AS
+		price
+		FROM COMPUTER_RAM
+	</select>
+	<select id="getFilteredProducts"
+		resultType="com.wanada.dto.ProductDTO">
+		<choose>
+			<!-- CPU 조건 -->
+			<when test="COMPUTER_CPU != null">
+				SELECT CPU_IMAGE AS image, CPU_NAME AS title, CPU_PRICE AS price
+				FROM COMPUTER_CPU
+				WHERE
+				<foreach collection="COMPUTER_CPU" item="cpu"
+					separator=" OR ">
+					MAKER_CPU LIKE '%' || #{cpu} || '%'
+				</foreach>
+				<if test="COMPUTER_CPU[0] == 'Intel'">
+					AND
+					<foreach collection="COMPUTER_CPU" item="intelCpu"
+						separator=" OR ">
+						Intel_Cpu LIKE '%' || #{intelCpu} || '%'
+					</foreach>
+				</if>
+				<if test="COMPUTER_CPU[0] != 'Intel'">
+					AND
+					<foreach collection="COMPUTER_CPU" item="ryzenCpu"
+						separator=" OR ">
+						Ryzen_Cpu LIKE '%' || #{ryzenCpu} || '%'
+					</foreach>
+				</if>
+			</when>
+
+			<!-- GPU 조건 -->
+			<when test="COMPUTER_GPU != null">
+				SELECT GPU_IMAGE AS image, GPU_NAME AS title, GPU_PRICE AS price
+				FROM COMPUTER_GPU
+				WHERE
+				<foreach collection="COMPUTER_GPU" item="gpu"
+					separator=" OR ">
+					MAKER_GPU LIKE '%' || #{gpu} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_GPU" item="chipset"
+					separator=" OR ">
+					CHIPSET_GPU LIKE '%' || #{chipset} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_GPU" item="type"
+					separator=" OR ">
+					TYPE_GPU LIKE '%' || #{type} || '%'
+				</foreach>
+			</when>
+
+			<!-- COOLER 조건 -->
+			<when test="COMPUTER_COOLER != null">
+				SELECT COOLER_IMAGE AS image, COOLER_NAME AS title, COOLER_PRICE AS
+				price
+				FROM COMPUTER_COOLER
+				WHERE
+				<foreach collection="COMPUTER_COOLER" item="cooler"
+					separator=" OR ">
+					MAKER_COOLER LIKE '%' || #{cooler} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_COOLER" item="productType"
+					separator=" OR ">
+					PRODUCT_TYPE LIKE '%' || #{productType} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_COOLER" item="coolerMethod"
+					separator=" OR ">
+					COOLER_method LIKE '%' || #{coolerMethod} || '%'
+				</foreach>
+			</when>
+
+			<!-- HDD 조건 -->
+			<when test="COMPUTER_HDD != null">
+				SELECT HDD_IMAGE AS image, HDD_NAME AS title, HDD_PRICE AS price
+				FROM COMPUTER_HDD
+				WHERE
+				<foreach collection="COMPUTER_HDD" item="hdd"
+					separator=" OR ">
+					MAKER_HDD LIKE '%' || #{hdd} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_HDD" item="size"
+					separator=" OR ">
+					SIZE_HDD LIKE '%' || #{size} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_HDD" item="capacity"
+					separator=" OR ">
+					CAPACITY_HDD LIKE '%' || #{capacity} || '%'
+				</foreach>
+			</when>
+
+			<!-- RAM 조건 -->
+			<when test="COMPUTER_REM != null">
+				SELECT RAM_IMAGE AS image, RAM_NAME AS title, RAM_PRICE AS price
+				FROM COMPUTER_RAM
+				WHERE
+				<foreach collection="COMPUTER_REM" item="ram"
+					separator=" OR ">
+					MAKER_REM LIKE '%' || #{ram} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_REM" item="type"
+					separator=" OR ">
+					TYPE_REM LIKE '%' || #{type} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_REM" item="capacity"
+					separator=" OR ">
+					CAPACITY_REM LIKE '%' || #{capacity} || '%'
+				</foreach>
+			</when>
+
+			<!-- POWER 조건 -->
+			<when test="COMPUTER_POWER != null">
+				SELECT POWER_IMAGE AS image, POWER_NAME AS title, POWER_PRICE AS
+				price
+				FROM COMPUTER_POWER
+				WHERE
+				<foreach collection="COMPUTER_POWER" item="power"
+					separator=" OR ">
+					MAKER_POWER LIKE '%' || #{power} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_POWER" item="output"
+					separator=" OR ">
+					OUTPUT_POWER LIKE '%' || #{output} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_POWER" item="cert"
+					separator=" OR ">
+					CERTIFICATION_POWER LIKE '%' || #{cert} || '%'
+				</foreach>
+			</when>
+
+			<!-- MAINBOARD 조건 -->
+			<when test="COMPUTER_MAINBOARD != null ">
+				SELECT MB_IMAGE AS image, MB_NAME AS title, MB_PRICE AS price
+				FROM
+				COMPUTER_MAINBOARD
+				WHERE
+				<foreach collection="COMPUTER_MAINBOARD" item="mainboard"
+					separator=" OR ">
+					MAKER_MainBoard LIKE '%' || #{mainboard} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_MAINBOARD" item="type"
+					separator=" OR ">
+					TYPE_MainBoard LIKE '%' || #{type} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_MAINBOARD" item="socket"
+					separator=" OR ">
+					SOCKET_MainBoard LIKE '%' || #{socket} || '%'
+				</foreach>
+			</when>
+
+			<!-- SSD 조건 -->
+			<when test="COMPUTER_SSD != null ">
+				SELECT SSD_IMAGE AS image, SSD_NAME AS title, SSD_PRICE AS price
+				FROM COMPUTER_SSD
+				WHERE
+				<foreach collection="COMPUTER_SSD" item="ssd"
+					separator=" OR ">
+					MAKER_SSD LIKE '%' || #{ssd} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_SSD" item="formFactor"
+					separator=" OR ">
+					FORM_FACTOR_SSD LIKE '%' || #{formFactor} || '%'
+				</foreach>
+				AND
+				<foreach collection="COMPUTER_SSD" item="capacity"
+					separator=" OR ">
+					CAPACITY_SSD LIKE '%' || #{capacity} || '%'
+				</foreach>
+			</when>
+		</choose>
+	</select>
 	
-	<select id="getFilteredProducts" parameterType="map" resultType="com.wanada.dto.ProductDTO">
-         SELECT IMAGE AS image, TITLE AS title, PRICE AS price
-        FROM (
-            <if test="cpuProducts != null">
-                SELECT CPU_IMAGE AS IMAGE, CPU_NAME AS TITLE, CPU_PRICE AS PRICE
-                FROM COMPUTER_CPU
-                <where>
-                    <if test="cpuProducts.length > 0">
-                        MAKER_CPU IN
-                        <foreach item="item" index="index" collection="cpuProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        <if test="cpuProducts[0] == 'Intel'">
-                            AND Intel_Cpu LIKE '%Intel%'
-                        </if>
-                        <if test="cpuProducts[0] != 'Intel'">
-                            AND Ryzen_Cpu LIKE '%Ryzen%'
-                        </if>
-                    </if>
-                </where>
-            </if>
+	 <select id="getComputerCpuProducts" resultType="com.wanada.dto.CpuDTO">
+        SELECT CPU_NAME, CPU_IMAGE, CPU_IMFORMATION, CPU_PRICE
+        FROM COMPUTER_CPU
+    </select> 
+    
+    <select id="getComputerCaseProducts" resultType="com.wanada.dto.CaseDTO">
+        SELECT CASE_NAME, CASE_IMAGE, CASE_IMFORMATION, CASE_PRICE
+        FROM COMPUTER_CASE
+    </select> 
 
-            <if test="gpuProducts != null">
-                UNION ALL
-                SELECT GPU_IMAGE AS IMAGE, GPU_NAME AS TITLE, GPU_PRICE AS PRICE
-                FROM COMPUTER_GPU
-                <where>
-                    <if test="gpuProducts.length > 0">
-                        MAKER_GPU IN
-                        <foreach item="item" index="index" collection="gpuProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR CHIPSET_GPU IN
-                        <foreach item="item" index="index" collection="gpuProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR TYPE_GPU IN
-                        <foreach item="item" index="index" collection="gpuProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                    </if>
-                </where>
-            </if>
-
-            <if test="coolerProducts != null">
-                UNION ALL
-                SELECT COOLER_IMAGE AS IMAGE, COOLER_NAME AS TITLE, COOLER_PRICE AS PRICE
-                FROM COMPUTER_COOLER
-                <where>
-                    <if test="coolerProducts.length > 0">
-                        MAKER_COOLER IN
-                        <foreach item="item" index="index" collection="coolerProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR PRODUCT_TYPE LIKE
-                        <foreach item="item" index="index" collection="coolerProducts" open="'%" separator="%' OR '%" close="%'">
-                            #{item}
-                        </foreach>
-                        OR COOLER_method LIKE
-                        <foreach item="item" index="index" collection="coolerProducts" open="'%" separator="%' OR '%" close="%'">
-                            #{item}
-                        </foreach>
-                    </if>
-                </where>
-            </if>
-
-            <if test="hddProducts != null">
-                UNION ALL
-                SELECT HDD_IMAGE AS IMAGE, HDD_NAME AS TITLE, HDD_PRICE AS PRICE
-                FROM COMPUTER_HDD
-                <where>
-                    <if test="hddProducts.length > 0">
-                        MAKER_HDD IN
-                        <foreach item="item" index="index" collection="hddProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR SIZE_HDD IN
-                        <foreach item="item" index="index" collection="hddProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR CAPACITY_HDD IN
-                        <foreach item="item" index="index" collection="hddProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                    </if>
-                </where>
-            </if>
-
-            <if test="ramProducts != null">
-                UNION ALL
-                SELECT RAM_IMAGE AS IMAGE, RAM_NAME AS TITLE, RAM_PRICE AS PRICE
-                FROM COMPUTER_RAM
-                <where>
-                    <if test="ramProducts.length > 0">
-                        MAKER_RAM IN
-                        <foreach item="item" index="index" collection="ramProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR TYPE_RAM IN
-                        <foreach item="item" index="index" collection="ramProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR CAPACITY_RAM IN
-                        <foreach item="item" index="index" collection="ramProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                    </if>
-                </where>
-            </if>
-
-            <if test="powerProducts != null">
-                UNION ALL
-                SELECT POWER_IMAGE AS IMAGE, POWER_NAME AS TITLE, POWER_PRICE AS PRICE
-                FROM COMPUTER_POWER
-                <where>
-                    <if test="powerProducts.length > 0">
-                        MAKER_POWER IN
-                        <foreach item="item" index="index" collection="powerProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR OUTPUT_POWER IN
-                        <foreach item="item" index="index" collection="powerProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR CERTIFICATION_POWER IN
-                        <foreach item="item" index="index" collection="powerProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                    </if>
-                </where>
-            </if>
-
-            <if test="mainboardProducts != null">
-                UNION ALL
-                SELECT MB_IMAGE AS IMAGE, MB_NAME AS TITLE, MB_PRICE AS PRICE
-                FROM COMPUTER_MAINBOARD
-                <where>
-                    <if test="mainboardProducts.length > 0">
-                        MAKER_MB IN
-                        <foreach item="item" index="index" collection="mainboardProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR TYPE_MB IN
-                        <foreach item="item" index="index" collection="mainboardProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR SOCKET_MB IN
-                        <foreach item="item" index="index" collection="mainboardProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                    </if>
-                </where>
-            </if>
-
-            <if test="ssdProducts != null">
-                UNION ALL
-                SELECT SSD_IMAGE AS IMAGE, SSD_NAME AS TITLE, SSD_PRICE AS PRICE
-                FROM COMPUTER_SSD
-                <where>
-                    <if test="ssdProducts.length > 0">
-                        MAKER_SSD IN
-                        <foreach item="item" index="index" collection="ssdProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR FORM_FACTOR_SSD IN
-                        <foreach item="item" index="index" collection="ssdProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                        OR CAPACITY_SSD IN
-                        <foreach item="item" index="index" collection="ssdProducts" open="(" separator="," close=")">
-                            #{item}
-                        </foreach>
-                    </if>
-                </where>
-            </if>
-        ) 
-    </select>
 </mapper>

@@ -1,11 +1,12 @@
 package com.wanada.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
-@Getter
+
+@Data
 @ToString
 public class CaseDTO {
 	private String CASE_NAME;
@@ -14,6 +15,6 @@ public class CaseDTO {
 	private String SIZE_CASE;
 	private String CASE_IMAGE;
  	private String CASE_PRICE;
- 	private String CASE_INFORMATION;
+ 	private String CASE_IMFORMATION;
 
 }

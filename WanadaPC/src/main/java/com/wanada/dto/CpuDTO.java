@@ -8,9 +8,6 @@ import lombok.ToString;
 
 
 @Data
-@Builder
-@Setter
-@Getter
 @ToString
 public class CpuDTO {
 	private String CPU_NAME;
@@ -19,7 +16,7 @@ public class CpuDTO {
  	private String RYZEN_CPU;
  	private String CPU_IMAGE;
  	private String CPU_PRICE;
- 	private String CPU_INFORMATION;
+ 	private String CPU_IMFORMATION;
  	private String CPU_DATE;
  	private String CPU_SOCKET;
  	private String CPU_CORE;
