@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller; //1번 연동 생성 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wanada.service.UserService;
 import com.wanada.dto.UserDTO;
+import com.wanada.service.UserService;
 
 
 @Controller   //1번 
 public class UserController {
 	
-	@Autowired 
+	@Autowired
 	private UserService service; 
 	
 	@RequestMapping("/UserLogin")
@@ -24,7 +24,11 @@ public class UserController {
 		return "User/user_login_ok";    // 로그인 확인을 하는 부분 
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("@{/user_insert}") //회원가입 값 넣는것 
+=======
+	@RequestMapping("/user_insert") //회원가입 값 넣는것 
+>>>>>>> JO
 	public String UserWrite() {			//UserMapper.java에서 row값을 UserDTO dto로 받아서 UserWrite라는 이름으로 지정 해당 값을 불러옴 
 		UserDTO dto = new UserDTO();
 		int row = service.UserWrite(dto);
