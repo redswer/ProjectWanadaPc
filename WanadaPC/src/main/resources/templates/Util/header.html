@@ -22,8 +22,8 @@
             </div>
             <div class="header_link">
                 <div th:if="${#strings.isEmpty(user)}">
-                    <a th:href="@{/User/user_login.jsp}">로그인</a>
-                    <a th:href="@{/User/user_insert.jsp}">회원가입</a>
+                    <a th:href="@{/UserLogin}">로그인</a>
+                    <a th:href="@{/UserInsertPage}">회원가입</a>
                 </div>
                 <div th:if="${not #strings.isEmpty(user)}">
                     <div th:if="${user.userEmail == 'admin'}">
