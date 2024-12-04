@@ -13,8 +13,7 @@ public interface UserService {
 	//2. 회원 로그인 
 	public int login(String userid, String Password);
 	
-	//3. 회원 로그아웃 
-	public int 
+
 	
 
 }
