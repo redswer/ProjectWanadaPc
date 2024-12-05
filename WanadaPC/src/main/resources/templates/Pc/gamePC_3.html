@@ -101,7 +101,7 @@
                 </a>
             </div>
             <div class="etcPC_main_contents">
-                <h2>게임용 PC</h2>
+                <h2 th:text="${dto.game_pc_menu}"></h2>
                 <div class="pc_list_container">
                     <ul class="pc-list">
 						<li th:each="i : ${index_game_pc_list}" class="pc-item">

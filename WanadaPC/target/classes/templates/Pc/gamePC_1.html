@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>와나다 조립 PC</title>
+<title>와나다 게임용 PC</title>
 <link rel="stylesheet" href="/Css/util.css" />
 <script type="text/javascript" src="/Script/script"></script>
 <style type="text/css">
@@ -101,17 +101,17 @@
                 </a>
             </div>
             <div class="etcPC_main_contents">
-	            <h2>지포스 RTX 40</h2>
+                <h2 th:text="${dto.game_pc_menu}"></h2>
                 <div class="pc_list_container">
                     <ul class="pc-list">
-						<li th:each="i : ${index_banner_list}" class="pc-item">
-							<a th:href="@{${i.page_link}(category=${i.category})}" th:text="${i.subject}"></a>
+						<li th:each="i : ${index_game_pc_list}" class="pc-item">
+							<a th:href="@{/gamePC(category=${i.category})}" th:text="${i.game_pc_menu}"></a>
 						</li>
-						<li class="pc-item"><a href="gamePC?category=leagueOfLegend">게임용 PC</a></li>
+						<li class="pc-item"><a href="etcPC?category=home">조립 PC</a></li>
                     </ul>
                 </div>
                 <div th:object="${dto}" class="image-section">
-	                <img th:src="@{'/Image/' + ${dto.page_image}}">
+	                <img th:src="@{'/Image/' + ${dto.game_pc_image}}">
 	                <div>
 	                    <ul>
 	                        <li>PC 1</li>
@@ -122,9 +122,9 @@
 	                </div>
                 </div>
                 <div class="recommend_product_section">
-                    <th:block th:each="i : ${recommand_pc_parts_list}">
+                    <th:block th:each="i : ${recommand_pc_game_list}">
                         <div>
-                            <a th:href="@{etcPC(category=${i.category})}">
+                            <a th:href="@{gamePC(category=${i.category})}">
                                 <img th:src="@{'/Image/' + ${i.image}}">
                             </a>
                         </div>
