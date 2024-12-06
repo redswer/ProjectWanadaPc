@@ -17,7 +17,6 @@ import com.wanada.dto.IndexBannerDTO;
 import com.wanada.dto.IndexGamePcDTO;
 import com.wanada.dto.MainBoardDTO;
 import com.wanada.dto.PowerDTO;
-import com.wanada.dto.ProductDTO;
 import com.wanada.dto.RamDTO;
 import com.wanada.dto.RecommandPcDTO;
 import com.wanada.dto.SsdDTO;
