@@ -1,7 +1,11 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/Css/util.css" />
+<script type="text/javascript" src="/Script/script"></script>
+
+<script type="text/javascript" src="/Script/script"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -117,11 +121,8 @@
 </style>
 </head>
 <body>
+ <th:block th:replace="Util/header :: header"></th:block>
     <div class="my_board_body">
-        <header>
-            <%@ include file="/Util/header.jsp" %>
-            <%@ include file="/Util/side_bar.jsp" %>
-        </header>
         <main class="board_list_main">
         	<div class="board_list_menu">
             	<h1>내가 쓴 글</h1>
@@ -134,23 +135,26 @@
                     <th>작성일</th>
                     <th>조회수</th>
                 </tr>
-                <c:forEach var="i" items="${my_board_list}">
-                    <tr>
-                        <td><a href="/boardDetail?board_index=${i.board_index}">${i.board_index}</a></td>
-                        <td>
-                            <a href="/boardDetail?board_index=${i.board_index}">${i.theme}</a>
-                       
-                    </td>
-                        <td><a href="/boardDetail?board_index=${i.board_index}">${i.person}</a></td>
-                        <td><a href="/boardDetail?board_index=${i.board_index}">${i.enterdate}</a></td>
-                        <td><a href="/boardDetail?board_index=${i.board_index}">${i.count}</a></td>
-                    </tr>
-                </c:forEach>
-            </table>
+			    <tr th:each="i : ${my_board_list}">
+			    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.board_index}"></a></td>
+			    <td>
+			        <a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a>
+			    </td>
+			    <td>
+			        <a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.person}"></a>
+			    </td>
+			    <td>
+			        <a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.enterdate}"></a>
+			    </td>
+			    <td>
+			        <a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.count}"></a>
+			    </td>
+			</tr>
+               
+            </table>     
+            <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+            <th:block th:replace="Util/footer :: footer"></th:block>
         </main>
-        <footer>
-            <%@ include file="/Util/footer.jsp" %>
-        </footer>
     </div>
 </body>
 </html>

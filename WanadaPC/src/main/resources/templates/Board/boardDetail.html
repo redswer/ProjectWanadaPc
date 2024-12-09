@@ -1,15 +1,17 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/Css/util.css" />
+<script type="text/javascript" src="/Script/script"></script>
 <meta charset="UTF-8">
 <title>게시판 상세보기</title>
 <style type="text/css">
 /* 전체 컨테이너 */
 .board_detail_body {
-    width: 80%;
+    width: 1260px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: Arial, sans-serif;
     color: #333;
 }
@@ -100,14 +102,15 @@
     background-color: #5a2db2;
 }
 
+.contents {
+	height: 200px
+}
+
 </style>
 </head>
 <body>
     <div class="board_detail_body">
-        <header>
-            <%@ include file="/Util/header.jsp" %>
-            <%@ include file="/Util/side_bar.jsp" %>
-        </header>
+		<th:block th:replace="Util/header :: header"></th:block>
         <main class="board_detail_main">
             <h1>게시판 상세보기</h1>
             <table class="board_detail_table">
@@ -119,34 +122,28 @@
                     <th class="view-count">조회수</th>
                 </tr>
                  <tr>
-                 	<c:if test="${!empty dto}">
-                      <td>${dto.board_index}</td>
-                      <td>${dto.theme}</td>
-                      <td>${dto.person}</td>
-                      <td>${dto.enterdate}</td>
-                      <td>${dto.count}</td>
-                     </c:if>
-                 </tr>
+                 	<tr th:if="${dto != null}">
+  					<td th:text="${dto.board_index}"></td>
+					  <td th:text="${dto.theme}"></td>
+					  <td th:text="${dto.person}"></td>
+					  <td th:text="${dto.enterdate}"></td>
+					  <td th:text="${dto.count}"></td>
+					</tr>              
                  <tr>
                  	<th colspan="5" >내용</th>
                  </tr>
                  <tr>
-                 	<c:if test="${!empty dto}">
-                 		<td colspan="5">${dto.content}</td>
-                 	</c:if>
+                 	<td class="contents" colspan="5" th:text="${dto.content}" th:if="${dto != null}"></td>             	
                  </tr>
             </table>
             <div class="action-buttons">
-                <c:if test="${(!empty dto && dto.person eq user.userEmail) || user.userEmail eq 'admin'}">
-                 	<a href="boardUpdatePage?board_index=${dto.board_index}">수정</a>
-                 	<a href="boardDelete?board_index=${dto.board_index}">삭제</a>
-                </c:if>
+            <a th:href="@{boardUpdatePage?board_index={boardIndex}(boardIndex=${dto.board_index})}">수정</a>
+			<a th:href="@{boardDelete?board_index={boardIndex}(boardIndex=${dto.board_index})}">삭제</a>			            
                 <a href="/boardList">목록으로</a>
             </div>
+            <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+            <th:block th:replace="Util/footer :: footer"></th:block>
         </main>
-        <footer>
-            <%@ include file="/Util/footer.jsp" %>
-        </footer>
     </div>
 </body>
 </html>

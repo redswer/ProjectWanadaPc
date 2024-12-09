@@ -1,22 +1,20 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/Css/util.css" />
+<script type="text/javascript" src="/Script/script"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${row == 1}">
-		<script type="text/javascript">
-			alert("등록 완료");
-			window.location="/boardList";
-		</script>
-	</c:if>
-	<c:if test="${row == 0}">
-		<script type="text/javascript">
-			alert("실패")
-			history.back();
-		</script>	
-	</c:if>
+<div>
+잘못된 입력입니다.
+
+</div>
+<a href = "/">
+home  
+</a>
 </body>
 </html>
