@@ -46,4 +46,10 @@ public class BoardServicelmpl implements BoardService {
 		return insert;
 	}
 
+	   @Override
+	   public List<BoardDTO> boardListPerson(String person) {
+	      List<BoardDTO> list = mapper.boardListPerson(person);
+	      
+	      return list;
+	   }
 }

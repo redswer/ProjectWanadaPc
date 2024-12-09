@@ -12,4 +12,5 @@ public interface BoardService {
 	public int boarddelete(int idx);
 	public int boardinsert(BoardDTO dto);
 
+	public List<BoardDTO> boardListPerson(String person);
 }
