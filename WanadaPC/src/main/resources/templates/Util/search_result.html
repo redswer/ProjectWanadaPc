@@ -88,6 +88,11 @@
 	display: grid;
 	grid-template-columns: 1fr 1.5fr 4fr 1.5fr 1fr 1fr;
 }
+
+.search_product_image {
+	width: 75px;
+	height: 75px;
+}
 </style>
 </head>
 <body>
@@ -136,10 +141,163 @@
             </div>
             <div>
                 <h2>상품</h2>
-                <div th:if="${#lists.isEmpty(product)}">
+                <div th:if="${#lists.isEmpty(case)
+                			and #lists.isEmpty(cooler)
+                			and #lists.isEmpty(cpu)
+                			and #lists.isEmpty(gpu)
+                			and #lists.isEmpty(hdd)
+                			and #lists.isEmpty(mainboard)
+                			and #lists.isEmpty(power)
+                			and #lists.isEmpty(ram)
+                			and #lists.isEmpty(ssd)}">
                     <div>검색 내용이 없습니다</div>
                 </div>
-                <div th:if="${not #lists.isEmpty(product)}">
+                <div th:if="${not #lists.isEmpty(case)
+                   			or not #lists.isEmpty(cooler)
+                			or not #lists.isEmpty(cpu)
+                			or not #lists.isEmpty(gpu)
+                			or not #lists.isEmpty(hdd)
+                			or not #lists.isEmpty(mainboard)
+                			or not #lists.isEmpty(power)
+                			or not #lists.isEmpty(ram)
+                			or not #lists.isEmpty(ssd)}">
+                	<table>
+	                	<th:block th:each="i : ${case}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/CASE/{image}(image=${i.CASE_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.CASE_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.CASE_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${cooler}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/COOLER/{image}(image=${i.COOLER_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.COOLER_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.COOLER_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${cpu}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/CPU/{image}(image=${i.CPU_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.CPU_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.CPU_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${gpu}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/GPU/{image}(image=${i.GPU_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.GPU_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.GPU_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${hdd}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/HDD/{image}(image=${i.HDD_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.HDD_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.HDD_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${mainboard}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/MAINBOARD/{image}(image=${i.MAINBOARD_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.MAINBOARD_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.MAINBOARD_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${power}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/POWER/{image}(image=${i.POWER_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.POWER_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.POWER_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${ram}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/RAM/{image}(image=${i.RAM_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.RAM_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.RAM_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${ssd}">
+	                            <tr class="">
+	                                <td>
+	                                	<a th:href="@{/}">
+	                                		<img th:src="@{/Image/SSD/{image}(image=${i.SSD_IMAGE})}" class="search_product_image"/>
+                                		</a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.SSD_NAME}"></a>
+	                                </td>
+	                                <td>
+	                                	<a th:href="@{/}" th:text="${i.SSD_INFORMATION}"></a>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+                	</table>
                 </div>
             </div>
         </main>

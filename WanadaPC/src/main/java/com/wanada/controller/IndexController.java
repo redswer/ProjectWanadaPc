@@ -8,10 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wanada.dto.BoardDTO;
+import com.wanada.dto.CaseDTO;
+import com.wanada.dto.CoolerDTO;
+import com.wanada.dto.CpuDTO;
+import com.wanada.dto.GpuDTO;
+import com.wanada.dto.HddDTO;
 import com.wanada.dto.IndexBannerDTO;
 import com.wanada.dto.IndexGamePcDTO;
-import com.wanada.dto.ProductDTO;
+import com.wanada.dto.MainBoardDTO;
+import com.wanada.dto.PowerDTO;
+import com.wanada.dto.RamDTO;
 import com.wanada.dto.RecommandPcDTO;
+import com.wanada.dto.SsdDTO;
 import com.wanada.service.IndexService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -122,7 +130,15 @@ public class IndexController {
 	@RequestMapping("/search")
 	public String search(String text, Model model) {
 		List<BoardDTO> list = service.searchBoard(text);
-		List<ProductDTO> list2 = service.searchProduct(text);
+		List<CaseDTO> caseList = service.searchCase(text);
+		List<CoolerDTO> coolerList = service.searchCooler(text);
+		List<CpuDTO> cpuList = service.searchCpu(text);
+		List<GpuDTO> gpuList = service.searchGpu(text);
+		List<HddDTO> hddList = service.searchHdd(text);
+		List<MainBoardDTO> mainboardList = service.searchMainBoard(text);
+		List<PowerDTO> powerList = service.searchPower(text);
+		List<RamDTO> ramList = service.searchRam(text);
+		List<SsdDTO> ssdList = service.searchSsd(text);
 		
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getTheme().length() >= 10) {
@@ -136,7 +152,15 @@ public class IndexController {
 		
 		model.addAttribute("text", text);
 		model.addAttribute("board", list);
-		model.addAttribute("product", list2);
+		model.addAttribute("case", caseList);
+		model.addAttribute("cooler", coolerList);
+		model.addAttribute("cpu", cpuList);
+		model.addAttribute("gpu", gpuList);
+		model.addAttribute("hdd", hddList);
+		model.addAttribute("mainboard", mainboardList);
+		model.addAttribute("power", powerList);
+		model.addAttribute("ram", ramList);
+		model.addAttribute("ssd", ssdList);
 		
 		return "Util/search_result";
 	}
