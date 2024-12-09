@@ -97,7 +97,7 @@
 	</div>
     <div class="update-container">
         <h2>회원정보 수정</h2>
-        <form action="/user_update" method="POST" name="modifyForm">
+        <form th:action="@{/user_update}"  method="POST" name="modifyForm">
             <div class="form-group">
                 <label for="userEmail">이메일</label>
                 <input type="text" id="userEmail" name="userEmail" value="${user.userEmail}" readonly>

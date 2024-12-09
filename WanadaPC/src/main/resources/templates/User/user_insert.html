@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>와나다 회원가입</title>
+<link rel="stylesheet" href="Css/util.css" />
 <style>
 .user_insert_body {
     /* 폰트를 Arial로 설정하고, 사용할 수 없을 경우 sans-serif로 대체 */
@@ -105,12 +106,13 @@
 	<div class="inner">
 		<h1 class="logo_wanada">
 			<a href="http://wanada.com" class="link"> <span class="blind">
-			 <%@ include file="/Util/main_logo.jsp" %></span>
+			 <th:block th:replace="Util/main_logo :: main_logo"></th:block></span>
 			</a>
 		</h1>
 		<div class="signup-container">
 			<h1>회원가입</h1>
-			<form action="/user_insert" method="POST" name="userForm">
+			<form th:action="@{/user_insert}" method="POST" name="userForm">   <!--  th: action 수정 11.26 -->
+					<!-- th:action 주소값이 매핑값인듯 ********** -->
 				<div class="form section">
 					<div class="join_toggle" id="divToggle">
 						<input type="checkbox" id="join_toggle" name="join_toggle" checked> 
