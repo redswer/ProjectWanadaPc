@@ -128,7 +128,7 @@
                                        th:text="${i.theme}"></a></td>
                                 <td><a class="search_board_link" th:href="@{/boardDetail(board_index=${i.board_index})}"
                                        th:text="${i.content}"></a></td>
-                                <td><a th:text="${i.person}" th:href="@{/boardListPerson(person=${i.person})}"></a></td>
+                                <td><a class="search_board_link" th:text="${i.person}" th:href="@{/boardListPerson(person=${i.person})}"></a></td>
                                 <td class="search_board_center"><a th:text="${i.enterdate}"></a></td>
                                 <td class="search_board_center"><a th:text="${i.count}"></a></td>
                             </tr>
