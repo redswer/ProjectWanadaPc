@@ -14,4 +14,5 @@ public int boardinsert(BoardDTO dto);
 public BoardDTO boarddetail(int idx);
 public int boarddelete(int idx);
 
+public List<BoardDTO> boardListPerson(String person);
 }

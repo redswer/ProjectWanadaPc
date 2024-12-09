@@ -94,8 +94,9 @@
     text-decoration: none;
 }
 
-.board_list_table a:hover {
+.detail_link:hover {
     color: #6b3fcd;
+    font-weight: bold;
 }
 
 .board_list_main {
@@ -137,11 +138,11 @@
                     <th>조회수</th>
                 </tr>
                 <tr th:each="i : ${board_list}">
-				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.board_index}"></a></td>
-				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
-				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.person}"></a></td>
-				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.enterdate}"></a></td>
-				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.count}"></a></td>
+				    <td><a class="detail_link" th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.board_index}"></a></td>
+				    <td><a class="detail_link" th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
+				    <td><a class="detail_link" th:href="@{/boardListPerson(person=${i.person})}" th:text="${i.person}"></a></td>
+				    <td><a th:text="${i.enterdate}"></a></td>
+				    <td><a th:text="${i.count}"></a></td>
 				</tr>
 
             </table>

@@ -100,4 +100,16 @@ public class BoardController {
 		int row = service.boardinsert(dto);
 		return "Board/boardList";
 }
+	
+	   @RequestMapping("/boardListPerson")
+	   public String boardListPerson(HttpServletRequest request, Model model) {
+	      String person = request.getParameter("person");
+	      
+	      List<BoardDTO> list = service.boardListPerson(person);
+	      
+	      model.addAttribute("person", person);
+	      model.addAttribute("list", list);
+	      
+	      return "Board/boardListPerson";
+	   }
 }

@@ -20,5 +20,7 @@
 		_index = #{board_index}
 	</update>
  
-
+   <select id="boardListPerson" resultType="com.wanada.dto.BoardDTO">
+      select * from boardcomment where person = #{person}
+   </select>
 </mapper>
