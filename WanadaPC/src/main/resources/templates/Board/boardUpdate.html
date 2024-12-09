@@ -1,7 +1,10 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/Css/util.css" />
+<script type="text/javascript" src="/Script/script"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -74,10 +77,8 @@
 </style>
 </head>
 <body>
+<th:block th:replace="Util/header :: header"></th:block>
     <div class="board_update_body">
-        <header>
-            <%@ include file="/Util/header.jsp" %>
-        </header>
         <main>
         	<form action="/boardUpdate" method="post" name="board_update_table" class="board_update_form">
         		<table>
@@ -88,22 +89,35 @@
 	                    <th>조회수</th>
         			</tr>
         			<tr class="none_change_input">
-        				<c:if test="${!empty dto}">
-	        				<td><input type="hidden" value="${dto.board_index}" name="board_index"><div>${dto.board_index}</div></td>
-	        				<td><input type="hidden" value="${dto.person}" name="person"><div>${dto.person}</div></td>
-	        				<td><input type="hidden" value="${dto.enterdate}" name="enterdate"><div>${dto.enterdate}</div></td>
-	        				<td><input type="hidden" value="${dto.count}" name="count"><div>${dto.count}</div></td>
-        				</c:if>
-        			</tr>
+					    <tr th:if="${dto != null}">
+					    <td>
+					        <input type="hidden" th:value="${dto.board_index}" name="board_index">
+					        <div th:text="${dto.board_index}"></div>
+					    </td>
+					    <td>
+					        <input type="hidden" th:value="${dto.person}" name="person">
+					        <div th:text="${dto.person}"></div>
+					    </td>
+					    <td>
+					        <input type="hidden" th:value="${dto.enterdate}" name="enterdate">
+					        <div th:text="${dto.enterdate}"></div>
+					    </td>
+					    <td>
+					        <input type="hidden" th:value="${dto.count}" name="count">
+					        <div th:text="${dto.count}"></div>
+					    </td>
+					</tr>
+    
+        			
         		</table>
         		<table>
         			<tr>
         				<th>제목</th>
-   						<td><input value="${dto.theme}" name="theme" size=70></td>
+   						<td><input th:value="${dto.theme}" name="theme" size=70></td>
         			</tr>
         			<tr>
         				<th>내용</th>
-        				<td><textarea name="content" cols="100" rows="30">${dto.content}</textarea></td>
+        				<td><textarea name="content" cols="100" rows="30" th:text="${dto.content}"></textarea></td>
         			</tr>
         			<tr>
         				<td colspan=5 class="board_update_button">
@@ -113,10 +127,9 @@
         			</tr>
         		</table>
         	</form>
+            <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+            <th:block th:replace="Util/footer :: footer"></th:block>
         </main>
-        <footer>
-            <%@ include file="/Util/footer.jsp" %>
-        </footer>
     </div>
 </body>
 </html>

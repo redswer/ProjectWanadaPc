@@ -3,10 +3,14 @@ package com.wanada.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import com.wanada.dto.BoardDTO;
 import com.wanada.mapper.BoardMapper;
 
+@Service
+@Primary
 public class BoardServicelmpl implements BoardService {
  
 	@Autowired
@@ -19,27 +23,27 @@ public class BoardServicelmpl implements BoardService {
 	}
 
 	@Override
-	public int boardupdate() {
-		int upadate=mapper.boardupdate();
-		return upadate;
+	public int boardupdate(int idx) {
+		int update=mapper.boardupdate(idx);
+		return update;
 	}
 
 	@Override
-	public int boarddetail() {
-		int detail=mapper.boarddetail();
-		return 0;
+	public BoardDTO boarddetail(int idx) {
+		BoardDTO detail=mapper.boarddetail(idx);
+		return detail;
 	}
 
 	@Override
-	public int boarddelete() {
-		int delete=mapper.boarddelete();
-		return 0;
+	public int boarddelete(int idx) {
+		int delete=mapper.boarddelete(idx);
+		return delete;
 	}
 
 	@Override
-	public int boardinsert() {
-		int insert=mapper.boardinsert();
-		return 0;
+	public int boardinsert(BoardDTO dto) {
+		int insert=mapper.boardinsert(dto);
+		return insert;
 	}
 
 }

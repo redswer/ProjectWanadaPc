@@ -2,22 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wanada.mapper.BoardMapper">
 	<select id="boardlist" resultType="com.wanada.dto.BoardDTO">
-		select * from boardcomment order by board_index desc;
-	</select>
-	<select id="boardupdate" resultType="com.wanada.dto.BoardDTO">
-		update boardcomment set theme = #{},content=#{} where board
-		_index = #{}; 
-	</select>
-	<select id="boardinsert" resultType="com.wanada.dto.BoardDTO">
-		insert into boardcomment values(#,#,#,#,#);
-	</select>
+		select * from BOARDCOMMENT order by BOARD_INDEX DESC
+	</select>	
 	<select id="boarddetail" resultType="com.wanada.dto.BoardDTO">
-		select * from boardcomment where board_index=#{};		
+		select * from boardcomment where board_index=#{idx}	
 	</select>
-	<select id="boarddelete" resultType="com.wanada.dto.BoardDTO">
-		delete from boardcomment where board_index=#[];	
-	</select>
+	
+	<insert id="boardinsert" >
+		insert into boardcomment(idx,theme,content,person) values(#{board_index},#{theme},#{content},#{person})
+	</insert>
+	<delete id="boarddelete" >
+		delete from boardcomment where board_index=#{idx}	
+	</delete>
 
-
+	<update id="boardupdate" >
+		update boardcomment set theme = #{theme},content=#{content} where board
+		_index = #{board_index}
+	</update>
+ 
 
 </mapper>

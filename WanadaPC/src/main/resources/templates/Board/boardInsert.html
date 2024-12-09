@@ -1,47 +1,51 @@
-
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-.board_insert_body {
-    width: 1260px;
-    margin: 0 auto;
-    margin-top: 10px;
-}
+    <link rel="stylesheet" href="/Css/util.css" />
+    <script type="text/javascript" src="/Script/script"></script>
+    <meta charset="UTF-8">
+    <title>글 등록</title>
+    <style type="text/css">
+        .board_insert_body {
+            width: 1260px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
 
-.board_insert_text {
-	resize: none;
-}
-</style>
+        .board_insert_text {
+            resize: none;
+        }
+    </style>
 </head>
 <body>
-	<div class="board_insert_body">
-		<header>
-			<%@ include file="/Util/header.jsp" %>
-			<%@ include file="/Util/side_bar.jsp" %>
-		</header>
-		<main>
-			<h2>글 등록</h2>
-			<form action="/boardInsert" method="post" name="board_insert_form">
-				<table>
-					<tr>
-						<th>제목</th>
-						<td><input name="theme"></td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td><textarea name="content" class="board_insert_text" cols="100" rows="30"></textarea></td>
-					</tr>
-				</table>
-				<button type="submit">등록</button>
-				<button type="button">취소</button>
-			</form>
-		</main>
-		<footer>
-			<%@ include file="/Util/footer.jsp" %>
-		</footer>
-	</div>
+    <!-- Header, Side bar, Footer를 Thymeleaf로 포함 -->
+    <th:block th:replace="Util/header :: header"></th:block>
+
+    <div class="board_insert_body">
+        <main>
+            <h2>글 등록</h2>
+            <!-- 글 등록 폼 -->
+            <form th:action="@{/boardInsert}" method="post" name="board_insert_form">
+                <table>
+                    <tr>
+                        <th>제목</th>
+                        <!-- 제목 입력 필드 -->
+                        <td><input type="text" name="theme" th:value="${theme}"></td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <!-- 내용 입력 필드 -->
+                        <td><textarea name="content" class="board_insert_text" cols="100" rows="30" th:value="${content}"></textarea></td>
+                    </tr>
+                </table>
+                <button type="submit">등록</button>
+                <button type="button" onclick="history.back()">취소</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Side bar, Footer를 Thymeleaf로 포함 -->
+    <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+    <th:block th:replace="Util/footer :: footer"></th:block>
 </body>
 </html>

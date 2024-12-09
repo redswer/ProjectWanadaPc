@@ -7,9 +7,9 @@ import com.wanada.dto.BoardDTO;
 
 public interface BoardService {
 	public List<BoardDTO> boardlist();
-	public int boardupdate();
-	public int boarddetail();
-	public int boarddelete();
-	public int boardinsert();
+	public int boardupdate(int idx);
+	public BoardDTO boarddetail(int idx);
+	public int boarddelete(int idx);
+	public int boardinsert(BoardDTO dto);
 
 }
