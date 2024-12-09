@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wanada.dto.UserDTO;
 import com.wanada.service.UserService;
+import com.wanada.util.UserSHA256;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -61,20 +62,28 @@ public class UserController {
 		//get으로 받아온 값 dto 에 저장후 db에서 값을 끌어와서 비교 ? 
 		//get으로 받아온 값을 바로 쿼리문을 이용해서 db에 저장이 되어있는지 비교?
 		
+		
+		 // 비밀번호 암호화 적용
+        String hashedPassword = UserSHA256.getSHA256(password); // SHA-256 암호화
+        
 		UserDTO dto = service.userLogin(email);
-		if(dto == null) {
-			model.addAttribute("row",0);
+		if(dto == null) { // 아이디가 없을때 
+			model.addAttribute("row",-1);
 			return "User/user_login"; //로그인 페이지로 이동 
 		} else {
+			//비밀번호 검증 
+			if(dto.getUserPassword().equals(hashedPassword)) {
+				//로그인 성공 
+				model.addAttribute("row",1);
+				return "User/user_login_ok";//로그인 성공 페이지로 이동 
+		} else {
+			//비밀번호불일치
+			model.addAttribute("row", 0);
+			return "User/user_login"; // 로그인 페이지로 이동
 			
 		}
-		//2. select useremail, userpassword from user_table; 사용하여서 저장된값 검색하기 <<<<검색된 닶을 변수에 저장? >>>>
-
-		//서비스 호출 
-		        
 	}
-	
-	
+	}
 }
 
 // controller 에서 row 값(0,1)
