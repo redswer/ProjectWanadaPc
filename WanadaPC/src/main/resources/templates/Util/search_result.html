@@ -80,8 +80,9 @@
     text-decoration: none;
 }
 
-.board_list_table a:hover {
+.search_board_link:hover {
     color: #6b3fcd;
+    font-weight: bold;
 }
 
 .table_margin {
@@ -120,20 +121,16 @@
                             <th>작성일</th>
                             <th>조회수</th>
                         </tr>
-                        <th:block th:each="i : ${board}">
+                        <th:block th:each="i, status : ${board}">
                             <tr class="table_margin">
-                                <td class="search_board_center"><a th:href="@{/boardDetail?board_index={id}}"
-                                       th:text="${i.board_index}"></a></td>
-                                <td><a th:href="@{/boardDetail?board_index={id}}"
+                                <td class="search_board_center" th:text="${status.index + 1}"></td>
+                                <td><a class="search_board_link" th:href="@{/boardDetail(board_index=${i.board_index})}"
                                        th:text="${i.theme}"></a></td>
-                                <td><a th:href="@{/boardDetail?board_index={id}}"
+                                <td><a class="search_board_link" th:href="@{/boardDetail(board_index=${i.board_index})}"
                                        th:text="${i.content}"></a></td>
-                                <td><a th:href="@{/boardDetail?board_index={id}}"
-                                       th:text="${i.person}"></a></td>
-                                <td class="search_board_center"><a th:href="@{/boardDetail?board_index={id}}"
-                                       th:text="${i.enterdate}"></a></td>
-                                <td class="search_board_center"><a th:href="@{/boardDetail?board_index={id}}"
-                                       th:text="${i.count}"></a></td>
+                                <td><a th:text="${i.person}" th:href="@{/boardListPerson(person=${i.person})}"></a></td>
+                                <td class="search_board_center"><a th:text="${i.enterdate}"></a></td>
+                                <td class="search_board_center"><a th:text="${i.count}"></a></td>
                             </tr>
                         </th:block>
                     </table>
