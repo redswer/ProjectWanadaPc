@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanada.mapper.UserMapper">
+	<insert id="userWrite">  <!-- userDTO에 저장된것과 이름 대소문자 맞춰야함 //    id 값 userwite는 UserMapper.java의 class 이름 /ex) public int userwite(UserDTO dto) 의 userwrite-->
+		insert into user_table(
+		UserEmail,
+		UserPassword,
+		UserName,
+		Tell,
+		Gender,
+		UserBirthdate
+		) values(
+		#{userEmail},  
+		#{userPassword},
+		#{userName},
+		#{tell},
+		#{gender},
+		#{userBirthdate}
+		)
+	</insert>
+			
+		 <!-- 로그인 -->
+		<select id="userLogin" resultType="com.wanada.dto.UserDTO">
+        SELECT *
+        FROM user_table 
+        WHERE userEmail = #{userEmail}
+		</select>
+		
+		<select id="userPassword"  resultType="com.wanada.dto.UserDTO">   <!-- 로그인 할 때 회원의 모든 정보값이 session에 담겨서 로그인 되기때문에 select * all 필요  -->
+		select * 
+		from user_table 
+		where userEmail = #{userEmail}
+		
+		</select>
+		
+</mapper>
