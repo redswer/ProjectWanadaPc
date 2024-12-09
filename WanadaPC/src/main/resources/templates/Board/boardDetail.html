@@ -9,9 +9,9 @@
 <style type="text/css">
 /* 전체 컨테이너 */
 .board_detail_body {
-    width: 80%;
+    width: 1260px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: Arial, sans-serif;
     color: #333;
 }
@@ -102,11 +102,15 @@
     background-color: #5a2db2;
 }
 
+.contents {
+	height: 200px
+}
+
 </style>
 </head>
 <body>
     <div class="board_detail_body">
-<th:block th:replace="Util/header :: header"></th:block>
+		<th:block th:replace="Util/header :: header"></th:block>
         <main class="board_detail_main">
             <h1>게시판 상세보기</h1>
             <table class="board_detail_table">
@@ -129,7 +133,7 @@
                  	<th colspan="5" >내용</th>
                  </tr>
                  <tr>
-                 	<td colspan="5" th:text="${dto.content}" th:if="${dto != null}"></td>             	
+                 	<td class="contents" colspan="5" th:text="${dto.content}" th:if="${dto != null}"></td>             	
                  </tr>
             </table>
             <div class="action-buttons">

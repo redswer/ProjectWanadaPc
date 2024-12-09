@@ -19,7 +19,7 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 
-	@RequestMapping("boardList")
+	@RequestMapping("/boardList")
 	public String boardlist(Model model) {
 
 		List<BoardDTO> list = service.boardlist();
@@ -29,7 +29,7 @@ public class BoardController {
 		return "Board/boardList";
 	}
 
-	@RequestMapping("boardUpdate")
+	@RequestMapping("/boardUpdate")
 	public String boardupdate(HttpServletRequest request, Model model) {
 
 	    // HttpServletRequest에서 idx 파라미터를 받아오기
@@ -43,7 +43,7 @@ public class BoardController {
 	}
 
 
-	@RequestMapping("boardDetail")
+	@RequestMapping("/boardDetail")
 	public String boarddetail(HttpServletRequest request, Model model) {
 	    // "boarddetail" 파라미터를 가져와서 int로 변환
 		int idx = Integer.parseInt(request.getParameter("board_index"));
@@ -52,7 +52,7 @@ public class BoardController {
 	    
 	    return "Board/boardDetail";
 	}
-	@RequestMapping("boardDelete")
+	@RequestMapping("/boardDelete")
 	public String boarddelete(HttpServletRequest request, Model model) {
 	    // idx 값을 받아서 서비스로 삭제 요청
 		int idx = Integer.parseInt(request.getParameter("board_index"));
@@ -71,19 +71,19 @@ public class BoardController {
 	    return "Board/boarddelete";
 	}
 	
-	@RequestMapping("boardUpdatePage")
+	@RequestMapping("/boardUpdatePage")
 	public String boardUpdatePage(HttpServletRequest request, Model model) {
 		int idx = Integer.parseInt(request.getParameter("board_index"));
 		 BoardDTO detail = service.boarddetail(idx);
 		    model.addAttribute("dto", detail);
 		return "Board/boardUpdate";
 	}
-	@RequestMapping("boardinsertpage")
+	@RequestMapping("/boardinsertpage")
 	public String boardinsertpage(HttpServletRequest request, Model model) {
 		return "Board/boardInsert";
 
 }
-	@RequestMapping("boardinsert")
+	@RequestMapping("/board_insert")
 	public String boardinsert(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO) session.getAttribute("user");
@@ -98,6 +98,6 @@ public class BoardController {
 		dto.setContent(content);
 		
 		int row = service.boardinsert(dto);
-		return "Board/boardInsert";
+		return "Board/boardList";
 }
 }

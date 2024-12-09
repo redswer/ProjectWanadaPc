@@ -120,12 +120,12 @@
 </style>
 </head>
 <body>
-<th:block th:replace="Util/header :: header"></th:block>
     <div class="board_list_body">
+	<th:block th:replace="Util/header :: header"></th:block>
         <main class="board_list_main">
         	<div class="board_list_menu">
             	<h1>게시판</h1>
-	            	<a href="/boardinsertpage">글쓰기</a>
+	            	<a th:href="@{/boardinsertpage}">글쓰기</a>
     				        
             </div>
             <table class="board_list_table">
