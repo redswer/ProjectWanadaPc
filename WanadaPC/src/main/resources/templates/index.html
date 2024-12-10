@@ -295,7 +295,7 @@
 		            	</tr>
 						<th:block th:each="i : ${indexBoardList_1}">
 			            	<tr class="index_board_table_contents">
-								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.person}"></a></td>
+								<td><a th:href="@{/boardListPerson(person=${i.person})}" th:text="${i.person}"></a></td>
 								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
 								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.content}"></a></td>
 			            	</tr>
@@ -310,7 +310,7 @@
 		            	</tr>
 						<th:block th:each="i : ${indexBoardList_2}">
 			            	<tr class="index_board_table_contents">
-								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.person}"></a></td>
+								<td><a th:href="@{/boardListPerson(person=${i.person})}" th:text="${i.person}"></a></td>
 								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
 								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.content}"></a></td>
 			            	</tr>
