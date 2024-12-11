@@ -10,6 +10,5 @@ public interface UserService {
 	public UserDTO userLogin(String userEmail); 
 	
 	
-	public UserDTO userPassword(String userEmail); // 비밀번호 검색하는것  (입력된 아이디를 기준으로 해당 비밀번호 검색해서 가지고 오기 떄문에 String userEmail) 입력해야함 
 
 }
