@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -94,9 +93,8 @@
     text-decoration: none;
 }
 
-.detail_link:hover {
+.board_list_table a:hover {
     color: #6b3fcd;
-    font-weight: bold;
 }
 
 .board_list_main {
@@ -118,6 +116,10 @@
 	line-height: 30px;
 	background-color: gray;
 }
+
+.person {
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -125,7 +127,10 @@
 	<th:block th:replace="Util/header :: header"></th:block>
         <main class="board_list_main">
         	<div class="board_list_menu">
-            	<h1>게시판</h1>
+            	<h1>
+            		<span class="person" th:text="${person}"></span>
+            		<span>님의 전체 글입니다</span>
+            	</h1>
 	            	<a th:href="@{/boardinsertpage}">글쓰기</a>
     				        
             </div>
@@ -137,12 +142,12 @@
                     <th>작성일</th>
                     <th>조회수</th>
                 </tr>
-                <tr th:each="i : ${board_list}">
-				    <td><a class="detail_link" th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.board_index}"></a></td>
-				    <td><a class="detail_link" th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
-				    <td><a class="detail_link" th:href="@{/boardListPerson(person=${i.person})}" th:text="${i.person}"></a></td>
-				    <td><a th:text="${i.enterdate}"></a></td>
-				    <td><a th:text="${i.count}"></a></td>
+                <tr th:each="i : ${list}">
+				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.board_index}"></a></td>
+				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
+				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.person}"></a></td>
+				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.enterdate}"></a></td>
+				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.count}"></a></td>
 				</tr>
 
             </table>
