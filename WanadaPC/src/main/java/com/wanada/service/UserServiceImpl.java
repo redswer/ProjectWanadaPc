@@ -27,9 +27,4 @@ public class UserServiceImpl implements UserService {
 		return row;
 	
 	}
-	@Override
-	public UserDTO userPassword(String userEmail) {
-		UserDTO row = mapper.userLogin(userEmail); //mapper에서는 sql 문이 동작(select)의 결과값을 userwirte(dto)에 저장한다. 
-		return row;
-	}
 }

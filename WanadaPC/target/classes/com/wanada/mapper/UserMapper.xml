@@ -21,16 +21,7 @@
 			
 		 <!-- 로그인 -->
 		<select id="userLogin" resultType="com.wanada.dto.UserDTO">
-        SELECT *
-        FROM user_table 
-        WHERE userEmail = #{userEmail}
-		</select>
-		
-		<select id="userPassword"  resultType="com.wanada.dto.UserDTO">   <!-- 로그인 할 때 회원의 모든 정보값이 session에 담겨서 로그인 되기때문에 select * all 필요  -->
-		select * 
-		from user_table 
-		where userEmail = #{userEmail}
-		
+			select * from user_table where userEmail = #{userEmail}
 		</select>
 		
 </mapper>

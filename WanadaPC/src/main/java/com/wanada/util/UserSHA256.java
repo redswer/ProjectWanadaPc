@@ -11,6 +11,7 @@ public class UserSHA256 {
         }catch(Exception e) {
              e.printStackTrace();
         }
+     
         mDigest.update(str.getBytes()); //해시데이터
         byte[] msgStr = mDigest.digest() ;//바이트 배열의 바이너리 로 변환
         // 16진수 문자열 변환
