@@ -28,14 +28,17 @@ public class UserController {
 		// insert.html 페이지에서 입력받은 값을 가져오는것
 		String email = request.getParameter("userEmail") + "@" + request.getParameter("customEmailDomain");
 		String password = request.getParameter("userPassword"); // 비밀번호 암호화 인코딩 작업 해야함.
+		String hashedPassword = UserSHA256.getSHA256(password); 
 		String name = request.getParameter("userName");
 		String birthdate = request.getParameter("userBirthdate");
 		String gender = request.getParameter("gender");
 		String tell = request.getParameter("tell");
+		
 		// get으로 가져온 값들을 set으로 UserDTO dto변수에 넣는 작업
 		UserDTO dto = new UserDTO();// UserDTO dto 변수선언
+		
 		dto.setUserEmail(email);
-		dto.setUserPassword(password);
+		dto.setUserPassword(hashedPassword);
 		dto.setUserName(name);
 		dto.setUserBirthdate(birthdate);
 		dto.setGender(gender);
@@ -62,31 +65,27 @@ public class UserController {
 	public String userLogin(HttpServletRequest request, Model model) {
 
 		// <<<< 1. 입력된 아이디 페스워드 값을 변수에 저장 필요성 의문 >>>>
-		String email = request.getParameter("userEmail") + "@" + request.getParameter("emailDomain");
+		String email = request.getParameter("userEmail") + "@" + request.getParameter("customEmailDomain");
 		String password = request.getParameter("userPassword");
 
 		String hashedPassword = UserSHA256.getSHA256(password); // SHA-256 암호화
 
 		UserDTO dto = service.userLogin(email);
-		String link = "";
+		HttpSession session = request.getSession();
+		int row = 0;
 		
 		if (dto == null) {
-			model.addAttribute("row", 0);
-			link = "User/user_login_ok";
+			row = -1;
 		} else {
-			if (!dto.getUserPassword().equals(hashedPassword)) {
-				model.addAttribute("row", 1);
-				link =  "User/user_login_ok";
-			} else {
-				HttpSession session = request.getSession();
+			if (dto.getUserPassword().equals(hashedPassword)) {
 				session.setAttribute("user", dto);
-				model.addAttribute("alert", "로그인 완료");
-				
-				link = "index";
+				row = 1;
 			}
-		
 		}
-		return link;
+		
+		model.addAttribute("row", row);
+		
+		return "User/user_login_pro";
 	}
 }
 

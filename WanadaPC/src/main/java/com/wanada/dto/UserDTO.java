@@ -14,7 +14,4 @@ public class UserDTO {
 	private String userName;
 	private String tell;
 	private String userBirthdate; 
-	private String first_time;
-	private String last_time;
-	
 }
