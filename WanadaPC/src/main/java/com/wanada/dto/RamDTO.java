@@ -1,11 +1,11 @@
 package com.wanada.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
-@Getter
+@Data
 @ToString
 public class RamDTO {
 	private String RAM_NAME;
@@ -15,4 +15,10 @@ public class RamDTO {
 	private String RAM_IMAGE;
  	private String RAM_PRICE;
  	private String RAM_INFORMATION;
+ 	private String RAM_MEMORY_SPECIFICATIONS;
+ 	private String RAM_MOTION_CLOCK;
+ 	private String RAM_TIMING;
+ 	private String RAM_OPERATING_VOLTAGE;
+ 	private String RAM_ADDITIONAL_FUNCTION;
+ 	private String RELEASE_YEAR;
 }
