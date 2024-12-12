@@ -22,18 +22,16 @@
                 </form>
             </div>
             <div class="header_link">
-                <div th:if="${#strings.isEmpty(user)}">
+            	<div th:if="${session.user != null}">
+            		<span class="userInfo" th:text="${session.user.userEmail}"></span>
+            	</div>
+                <div th:if="${session.user == null}">
                     <a th:href="@{/userLoginPage}">로그인</a>
                     <a th:href="@{/userInsertPage}">회원가입</a>
                 </div>
-                <div th:if="${not #strings.isEmpty(user)}">
-                    <div th:if="${user.userEmail == 'admin'}">
-                        <a th:href="@{/manage}">관리자</a>
-                    </div>
+                <div th:if="${session.user != null}">
                     <a th:href="@{/user_logout}">로그아웃</a>
-                    <div th:if="${user.userEmail != 'admin'}">
-                        <a th:href="@{/User/myPage.jsp}">마이 페이지</a>
-                    </div>
+                    <a th:href="@{/User/myPage.jsp}">마이 페이지</a>
                 </div>
             </div>
         </div>

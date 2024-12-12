@@ -87,6 +87,14 @@ public class UserController {
 		
 		return "User/user_login_pro";
 	}
+	
+	@RequestMapping("/user_logout")
+	public String userLogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "User/user_logout";
+	}
 }
 
 // controller 에서 row 값(0,1)

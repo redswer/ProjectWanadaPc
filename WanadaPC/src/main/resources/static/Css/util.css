@@ -121,6 +121,10 @@
     border-bottom: 2px solid #007bff;
 }
 
+.userInfo {
+	font-size: 80%;
+}
+
 /* footer */
 .footer_container {
 	background-color: #F5F5F5;
