@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>footer</title>
+<link rel="stylesheet" type="text/css" href="./Css/footer.css" />
+</head>
+<body>
+	<div class="footer_container" th:fragment="footer">
+		<div class="footer_menu">
+			<div>
+				<span>공지</span>
+				<a href="/boardList">공지 게시판의 최신내용</a>
+			</div>
+			<div>
+				<a href="">회사소개</a>
+				<a href="">이용약관</a>
+				<a href="">개인정보처리방침</a>
+				<a href="">청소년 보호정책</a>
+			</div>
+		</div>
+		<div class="footer_info">
+			<div class="footer_logo">
+				<th:block th:replace="Util/main_logo :: main_logo"></th:block>
+			</div>
+			<div class="footer_text">
+				<div class="footer_main_text">
+					<div>와나다 PC</div>
+					<div>주소 : 대전광역시 중구 계룡료 825 희영빌딩 5F, 7F</div>
+					<div>* 팀장 : 안진혁</div>
+					<div>* 팀원 : 김현규, 서광제, 조유남, ChatGPT</div>
+				</div>
+				<div class="footer_sub_text">
+					<div>결재 및 장바구니는 추후에 시간이 된다면 추가합니다.</div>
+					<div>살려줘...</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
