@@ -79,6 +79,7 @@ public class UserController {
 		} else {
 			if (dto.getUserPassword().equals(hashedPassword)) {
 				session.setAttribute("user", dto);
+				session.setMaxInactiveInterval(60 * 30);
 				row = 1;
 			}
 		}
