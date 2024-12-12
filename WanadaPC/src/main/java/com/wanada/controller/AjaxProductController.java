@@ -35,7 +35,7 @@ public class AjaxProductController {
 			@RequestParam(required = false) List<String> COMPUTER_COOLER,
 			@RequestParam(required = false) List<String> COMPUTER_GPU,
 			@RequestParam(required = false) List<String> COMPUTER_HDD,
-			@RequestParam(required = false) List<String> COMPUTER_Mainboard,
+			@RequestParam(required = false) List<String> COMPUTER_MAINBOARD,
 			@RequestParam(required = false) List<String> COMPUTER_POWER,
 			@RequestParam(required = false) List<String> COMPUTER_RAM,
 			@RequestParam(required = false) List<String> COMPUTER_SSD,
@@ -45,7 +45,7 @@ public class AjaxProductController {
 				&& (COMPUTER_COOLER == null || COMPUTER_COOLER.isEmpty())
 				&& (COMPUTER_GPU == null || COMPUTER_GPU.isEmpty())
 				&& (COMPUTER_HDD == null || COMPUTER_HDD.isEmpty())
-				&& (COMPUTER_Mainboard == null || COMPUTER_Mainboard.isEmpty())
+				&& (COMPUTER_MAINBOARD == null || COMPUTER_MAINBOARD.isEmpty())
 				&& (COMPUTER_POWER == null || COMPUTER_POWER.isEmpty())
 				&& (COMPUTER_RAM == null || COMPUTER_RAM.isEmpty())
 				&& (COMPUTER_SSD == null || COMPUTER_SSD.isEmpty())
@@ -56,7 +56,7 @@ public class AjaxProductController {
 		} else {
 			System.out.println("있음");
 			return productService.getFilteredProducts(COMPUTER_CPU, COMPUTER_COOLER, COMPUTER_GPU,
-					COMPUTER_HDD, COMPUTER_Mainboard, COMPUTER_POWER, COMPUTER_RAM, COMPUTER_SSD,
+					COMPUTER_HDD, COMPUTER_MAINBOARD, COMPUTER_POWER, COMPUTER_RAM, COMPUTER_SSD,
 					COMPUTER_CASE);
 		}
 	}

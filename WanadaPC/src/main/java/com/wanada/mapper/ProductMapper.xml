@@ -49,13 +49,14 @@
 				FROM COMPUTER_CPU
 				WHERE
 				<foreach collection="COMPUTER_CPU" item="cpu"
-					separator=" OR ">
+					separator=" and ">
 					MAKER_CPU LIKE '%' || #{cpu} || '%'
 				</foreach>
 				<if test="COMPUTER_CPU[0] == 'Intel'">
 					AND
 					<foreach collection="COMPUTER_CPU" item="intelCpu"
-						separator=" OR ">
+						separator=" or ">
+
 						Intel_Cpu LIKE '%' || #{intelCpu} || '%'
 					</foreach>
 				</if>
@@ -74,12 +75,12 @@
 				FROM COMPUTER_GPU
 				WHERE
 				<foreach collection="COMPUTER_GPU" item="gpu"
-					separator=" OR ">
+					separator=" AND ">
 					MAKER_GPU LIKE '%' || #{gpu} || '%'
 				</foreach>
 				AND
 				<foreach collection="COMPUTER_GPU" item="chipset"
-					separator=" OR ">
+					separator=" AND ">
 					CHIPSET_GPU LIKE '%' || #{chipset} || '%'
 				</foreach>
 				AND
@@ -96,17 +97,13 @@
 				FROM COMPUTER_COOLER
 				WHERE
 				<foreach collection="COMPUTER_COOLER" item="cooler"
-					separator=" OR ">
+					separator=" AND ">
 					MAKER_COOLER LIKE '%' || #{cooler} || '%'
 				</foreach>
-				AND
-				<foreach collection="COMPUTER_COOLER" item="productType"
-					separator=" OR ">
-					PRODUCT_TYPE LIKE '%' || #{productType} || '%'
-				</foreach>
+
 				AND
 				<foreach collection="COMPUTER_COOLER" item="coolerMethod"
-					separator=" OR ">
+					separator=" AND ">
 					COOLER_method LIKE '%' || #{coolerMethod} || '%'
 				</foreach>
 			</when>
@@ -115,41 +112,36 @@
 			<when test="COMPUTER_HDD != null">
 				SELECT HDD_IMAGE AS image, HDD_NAME AS title, HDD_PRICE AS price
 				FROM COMPUTER_HDD
-				WHERE
-				<foreach collection="COMPUTER_HDD" item="hdd"
-					separator=" OR ">
-					MAKER_HDD LIKE '%' || #{hdd} || '%'
-				</foreach>
-				AND
-				<foreach collection="COMPUTER_HDD" item="size"
-					separator=" OR ">
-					SIZE_HDD LIKE '%' || #{size} || '%'
-				</foreach>
-				AND
-				<foreach collection="COMPUTER_HDD" item="capacity"
-					separator=" OR ">
-					CAPACITY_HDD LIKE '%' || #{capacity} || '%'
-				</foreach>
+				WHERE 1=1
+				<if test="MAKER_HDD != null">
+					AND MAKER_HDD LIKE '%' || #{MAKER_HDD} || '%'
+				</if>
+				<if test="SIZE_HDD != null">
+					AND SIZE_HDD LIKE '%' || #{SIZE_HDD} || '%'
+				</if>
+				<if test="CAPACITY_HDD != null">
+					AND CAPACITY_HDD LIKE '%' || #{CAPACITY_HDD} || '%'
+				</if>
 			</when>
 
 			<!-- RAM 조건 -->
-			<when test="COMPUTER_REM != null">
+			<when test="COMPUTER_RAM != null">
 				SELECT RAM_IMAGE AS image, RAM_NAME AS title, RAM_PRICE AS price
 				FROM COMPUTER_RAM
 				WHERE
-				<foreach collection="COMPUTER_REM" item="ram"
+				<foreach collection="COMPUTER_RAM" item="ram"
 					separator=" OR ">
-					MAKER_REM LIKE '%' || #{ram} || '%'
+					MAKER_RAM LIKE '%' || #{ram} || '%'
 				</foreach>
 				AND
-				<foreach collection="COMPUTER_REM" item="type"
+				<foreach collection="COMPUTER_RAM" item="type"
 					separator=" OR ">
-					TYPE_REM LIKE '%' || #{type} || '%'
+					TYPE_RAM LIKE '%' || #{type} || '%'
 				</foreach>
 				AND
-				<foreach collection="COMPUTER_REM" item="capacity"
+				<foreach collection="COMPUTER_RAM" item="capacity"
 					separator=" OR ">
-					CAPACITY_REM LIKE '%' || #{capacity} || '%'
+					CAPACITY_RAM LIKE '%' || #{capacity} || '%'
 				</foreach>
 			</when>
 
@@ -183,17 +175,17 @@
 				WHERE
 				<foreach collection="COMPUTER_MAINBOARD" item="mainboard"
 					separator=" OR ">
-					MAKER_MainBoard LIKE '%' || #{mainboard} || '%'
+					MAKER_MAINBOARD LIKE '%' || #{mainboard} || '%'
 				</foreach>
 				AND
 				<foreach collection="COMPUTER_MAINBOARD" item="type"
 					separator=" OR ">
-					TYPE_MainBoard LIKE '%' || #{type} || '%'
+					TYPE_MAINBOARD LIKE '%' || #{type} || '%'
 				</foreach>
 				AND
 				<foreach collection="COMPUTER_MAINBOARD" item="socket"
 					separator=" OR ">
-					SOCKET_MainBoard LIKE '%' || #{socket} || '%'
+					SOCKET_MAINBOARD LIKE '%' || #{socket} || '%'
 				</foreach>
 			</when>
 
@@ -219,15 +211,61 @@
 			</when>
 		</choose>
 	</select>
-	
-	 <select id="getComputerCpuProducts" resultType="com.wanada.dto.CpuDTO">
-        SELECT CPU_NAME, CPU_IMAGE, CPU_IMFORMATION, CPU_PRICE
-        FROM COMPUTER_CPU
-    </select> 
-    
-    <select id="getComputerCaseProducts" resultType="com.wanada.dto.CaseDTO">
-        SELECT CASE_NAME, CASE_IMAGE, CASE_IMFORMATION, CASE_PRICE
-        FROM COMPUTER_CASE
-    </select> 
+	<select id="getComputerCpuProducts"
+		resultType="com.wanada.dto.CpuDTO">
+		SELECT CPU_NAME, CPU_IMAGE, CPU_INFORMATION, CPU_PRICE
+		FROM
+		COMPUTER_CPU
+	</select>
+	<select id="getComputerCaseProducts"
+		resultType="com.wanada.dto.CaseDTO">
+		SELECT CASE_NAME, CASE_IMAGE, CASE_INFORMATION, CASE_PRICE
+		FROM COMPUTER_CASE
+	</select>
+	<select id="getComputerCoolerProducts"
+		resultType="com.wanada.dto.CoolerDTO">
+		SELECT COOLER_NAME, COOLER_IMAGE, COOLER_INFORMATION,
+		COOLER_PRICE
+		FROM COMPUTER_COOLER
+	</select>
+	<select id="getComputerGpuProducts"
+		resultType="com.wanada.dto.GpuDTO">
+		SELECT GPU_NAME, GPU_IMAGE, GPU_INFORMATION, GPU_PRICE
+		FROM
+		COMPUTER_GPU
+	</select>
+	<select id="getComputerHddProducts"
+		resultType="com.wanada.dto.HddDTO">
+		SELECT HDD_NAME, HDD_IMAGE, HDD_INFORMATION, HDD_PRICE
+		FROM
+		COMPUTER_HDD
+	</select>
+	<select id="getComputerMBProducts"
+		resultType="com.wanada.dto.MainBoardDTO">
+		SELECT MB_NAME, MB_IMAGE, MB_INFORMATION, MB_PRICE
+		FROM
+		COMPUTER_MAINBOARD
+	</select>
+	<select id="getComputerPowerProducts"
+		resultType="com.wanada.dto.PowerDTO">
+		SELECT POWER_NAME, POWER_IMAGE, POWER_INFORMATION,
+		POWER_PRICE
+		FROM COMPUTER_POWER
+	</select>
+	<select id="getComputerRamProducts"
+		resultType="com.wanada.dto.RamDTO">
+		SELECT RAM_NAME, RAM_IMAGE, RAM_INFORMATION, RAM_PRICE
+		FROM
+		COMPUTER_RAM
+	</select>
+	<select id="getComputerSsdProducts"
+		resultType="com.wanada.dto.SsdDTO">
+		SELECT SSD_NAME, SSD_IMAGE, SSD_INFORMATION, SSD_PRICE
+		FROM
+		COMPUTER_SSD
+	</select>
+
+
+
 
 </mapper>

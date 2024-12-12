@@ -2,12 +2,12 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CPU</title>
 <link rel="stylesheet" href="/Css/util.css" />
 </head>
 <style>
 /* 공통 스타일 */
-.CASE_body {
+.CPU_body {
 	font-family: Arial, sans-serif;
 	width: 1260px;
 	margin: 0 auto;
@@ -124,7 +124,7 @@
 }
 </style>
 <th:block th:replace="Util/header :: header"></th:block>
-<body class="CASE_body">
+<body class="CPU_body">
 	<div class="header">
 		<section>
 			<div class="Product_Show">
@@ -143,8 +143,8 @@
 						<tbody class="scrollable-tbody">
 							<tr th:each="CPU : ${CPU}">
 								<td th:text="${CPU.CPU_NAME}"></td>
-								<td><img th:src="${CPU.CPU_IMAGE}" alt="CPU Image" /></td>
-								<td th:text="${CPU.CPU_IMFORMATION}"></td>
+								<td><img th:src="@{'/Image/Product/' + ${CPU.CPU_IMAGE}}" /></td>
+								<td th:text="${CPU.CPU_INFORMATION}"></td>
 								<td th:text="${CPU.CPU_PRICE}"></td>
 							</tr>
 						</tbody>

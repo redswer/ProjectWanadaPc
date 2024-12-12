@@ -16,12 +16,13 @@ public class CpuDTO {
  	private String RYZEN_CPU;
  	private String CPU_IMAGE;
  	private String CPU_PRICE;
- 	private String CPU_IMFORMATION;
+ 	private String CPU_INFORMATION;
  	private String CPU_DATE;
  	private String CPU_SOCKET;
  	private String CPU_CORE;
  	private String CPU_THREAD;
  	private String CPU_MIN_CIRCUIT;
  	private String CPU_MAX_CIRCUIT;
- 	private String CPU_MANUFACTURER;	
+ 	private String CPU_MANUFACTURER;
+ 	private String RELEASE_YEAR;
 }
