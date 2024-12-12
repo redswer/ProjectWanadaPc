@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="/Css/util.css" />
+<link rel="stylesheet" href="/Css/util.css"/>
 <script type="text/javascript" src="/Script/script"></script>
 
 <meta charset="UTF-8">
@@ -131,8 +131,9 @@
             		<span class="person" th:text="${person}"></span>
             		<span>님의 전체 글입니다</span>
             	</h1>
-	            	<a th:href="@{/boardinsertpage}">글쓰기</a>
-    				        
+            	<th:block th:if="${session.user != null}">
+	           		<a th:href="@{/boardinsertpage}">글쓰기</a>
+	           	</th:block>
             </div>
             <table class="board_list_table">
                 <tr>
@@ -149,7 +150,6 @@
 				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.enterdate}"></a></td>
 				    <td><a th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.count}"></a></td>
 				</tr>
-
             </table>
             <th:block th:replace="Util/side_bar :: side_bar"></th:block>
             <th:block th:replace="Util/footer :: footer"></th:block>

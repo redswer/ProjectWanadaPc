@@ -4,3 +4,13 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+
+function search_button() {
+	if (!search_bar.text.value) {
+		alert("검색어를 입력해주세요");
+		search_bar.text.focus();
+		return;
+	}
+	
+	search_bar.submit();
+}
