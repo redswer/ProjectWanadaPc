@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>와나다 PC 검색결과</title>
+<link rel="stylesheet" href="/Css/util.css" />
+<script type="text/javascript" src="/Script/script"></script>
+<style type="text/css">
+.search_page_body {
+    width: 1260px;
+    margin: 0 auto;
+    margin-top: 10px;    
+}
+
+.search_page_body main {
+    margin-bottom: 50px;
+}
+
+.search_text {
+    color: red;
+}
+
+/* 테이블 스타일 */
+.board_list_table {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.board_list_table th {
+    padding: 12px 15px; /* 상하좌우 여백을 늘려 간격을 확대 */
+    background-color: #f2f2f2;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.board_list_table td {
+    padding: 12px 15px; /* 상하좌우 여백을 늘려 간격을 확대 */
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    line-height: 1.6; /* 줄 간격을 넓혀서 내용이 더 깔끔하게 보이도록 설정 */
+}
+
+/* 제목과 내용은 왼쪽 정렬 */
+.board_list_table td.left-align {
+    text-align: left;
+}
+
+/* 나머지 항목들은 가운데 정렬 */
+.board_list_table td.center-align,
+.board_list_table th.center-align {
+    text-align: center;
+}
+
+.board_list_table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* 조회수 및 태그 강조 스타일 */
+.board_list_table .best-tag {
+    background-color: #6b3fcd;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.search_board_center {
+    text-align: center;
+}
+
+/* 링크 스타일 */
+.board_list_table a {
+    color: #333;
+    text-decoration: none;
+}
+
+.search_board_link:hover {
+    color: #6b3fcd;
+    font-weight: bold;
+}
+
+.table_margin {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr 4fr 1.5fr 1fr 1fr;
+}
+
+.search_product_image {
+	width: 75px;
+	height: 75px;
+}
+
+.search_result_h2 a {
+	text-decoration: none;
+	color: black;
+}
+
+.search_result_h2 a:hover {
+	color: red;
+}
+
+.board_insert_btn {
+	text-decoration: none;
+	color: white;
+	border: 1px solid gray;
+	text-align: center;
+	width: 80px;
+	line-height: 30px;
+	background-color: gray;
+}
+
+.search_board_header {
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+</style>
+</head>
+<body>
+    <div class="search_page_body">
+        <header>
+            <th:block th:replace="Util/header :: header"></th:block>
+            <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+        </header>
+        <main>
+            <div th:if="${text != null and text != ''}">
+                <h2><span class="search_text" th:text="'&quot;' + ${text} + '&quot;'"></span> 검색 결과입니다.</h2>
+            </div>
+            <div>
+            	<div class="search_board_header">
+	                <h2 class="search_result_h2"><a th:href="@{/boardList}">게시판</a></h2>
+	               	<th:block th:if="${session.user != null}">
+		           		<a class="board_insert_btn" th:href="@{/boardinsertpage}">글쓰기</a>
+		           	</th:block>
+	                <div th:if="${#lists.isEmpty(board)}">
+	                    <div>검색 내용이 없습니다</div>
+	           		</div>
+           		</div>
+                <div th:if="${not #lists.isEmpty(board)}">
+                    <table class="board_list_table">
+                        <tr class="table_margin">
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>내용</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>조회수</th>
+                        </tr>
+                        <th:block th:each="i, status : ${board}">
+                            <tr class="table_margin">
+                                <td class="search_board_center" th:text="${status.index + 1}"></td>
+                                <td><a class="search_board_link" th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
+                                <td><a class="search_board_link" th:href="@{/boardDetail(board_index=${i.board_index})}" th:text="${i.content}"></a></td>
+                                <td><a class="search_board_link" th:text="${i.person}" th:href="@{/boardListPerson(person=${i.person})}"></a></td>
+                                <td class="search_board_center"><a th:text="${i.enterdate}"></a></td>
+                                <td class="search_board_center"><a th:text="${i.count}"></a></td>
+                            </tr>
+                        </th:block>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h2 class="search_result_h2"><a th:href="@{/productList}">상품</a></h2>
+                <div th:if="${#lists.isEmpty(case)
+                			and #lists.isEmpty(cooler)
+                			and #lists.isEmpty(cpu)
+                			and #lists.isEmpty(gpu)
+                			and #lists.isEmpty(hdd)
+                			and #lists.isEmpty(mainboard)
+                			and #lists.isEmpty(power)
+                			and #lists.isEmpty(ram)
+                			and #lists.isEmpty(ssd)}">
+                    <div>검색 내용이 없습니다</div>
+                </div>
+                <div th:if="${not #lists.isEmpty(case)
+                   			or not #lists.isEmpty(cooler)
+                			or not #lists.isEmpty(cpu)
+                			or not #lists.isEmpty(gpu)
+                			or not #lists.isEmpty(hdd)
+                			or not #lists.isEmpty(mainboard)
+                			or not #lists.isEmpty(power)
+                			or not #lists.isEmpty(ram)
+                			or not #lists.isEmpty(ssd)}">
+                	<table class="board_list_table">
+	                	<th:block th:each="i : ${case}">
+	                            <tr th:onclick="">
+	                                <td>
+                               			<img th:src="@{/Image/CASE/{image}(image=${i.CASE_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.CASE_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.CASE_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${cooler}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/COOLER/{image}(image=${i.COOLER_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.COOLER_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.COOLER_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${cpu}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/CPU/{image}(image=${i.CPU_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.CPU_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.CPU_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${gpu}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/GPU/{image}(image=${i.GPU_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.GPU_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.GPU_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${hdd}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/HDD/{image}(image=${i.HDD_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.HDD_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.HDD_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${mainboard}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/MAINBOARD/{image}(image=${i.MAINBOARD_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.MAINBOARD_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.MAINBOARD_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${power}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/POWER/{image}(image=${i.POWER_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.POWER_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.POWER_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${ram}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/RAM/{image}(image=${i.RAM_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.RAM_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.RAM_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${ssd}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/SSD/{image}(image=${i.SSD_IMAGE})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.SSD_NAME}"></span>
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.SSD_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+                	</table>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <th:block th:replace="Util/footer :: footer"></th:block>
+        </footer>
+    </div>
+</body>
+</html>

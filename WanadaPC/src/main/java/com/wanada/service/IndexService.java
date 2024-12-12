@@ -2,13 +2,38 @@ package com.wanada.service;
 
 import java.util.List;
 
+import com.wanada.dto.BoardDTO;
+import com.wanada.dto.CaseDTO;
+import com.wanada.dto.CoolerDTO;
+import com.wanada.dto.CpuDTO;
+import com.wanada.dto.GpuDTO;
+import com.wanada.dto.HddDTO;
 import com.wanada.dto.IndexBannerDTO;
 import com.wanada.dto.IndexGamePcDTO;
+import com.wanada.dto.MainBoardDTO;
+import com.wanada.dto.PowerDTO;
+import com.wanada.dto.RamDTO;
 import com.wanada.dto.RecommandPcDTO;
+import com.wanada.dto.SsdDTO;
 
 public interface IndexService {
 	public List<IndexBannerDTO> indexBannerList();
 	public List<IndexGamePcDTO> indexGamePcList();
 	public List<RecommandPcDTO> recommandPcGameList();
 	public List<RecommandPcDTO> recommandPcPartsList();
+	public List<BoardDTO> indexBoardList();
+	public IndexBannerDTO etcPC(String category);
+	public IndexGamePcDTO gamePC(String category);
+	
+	public List<BoardDTO> searchBoard(String text);
+	
+	public List<CaseDTO> searchCase(String text);
+	public List<CoolerDTO> searchCooler(String text);
+	public List<CpuDTO> searchCpu(String text);
+	public List<GpuDTO> searchGpu(String text);
+	public List<HddDTO> searchHdd(String text);
+	public List<MainBoardDTO> searchMainBoard(String text);
+	public List<PowerDTO> searchPower(String text);
+	public List<RamDTO> searchRam(String text);
+	public List<SsdDTO> searchSsd(String text);
 }

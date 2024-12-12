@@ -5,9 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wanada.dto.BoardDTO;
+import com.wanada.dto.CaseDTO;
+import com.wanada.dto.CoolerDTO;
+import com.wanada.dto.CpuDTO;
+import com.wanada.dto.GpuDTO;
+import com.wanada.dto.HddDTO;
 import com.wanada.dto.IndexBannerDTO;
 import com.wanada.dto.IndexGamePcDTO;
+import com.wanada.dto.MainBoardDTO;
+import com.wanada.dto.PowerDTO;
+import com.wanada.dto.RamDTO;
 import com.wanada.dto.RecommandPcDTO;
+import com.wanada.dto.SsdDTO;
 import com.wanada.mapper.IndexMapper;
 
 @Service
@@ -39,6 +49,97 @@ public class IndexServiceImpl implements IndexService {
 	@Override
 	public List<RecommandPcDTO> recommandPcPartsList() {
 		List<RecommandPcDTO> list = mapper.recommandPcPartsList();
+		
+		return list;
+	}
+	
+	@Override
+	public List<BoardDTO> indexBoardList() {
+		List<BoardDTO> list = mapper.indexBoardList();
+		
+		return list;
+	}
+	
+	@Override
+	public IndexBannerDTO etcPC(String category) {
+		IndexBannerDTO dto = mapper.etcPC(category);
+		
+		return dto;
+	}
+	
+	@Override
+	public IndexGamePcDTO gamePC(String category) {
+		IndexGamePcDTO dto = mapper.gamePC(category);
+		
+		return dto;
+	}
+	
+	@Override
+	public List<BoardDTO> searchBoard(String text) {
+		List<BoardDTO> list = mapper.searchBoard(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<CaseDTO> searchCase(String text) {
+		List<CaseDTO> list = mapper.searchCase(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<CoolerDTO> searchCooler(String text) {
+		List<CoolerDTO> list = mapper.searchCooler(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<CpuDTO> searchCpu(String text) {
+		List<CpuDTO> list = mapper.searchCpu(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<GpuDTO> searchGpu(String text) {
+		List<GpuDTO> list = mapper.searchGpu(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<HddDTO> searchHdd(String text) {
+		List<HddDTO> list = mapper.searchHdd(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<MainBoardDTO> searchMainBoard(String text) {
+		List<MainBoardDTO> list = mapper.searchMainBoard(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<PowerDTO> searchPower(String text) {
+		List<PowerDTO> list = mapper.searchPower(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<RamDTO> searchRam(String text) {
+		List<RamDTO> list = mapper.searchRam(text);
+		
+		return list;
+	}
+	
+	@Override
+	public List<SsdDTO> searchSsd(String text) {
+		List<SsdDTO> list = mapper.searchSsd(text);
 		
 		return list;
 	}

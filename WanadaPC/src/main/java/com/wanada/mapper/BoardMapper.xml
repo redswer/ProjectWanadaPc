@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanada.mapper.BoardMapper">
+	<select id="boardlist" resultType="com.wanada.dto.BoardDTO">
+		select * from BOARDCOMMENT order by BOARD_INDEX DESC
+	</select>	
+	<select id="boarddetail" resultType="com.wanada.dto.BoardDTO">
+		select * from boardcomment where board_index=#{idx}	
+	</select>
+	
+	<insert id="boardinsert" >
+		insert into boardcomment(idx,theme,content,person) values(#{board_index},#{theme},#{content},#{person})
+	</insert>
+	<delete id="boarddelete" >
+		delete from boardcomment where board_index=#{idx}	
+	</delete>
+
+	<update id="boardupdate" >
+		update boardcomment set theme = #{theme},content=#{content} where board
+		_index = #{board_index}
+	</update>
+ 
+   <select id="boardListPerson" resultType="com.wanada.dto.BoardDTO">
+      select * from boardcomment where person = #{person}
+   </select>
+</mapper>

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/Css/util.css" />
 <title>와나다 PC</title>
+<script type="text/javascript" src="/Script/script"></script>
 <style type="text/css">
 .index_body {
     width: 1260px;
@@ -21,6 +22,7 @@
     height: 300px; /* 배너 높이 설정 */
     overflow: hidden; /* 넘치는 부분 숨김 */
     margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .banner_images {
@@ -72,9 +74,9 @@
 }
 
 .sub_section {
-    margin: 50px 0;
     background-color: #FFF0F5;
     padding: 15px;
+    margin-bottom: 50px;
 }
 
 .game_pc_section {
@@ -170,7 +172,7 @@
 
 .board_section {
 	padding: 15px;
-	background-color: honeydew;
+	background-color: #FFF0F5;
 }
 
 .index_board_list {
@@ -184,6 +186,10 @@
 
 .index_board_table {
 	width: calc((100% - 2px - 40px) / 2);
+}
+
+.index_board_table td {
+	padding-left: 20px;
 }
 
 .index_board_table td a {
@@ -209,7 +215,7 @@
 <body>
 	<div class="index_body">
 	    <header>
-	        <th:block th:replace="Util/header :: header"></th:block>
+	       	<th:block th:replace="Util/header :: header"></th:block>
 	    </header>
 	    <main>
 	        <th:block th:replace="Util/side_bar :: side_bar"></th:block>
@@ -227,8 +233,8 @@
 			    <div class="arrow left" onclick="prevImage()">&#10094;</div>
 			    <div class="arrow right" onclick="nextImage()">&#10095;</div>
 			</section>
+            <h2><a th:href="@{/gamePC(category=leagueOfLegend)}" class="index_h2">게임용 PC</a></h2>
 	        <section class="sub_section">
-	            <h2><a th:href="@{/gamePC(category=leagueOfLegend)}" class="index_h2">게임용 PC</a></h2>
 	            <div class="game_pc_section">
 	            	<div class="game_pc">
 		                <th:block th:each="i : ${indexGamePcList}">
@@ -259,16 +265,9 @@
 	            </div>
 	        </section>
 			<th:block th:replace="Util/ad :: ad"></th:block>
+            <h2>추천 상품</h2>
 	        <section class="sub_section">
-	            <h2>추천 상품</h2>
 	            <div class="recommend_product_section">
-	            	<th:block th:each="i : ${recommandPcGameList}">
-		                <div>
-				            <a th:href="@{/gamePC(category=${i.category})}">
-				                <img th:src="@{/Image/{image}(image=${i.image})}" />
-				            </a>
-		                </div>
-	                </th:block>
 	                <th:block th:each="i : ${recommandPcPartsList}">
 	                	<div>
 	                		<a th:href="@{/etcPC(category=${i.category})}">
@@ -276,10 +275,17 @@
 	                		</a>
 	                	</div>
 	                </th:block>
+	            	<th:block th:each="i : ${recommandPcGameList}">
+		                <div>
+				            <a th:href="@{/gamePC(category=${i.category})}">
+				                <img th:src="@{/Image/{image}(image=${i.image})}" />
+				            </a>
+		                </div>
+	                </th:block>
 	           	</div>
 	        </section>
+			<h2><a th:href="@{/boardList}" class="index_h2">커뮤니티 (최신 글)</a></h2>
 	        <section class="board_section">
-	            <h2><a th:href="@{/boardList}" class="index_h2">커뮤니티 (최신 글)</a></h2>
 	            <div class="index_board_list">
 		            <table class="index_board_table">
 		            	<tr>
@@ -287,11 +293,11 @@
 		            		<th>제목</th>
 		            		<th>내용</th>
 		            	</tr>
-						<th:block th:each="i : ${indexBoardList1}">
-			            	<tr>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.person}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.theme}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.content}"></a></td>
+						<th:block th:each="i : ${indexBoardList_1}">
+			            	<tr class="index_board_table_contents">
+								<td><a th:href="@{/boardListPerson(person=${i.person})}" th:text="${i.person}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.content}"></a></td>
 			            	</tr>
 						</th:block>
 		            </table>
@@ -302,11 +308,11 @@
 		            		<th>제목</th>
 		            		<th>내용</th>
 		            	</tr>
-						<th:block th:each="i : ${indexBoardList2}">
-			            	<tr>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.person}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.theme}"></a></td>
-								<td><a th:href="@{boardDetail(board_index=${i.boardIndex})}" th:text="${i.content}"></a></td>
+						<th:block th:each="i : ${indexBoardList_2}">
+			            	<tr class="index_board_table_contents">
+								<td><a th:href="@{/boardListPerson(person=${i.person})}" th:text="${i.person}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.theme}"></a></td>
+								<td><a th:href="@{boardDetail(board_index=${i.board_index})}" th:text="${i.content}"></a></td>
 			            	</tr>
 						</th:block>
 		            </table>
@@ -339,13 +345,5 @@
     }
 
     setInterval(nextImage, 3000); // 3초마다 다음 이미지로 이동
-</script>
-<script>
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
 </script>
 </html>

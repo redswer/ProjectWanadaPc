@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>header</title>
+    <script type="text/javascript" src="/Script/script"></script>
 </head>
 <body>
     <div class="header_body" th:fragment="header">
@@ -12,7 +13,7 @@
                 <form name="search_bar" action="/search" method="get">
                     <div class="search_container">
                         <input name="text" placeholder="검색어를 입력하세요.">
-                        <button type="submit">
+                        <button type="button" th:onclick="search_button()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                             </svg>
@@ -22,8 +23,8 @@
             </div>
             <div class="header_link">
                 <div th:if="${#strings.isEmpty(user)}">
-                    <a th:href="@{/User/user_login.jsp}">로그인</a>
-                    <a th:href="@{/User/user_insert.jsp}">회원가입</a>
+                    <a th:href="@{/userLoginPage}">로그인</a>
+                    <a th:href="@{/userInsertPage}">회원가입</a>
                 </div>
                 <div th:if="${not #strings.isEmpty(user)}">
                     <div th:if="${user.userEmail == 'admin'}">

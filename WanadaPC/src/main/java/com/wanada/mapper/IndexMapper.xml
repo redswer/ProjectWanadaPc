@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanada.mapper.IndexMapper">
+	<select id="indexBannerList" resultType="com.wanada.dto.IndexBannerDTO">
+		select * from index_banner
+	</select>
+	<select id="indexGamePcList" resultType="com.wanada.dto.IndexGamePcDTO">
+		select * from (select * from index_game_pc order by game_pc_index desc) where rownum &lt;= 4
+	</select>
+	<select id="recommandPcGameList" resultType="com.wanada.dto.RecommandPcDTO">
+		select * from recommand_pc where subject='game'
+	</select>
+	<select id="recommandPcPartsList" resultType="com.wanada.dto.RecommandPcDTO">
+		select * from recommand_pc where subject='parts'
+	</select>
+	<select id="indexBoardList" resultType="com.wanada.dto.BoardDTO">
+		select * from boardcomment where rownum &lt;= 8 order by board_index desc
+	</select>
+	<select id="etcPC" resultType="com.wanada.dto.IndexBannerDTO">
+		select * from index_banner where category = #{category}
+	</select>
+	<select id="gamePC" resultType="com.wanada.dto.IndexGamePcDTO">
+		select * from index_game_pc where category = #{category}
+	</select>
+	<select id="searchBoard" resultType="com.wanada.dto.BoardDTO">
+		select * from boardcomment where theme like '%' || #{text} || '%' or content like '%' || #{text} || '%'
+	</select>
+	<select id="searchCase" resultType="com.wanada.dto.CaseDTO">
+		select * from computer_case where case_name like '%' || #{text} || '%' or case_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchCooler" resultType="com.wanada.dto.CoolerDTO">
+		select * from computer_cooler where cooler_name like '%' || #{text} || '%' or cooler_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchCpu" resultType="com.wanada.dto.CpuDTO">
+		select * from computer_cpu where cpu_name like '%' || #{text} || '%' or cpu_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchGpu" resultType="com.wanada.dto.GpuDTO">
+		select * from computer_gpu where gpu_name like '%' || #{text} || '%' or gpu_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchHdd" resultType="com.wanada.dto.HddDTO">
+		select * from computer_hdd where hdd_name like '%' || #{text} || '%' or hdd_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchMainBoard" resultType="com.wanada.dto.MainBoardDTO">
+		select * from computer_mainboard where mb_name like '%' || #{text} || '%' or mb_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchPower" resultType="com.wanada.dto.PowerDTO">
+		select * from computer_power where power_name like '%' || #{text} || '%' or power_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchRam" resultType="com.wanada.dto.RamDTO">
+		select * from computer_ram where ram_name like '%' || #{text} || '%' or ram_name like '%' || upper(#{text}) || '%'
+	</select>
+	<select id="searchSsd" resultType="com.wanada.dto.SsdDTO">
+		select * from computer_ssd where ssd_name like '%' || #{text} || '%' or ssd_name like '%' || upper(#{text}) || '%'
+	</select>
+</mapper>
