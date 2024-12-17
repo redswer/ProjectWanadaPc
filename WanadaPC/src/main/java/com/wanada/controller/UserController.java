@@ -113,7 +113,6 @@ public class UserController {
 	@RequestMapping("/user_update") 
 	public String update(HttpServletRequest request, Model model) {
 		String userEmail = request.getParameter("userEmail");
-		String Password  = request.getParameter("userPassword"); // 비밀번호 	
 		//String currentPassword  = request.getParameter("userPassword"); 	
 		String repassword = request.getParameter("userRepassword"); // 새 비밀번호
 		String hashedPassword = UserSHA256.getSHA256(repassword); // 새 비밀번호 암호화 
@@ -138,6 +137,8 @@ public class UserController {
 		dto.setTell(tell);
 
 		int row = service.update(dto); //업데이트 실행
+		HttpSession session = request.getSession();
+		session.setAttribute("user", service.userLogin(userEmail));
 		model.addAttribute("row", row);	//성공 여부 전달 
 		return "User/user_update_pro"; // 결과 펭지로 이동 /폴더 내의 파일 명과 일치 시켜야함.
 	}
