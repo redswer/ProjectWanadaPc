@@ -10,4 +10,5 @@ public class BoardDTO {
 	private String person;
 	private String enterdate;
 	private int count;
+	private String user;
 }

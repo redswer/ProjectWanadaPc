@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wanada.dto.CaseDTO;
 import com.wanada.dto.CoolerDTO;
@@ -93,4 +95,14 @@ public class ProductController {
 		model.addAttribute("SSD", ssdList);
 		return "Product/Product_SSD";
 	}
+	
+	
+	@GetMapping("/Product_CPU_Detail")
+	public String getCpuDetail(@RequestParam("CPU_NAME") String name, Model model) {
+        CpuDTO cpuDetail = productService.getComputerCpuProductsAll(name);
+        model.addAttribute("cpuDetail", cpuDetail);
+        return "Product/Product_CPU_Detail";
+    }
+	
+	
 }

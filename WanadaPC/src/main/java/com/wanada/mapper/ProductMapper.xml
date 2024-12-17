@@ -49,14 +49,14 @@
 				FROM COMPUTER_CPU
 				WHERE
 				<foreach collection="COMPUTER_CPU" item="cpu"
-					separator=" and ">
+					separator=" AND ">
 					MAKER_CPU LIKE '%' || #{cpu} || '%'
 				</foreach>
-				<if test="COMPUTER_CPU[0] == 'Intel'">
+				<if
+					test="COMPUTER_CPU != null and COMPUTER_CPU.size() > 0 and COMPUTER_CPU[0] == 'Intel'">
 					AND
 					<foreach collection="COMPUTER_CPU" item="intelCpu"
-						separator=" or ">
-
+						separator=" OR ">
 						Intel_Cpu LIKE '%' || #{intelCpu} || '%'
 					</foreach>
 				</if>
@@ -74,20 +74,53 @@
 				SELECT GPU_IMAGE AS image, GPU_NAME AS title, GPU_PRICE AS price
 				FROM COMPUTER_GPU
 				WHERE
+				(
 				<foreach collection="COMPUTER_GPU" item="gpu"
-					separator=" AND ">
-					MAKER_GPU LIKE '%' || #{gpu} || '%'
+					separator=" OR ">
+					MAKER_GPU like #{gpu}
 				</foreach>
+				)
 				AND
+				(
 				<foreach collection="COMPUTER_GPU" item="chipset"
-					separator=" AND ">
-					CHIPSET_GPU LIKE '%' || #{chipset} || '%'
+					separator=" OR ">
+					CHIPSET_GPU LIKE #{chipset}
 				</foreach>
+				)
 				AND
+				(
 				<foreach collection="COMPUTER_GPU" item="type"
 					separator=" OR ">
-					TYPE_GPU LIKE '%' || #{type} || '%'
+					TYPE_GPU LIKE #{type}
 				</foreach>
+				)
+			</when>
+
+			<!-- CASE 조건 -->
+			<when test="COMPUTER_CASE != null">
+				SELECT CASE_IMAGE AS image, CASE_NAME AS title, CASE_PRICE AS price
+				FROM COMPUTER_CASE
+				WHERE
+				(
+				<foreach collection="COMPUTER_CASE" item="case"
+					separator=" OR ">
+					MAKER_CASE LIKE #{case}
+				</foreach>
+				)
+				AND
+				(
+				<foreach collection="COMPUTER_CASE" item="formFactor"
+					separator=" OR ">
+					FORM_FACTOR_CASE LIKE #{formFactor}
+				</foreach>
+				)
+				AND
+				(
+				<foreach collection="COMPUTER_CASE" item="color"
+					separator=" OR ">
+					COLOR_CASE LIKE #{color}
+				</foreach>
+				)
 			</when>
 
 			<!-- COOLER 조건 -->
@@ -96,32 +129,80 @@
 				price
 				FROM COMPUTER_COOLER
 				WHERE
+				(
 				<foreach collection="COMPUTER_COOLER" item="cooler"
-					separator=" AND ">
-					MAKER_COOLER LIKE '%' || #{cooler} || '%'
+					separator=" OR ">
+					MAKER_COOLER LIKE #{cooler}
 				</foreach>
-
+				)
 				AND
-				<foreach collection="COMPUTER_COOLER" item="coolerMethod"
-					separator=" AND ">
-					COOLER_method LIKE '%' || #{coolerMethod} || '%'
+				(
+				<foreach collection="COMPUTER_COOLER" item="productType"
+					separator=" OR ">
+					PRODUCT_TYPE LIKE #{productType}
 				</foreach>
+				)
+				AND
+				(
+				<foreach collection="COMPUTER_COOLER" item="coolerMethod"
+					separator=" OR ">
+					COOLER_METHOD LIKE #{coolerMethod}
+				</foreach>
+				)
 			</when>
 
 			<!-- HDD 조건 -->
 			<when test="COMPUTER_HDD != null">
 				SELECT HDD_IMAGE AS image, HDD_NAME AS title, HDD_PRICE AS price
 				FROM COMPUTER_HDD
-				WHERE 1=1
-				<if test="MAKER_HDD != null">
-					AND MAKER_HDD LIKE '%' || #{MAKER_HDD} || '%'
-				</if>
-				<if test="SIZE_HDD != null">
-					AND SIZE_HDD LIKE '%' || #{SIZE_HDD} || '%'
-				</if>
-				<if test="CAPACITY_HDD != null">
-					AND CAPACITY_HDD LIKE '%' || #{CAPACITY_HDD} || '%'
-				</if>
+				WHERE
+				(
+				<foreach collection="COMPUTER_HDD" item="hdd"
+					separator=" OR ">
+					MAKER_HDD LIKE #{hdd}
+				</foreach>
+				)
+				AND
+				(
+				<foreach collection="COMPUTER_HDD" item="size"
+					separator=" OR ">
+					SIZE_HDD LIKE #{size}
+				</foreach>
+				)
+				AND
+				(
+				<foreach collection="COMPUTER_HDD" item="capacity"
+					separator=" OR ">
+					CAPACITY_HDD LIKE #{capacity}
+				</foreach>
+				)
+			</when>
+
+			<!-- SSD 조건 -->
+			<when test="COMPUTER_SSD != null">
+				SELECT SSD_IMAGE AS image, SSD_NAME AS title, SSD_PRICE AS price
+				FROM COMPUTER_SSD
+				WHERE
+				(
+				<foreach collection="COMPUTER_SSD" item="ssd"
+					separator=" OR ">
+					MAKER_SSD LIKE #{ssd}
+				</foreach>
+				)
+				AND
+				(
+				<foreach collection="COMPUTER_SSD" item="formFactor"
+					separator=" OR ">
+					FORM_FACTOR_SSD LIKE #{formFactor}
+				</foreach>
+				)
+				AND
+				(
+				<foreach collection="COMPUTER_SSD" item="capacity"
+					separator=" OR ">
+					CAPACITY_SSD LIKE #{capacity}
+				</foreach>
+				)
 			</when>
 
 			<!-- RAM 조건 -->
@@ -129,88 +210,84 @@
 				SELECT RAM_IMAGE AS image, RAM_NAME AS title, RAM_PRICE AS price
 				FROM COMPUTER_RAM
 				WHERE
+				(
 				<foreach collection="COMPUTER_RAM" item="ram"
 					separator=" OR ">
-					MAKER_RAM LIKE '%' || #{ram} || '%'
+					MAKER_RAM LIKE #{ram}
 				</foreach>
+				)
 				AND
+				(
 				<foreach collection="COMPUTER_RAM" item="type"
 					separator=" OR ">
-					TYPE_RAM LIKE '%' || #{type} || '%'
+					TYPE_RAM LIKE #{type}
 				</foreach>
+				)
 				AND
+				(
 				<foreach collection="COMPUTER_RAM" item="capacity"
 					separator=" OR ">
-					CAPACITY_RAM LIKE '%' || #{capacity} || '%'
+					CAPACITY_RAM LIKE #{capacity}
 				</foreach>
-			</when>
-
-			<!-- POWER 조건 -->
-			<when test="COMPUTER_POWER != null">
-				SELECT POWER_IMAGE AS image, POWER_NAME AS title, POWER_PRICE AS
-				price
-				FROM COMPUTER_POWER
-				WHERE
-				<foreach collection="COMPUTER_POWER" item="power"
-					separator=" OR ">
-					MAKER_POWER LIKE '%' || #{power} || '%'
-				</foreach>
-				AND
-				<foreach collection="COMPUTER_POWER" item="output"
-					separator=" OR ">
-					OUTPUT_POWER LIKE '%' || #{output} || '%'
-				</foreach>
-				AND
-				<foreach collection="COMPUTER_POWER" item="cert"
-					separator=" OR ">
-					CERTIFICATION_POWER LIKE '%' || #{cert} || '%'
-				</foreach>
+				)
 			</when>
 
 			<!-- MAINBOARD 조건 -->
-			<when test="COMPUTER_MAINBOARD != null ">
+			<when test="COMPUTER_MAINBOARD != null">
 				SELECT MB_IMAGE AS image, MB_NAME AS title, MB_PRICE AS price
-				FROM
-				COMPUTER_MAINBOARD
+				FROM COMPUTER_MAINBOARD
 				WHERE
+				(
 				<foreach collection="COMPUTER_MAINBOARD" item="mainboard"
 					separator=" OR ">
-					MAKER_MAINBOARD LIKE '%' || #{mainboard} || '%'
+					MAKER_MAINBOARD LIKE #{mainboard}
 				</foreach>
+				)
 				AND
+				(
 				<foreach collection="COMPUTER_MAINBOARD" item="type"
 					separator=" OR ">
-					TYPE_MAINBOARD LIKE '%' || #{type} || '%'
+					TYPE_MAINBOARD LIKE #{type}
 				</foreach>
+				)
 				AND
+				(
 				<foreach collection="COMPUTER_MAINBOARD" item="socket"
 					separator=" OR ">
-					SOCKET_MAINBOARD LIKE '%' || #{socket} || '%'
+					SOCKET_MAINBOARD LIKE #{socket}
 				</foreach>
+				)
 			</when>
-
-			<!-- SSD 조건 -->
-			<when test="COMPUTER_SSD != null ">
-				SELECT SSD_IMAGE AS image, SSD_NAME AS title, SSD_PRICE AS price
-				FROM COMPUTER_SSD
+			
+			<!-- 파워 조건 -->
+			<when test="COMPUTER_POWER != null">
+				SELECT POWER_IMAGE AS image, POWER_NAME AS title, POWER_PRICE AS price
+				FROM COMPUTER_POWER
 				WHERE
-				<foreach collection="COMPUTER_SSD" item="ssd"
+				(
+				<foreach collection="COMPUTER_POWER" item="power"
 					separator=" OR ">
-					MAKER_SSD LIKE '%' || #{ssd} || '%'
+					MAKER_POWER LIKE #{power}
 				</foreach>
+				)
 				AND
-				<foreach collection="COMPUTER_SSD" item="formFactor"
+				(
+				<foreach collection="COMPUTER_POWER" item="type"
 					separator=" OR ">
-					FORM_FACTOR_SSD LIKE '%' || #{formFactor} || '%'
+					OUTPUT_POWER LIKE #{type}
 				</foreach>
+				)
 				AND
-				<foreach collection="COMPUTER_SSD" item="capacity"
+				(
+				<foreach collection="COMPUTER_POWER" item="certification"
 					separator=" OR ">
-					CAPACITY_SSD LIKE '%' || #{capacity} || '%'
+					CERTIFICATION_POWER LIKE #{certification}
 				</foreach>
+				)
 			</when>
 		</choose>
 	</select>
+
 	<select id="getComputerCpuProducts"
 		resultType="com.wanada.dto.CpuDTO">
 		SELECT CPU_NAME, CPU_IMAGE, CPU_INFORMATION, CPU_PRICE
@@ -264,8 +341,10 @@
 		FROM
 		COMPUTER_SSD
 	</select>
-
-
+	<select id="getComputerCpuProductsAll"
+		resultType="com.wanada.dto.CpuDTO">
+		SELECT * FROM COMPUTER_CPU where CPU_NAME=#{CPU_NAME}
+	</select>
 
 
 </mapper>

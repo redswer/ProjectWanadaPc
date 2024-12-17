@@ -16,7 +16,7 @@ public class GpuDTO {
  	private String GPU_PRICE;
  	private String GPU_INFORMATION;
  	private String GPU_MANUFACTURER;
- 	private String STSTREAM_PROCESSORREAM;
+ 	private String STREAM_PROCESSORREAM;
  	private String INTERFACE;
  	private String GPU_MEMORY;
  	private String GPU_MEMORY_SIZE;

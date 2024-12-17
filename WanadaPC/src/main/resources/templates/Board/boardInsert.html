@@ -37,9 +37,10 @@
                         <td><textarea name="content" class="board_insert_text" cols="100" rows="30" th:value="${content}"></textarea></td>
                     </tr>
                 </table>
-                <button type="submit">등록</button>
-                <button type="button" onclick="history.back()">취소</button>
-            </form>
+    			<button type="submit">등록</button>
+				<button type="button" th:onclick="|javascript:history.back()|">취소</button>
+				</form>
+	
         </main>
     </div>
 

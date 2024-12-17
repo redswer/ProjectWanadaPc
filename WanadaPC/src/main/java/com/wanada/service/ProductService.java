@@ -29,4 +29,6 @@ public interface ProductService {
 	List<PowerDTO>getComputerPowerProducts();
 	List<RamDTO>getComputerRamProducts();
 	List<SsdDTO>getComputerSsdProducts();
+
+	CpuDTO getComputerCpuProductsAll(String CPU_NAME);
 }
