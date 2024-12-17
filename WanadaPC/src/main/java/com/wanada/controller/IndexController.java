@@ -117,15 +117,25 @@ public class IndexController {
 		List<IndexBannerDTO> list = service.indexBannerList();
 		List<RecommandPcDTO> list2 = service.recommandPcPartsList();
 		
+		List<PcDTO> rtxPcList = service.indexPcList("rtx");
+		List<PcDTO> intelPcList = service.indexPcList("intel");
+		List<PcDTO> ryzenPcList = service.indexPcList("ryzen");
+		List<PcDTO> homePcList = new ArrayList<>();
+		List<PcDTO> officePcList = new ArrayList<>();
+		List<PcDTO> editPcList = new ArrayList<>();
+		
 		if(category.equals("home")) {
+			homePcList = service.indexPcList(category);
 			url = "Pc/etcPC_home";
 		} else if (category.equals("office")) {
+			officePcList = service.indexPcList(category);
 			url = "Pc/etcPC_office";
 		} else if (category.equals("ryzen")) {
 			url = "Pc/etcPC_2";
 		} else if (category.equals("intel")) {
 			url = "Pc/etcPC_3";
 		} else if (category.equals("edit")) {
+			editPcList = service.indexPcList(category);
 			url = "Pc/etcPC_edit";
 		}
 		
@@ -133,6 +143,12 @@ public class IndexController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("index_category", category);
 		model.addAttribute("recommand_pc_parts_list", list2);
+		model.addAttribute("intelPcList", intelPcList);
+		model.addAttribute("rtxPcList", rtxPcList);
+		model.addAttribute("ryzenPcList", ryzenPcList);
+		model.addAttribute("homePcList", homePcList);
+		model.addAttribute("officePcList", officePcList);
+		model.addAttribute("editPcList", editPcList);
 		
 		return url;
 	}
@@ -145,13 +161,26 @@ public class IndexController {
 		List<IndexGamePcDTO> list = service.indexGamePcList();
 		List<RecommandPcDTO> list2 = service.recommandPcGameList();
 		
+		List<PcDTO> battleGroundPcList = service.indexPcList("battleGround");
+		List<PcDTO> leagueOfLegendPcList = service.indexPcList("leagueOfLegend");
+		List<PcDTO> blackMythPcList = new ArrayList<>();
+		List<PcDTO> godOfWarPcList = new ArrayList<>();
+		
+		List<PcDTO> rtxPcList = service.indexPcList("rtx");
+		List<PcDTO> intelPcList = service.indexPcList("intel");
+		List<PcDTO> ryzenPcList = service.indexPcList("ryzen");
+		
 		if(category.equals("leagueOfLegend")) {
+			leagueOfLegendPcList = service.indexPcList(category);
 			url = "Pc/gamePC_4";
 		} else if (category.equals("battleGround")) {
+			battleGroundPcList = service.indexPcList(category);
 			url = "Pc/gamePC_1";
 		} else if (category.equals("blackMyth")) {
+			blackMythPcList = service.indexPcList(category);
 			url = "Pc/gamePC_3";
 		} else if (category.equals("godOfWar")) {
+			godOfWarPcList = service.indexPcList(category);
 			url = "Pc/gamePC_2";
 		}
 		
@@ -159,6 +188,13 @@ public class IndexController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("category", category);
 		model.addAttribute("recommand_pc_game_list", list2);
+		model.addAttribute("leagueOfLegend", leagueOfLegendPcList);
+		model.addAttribute("battleGround", battleGroundPcList);
+		model.addAttribute("blackMyth", blackMythPcList);
+		model.addAttribute("godOfWar", godOfWarPcList);
+		model.addAttribute("intelPcList", intelPcList);
+		model.addAttribute("rtxPcList", rtxPcList);
+		model.addAttribute("ryzenPcList", ryzenPcList);
 		
 		return url;
 	}
@@ -222,6 +258,7 @@ public class IndexController {
 		List<PowerDTO> powerList = service.searchPower(text);
 		List<RamDTO> ramList = service.searchRam(text);
 		List<SsdDTO> ssdList = service.searchSsd(text);
+		List<PcDTO> pcList = service.searchPc(text);
 		
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getTheme().length() >= 10) {
@@ -244,6 +281,7 @@ public class IndexController {
 		model.addAttribute("power", powerList);
 		model.addAttribute("ram", ramList);
 		model.addAttribute("ssd", ssdList);
+		model.addAttribute("pc", pcList);
 		
 		return "Util/search_result";
 	}
