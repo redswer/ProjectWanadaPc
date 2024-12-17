@@ -60,5 +60,4 @@ public class AjaxProductController {
 					COMPUTER_CASE);
 		}
 	}
-
 }

@@ -9,9 +9,9 @@ import lombok.ToString;
 @ToString
 public class RamDTO {
 	private String RAM_NAME;
-	private String MAKER_REM;
-	private String TYPE_REM;
-	private String CAPACITY_REM;
+	private String MAKER_RAM;
+	private String TYPE_RAM;
+	private String CAPACITY_RAM;
 	private String RAM_IMAGE;
  	private String RAM_PRICE;
  	private String RAM_INFORMATION;

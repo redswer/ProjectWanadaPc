@@ -88,4 +88,11 @@ public class ProductServicelmpl implements ProductService {
 	public List<SsdDTO> getComputerSsdProducts(){
 		return productMapper.getComputerSsdProducts();
 	} 
+	
+	
+	@Override
+	public CpuDTO getComputerCpuProductsAll(String CPU_NAME){
+		return productMapper.getComputerCpuProductsAll(CPU_NAME);
+	} 
 }
+
