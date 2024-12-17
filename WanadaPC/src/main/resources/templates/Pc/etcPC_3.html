@@ -24,13 +24,14 @@
         padding-bottom: 20px;
     }
 
-    .recommend_product_section div:not(:last-child) {
-        border-bottom: 1px solid silver;
-    }
-
-    .recommend_product_section div:nth-child(even) {
-        justify-content: flex-end;
-    }
+	.recommend_product_section div:nth-child(even) {
+	    display: flex;
+	    flex-direction: row-reverse; /* 내용이 오른쪽에서 왼쪽으로 배열되도록 설정 */
+	}
+	
+	.recommend_product_section div:not(:last-child) {
+	    border-bottom: 1px solid silver;
+	}
 
     .etcPC_main_contents {
         background-color: #f9ebeb;
@@ -86,6 +87,73 @@
     	text-decoration: none;
     	color: black;
     }
+    
+        .index_pc_container_1 {
+		display: flex;
+		justify-content: space-around;
+	}
+	
+	.index_pc_container_1 a {
+		text-decoration: none;
+		color: black;
+		margin: 50px auto;
+	}
+	
+	.index_pc_container_1 a:hover {
+		transform: scale(1.05);
+		text-decoration: underline;
+	}
+	
+	.index_pc_a_1 {
+		display: flex;
+		flex-flow: column;
+		margin-bottom: 20px;
+		justify-content: flex-end;
+	}
+	
+	.index_pc_image_1 {
+		width: 200px;
+		margin-bottom: 10px;
+	}
+	
+	.index_pc_name_1 {
+		text-align: center;
+		color: blue;
+	}
+	
+	.index_pc_container {
+	width: calc(100% - 440px);
+	display: flex;
+	}
+	
+	.index_pc_container a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.index_pc_container a:hover {
+		transform: scale(1.05);
+		text-decoration: underline;
+	}
+	
+	.index_pc_a {
+		display: flex;
+		flex-flow: column;
+		margin-bottom: 20px;
+		justify-content: flex-end;
+		margin: 10px calc((790px - (150px * 4)) / 8);
+	}
+	
+	.index_pc_image {
+		width: 150px;
+		height: 160px;
+		margin-bottom: 10px;
+	}
+	
+	.index_pc_name {
+		text-align: center;
+		color: blue;
+	}
 </style>
 </head>
 <body>
@@ -110,15 +178,16 @@
 						<li class="pc-item"><a href="gamePC?category=leagueOfLegend">게임용 PC</a></li>
                     </ul>
                 </div>
-                <div th:object="${dto}" class="image-section">
+				<div th:object="${dto}" class="image-section">
 	                <img th:src="@{'/Image/' + ${dto.page_image}}">
-	                <div>
-	                    <ul>
-	                        <li>PC 1</li>
-	                        <li>PC 2</li>
-	                        <li>PC 3</li>
-	                        <li>PC 4</li>
-	                    </ul>
+	                <div class="index_pc_container_1">
+	                	<th:block th:each="i : ${intelPcList}">
+             				<a th:href="@{/pcDetail(product_id=${i.product_id})}" class="index_pc_a_1">
+             					<img th:src="@{/Image/Product/{image}(image=${i.image})}" class="index_pc_image_1">
+             					<span class="index_pc_name_1">INTEL 조립PC</span>
+             					<span th:text="${i.product_name}"></span>
+             				</a>
+             			</th:block>
 	                </div>
                 </div>
                 <div class="recommend_product_section">
@@ -127,6 +196,33 @@
                             <a th:href="@{etcPC(category=${i.category})}">
                                 <img th:src="@{'/Image/' + ${i.image}}">
                             </a>
+                            <div th:if="${i.category == 'intel'}" class="index_pc_container">
+	                			<th:block th:each="j : ${intelPcList}">
+	                				<a th:href="@{/pcDetail(product_id=${j.product_id})}" class="index_pc_a">
+	                					<img th:src="@{/Image/Product/{image}(image=${j.image})}" class="index_pc_image">
+	                					<span class="index_pc_name">INTEL 조립PC</span>
+	                					<span th:text="${j.product_name}"></span>
+	                				</a>
+	                			</th:block>
+	                		</div>
+	                		<div th:if="${i.category == 'rtx'}" class="index_pc_container">
+	                			<th:block th:each="j : ${rtxPcList}">
+	                				<a th:href="@{/pcDetail(product_id=${j.product_id})}" class="index_pc_a">
+	                					<img th:src="@{/Image/Product/{image}(image=${j.image})}" class="index_pc_image">
+	                					<span class="index_pc_name">NVIDIA 조립PC</span>
+	                					<span th:text="${j.product_name}"></span>
+	                				</a>
+	                			</th:block>
+	                		</div>
+	                		<div th:if="${i.category == 'ryzen'}" class="index_pc_container">
+	                			<th:block th:each="j : ${ryzenPcList}">
+	                				<a th:href="@{/pcDetail(product_id=${j.product_id})}" class="index_pc_a">
+	                					<img th:src="@{/Image/Product/{image}(image=${j.image})}" class="index_pc_image">
+	                					<span class="index_pc_name">AMD 조립PC</span>
+	                					<span th:text="${j.product_name}"></span>
+	                				</a>
+	                			</th:block>
+	                		</div>
                         </div>
                     </th:block>
                 </div>

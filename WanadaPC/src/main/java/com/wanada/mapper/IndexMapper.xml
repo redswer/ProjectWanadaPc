@@ -82,4 +82,9 @@
 	<select id="searchSsd" resultType="com.wanada.dto.SsdDTO">
 		select * from computer_ssd where upper(ssd_name) like upper('%' || #{text} || '%')
 	</select>
+	<select id="searchPc" resultType="com.wanada.dto.PcDTO">
+		select * from pc_list where cpu like upper('%' || #{text} || '%') or mainboard like upper('%' || #{text} || '%') 
+		or cooler like upper('%' || #{text} || '%') or gpu like upper('%' || #{text} || '%') or ram like upper('%' || #{text} || '%') 
+		or ssd like upper('%' || #{text} || '%') or power like upper('%' || #{text} || '%') or pc_case like upper('%' || #{text} || '%')
+	</select>
 </mapper>

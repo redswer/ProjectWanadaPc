@@ -255,13 +255,13 @@
 	                	<th:block th:each="i : ${mainboard}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/Product/{image}(image=${i.MAINBOARD_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.MB_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.MAINBOARD_NAME}"></span>
+	                                	<span th:text="${i.MB_NAME}"></span>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.MAINBOARD_INFORMATION}"></span>
+	                                	<span th:text="${i.MB_INFORMATION}"></span>
 	                                </td>
 	                            </tr>
 	                	</th:block>
@@ -301,6 +301,19 @@
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.SSD_INFORMATION}"></span>
+	                                </td>
+	                            </tr>
+	                	</th:block>
+	                	<th:block th:each="i : ${pc}">
+	                            <tr th:onclick="location.href='/'">
+	                                <td>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.image})}" class="search_product_image"/>
+	                                </td>
+	                                <td>
+	                                	조립 PC
+	                                </td>
+	                                <td>
+	                                	<span th:text="${i.product_name}"></span>
 	                                </td>
 	                            </tr>
 	                	</th:block>

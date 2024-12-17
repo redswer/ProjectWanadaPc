@@ -142,6 +142,34 @@ public class UserController {
 		return "User/user_update_pro"; // 결과 펭지로 이동 /폴더 내의 파일 명과 일치 시켜야함.
 	}
 
+	@RequestMapping("pwCheckPage")
+	public String pwCheckPage() {
+		
+		return "/User/pwCheck";
+	}
+	
+	@RequestMapping("userPwCheck")
+	public String userPwCheck(HttpServletRequest request, Model model) {
+		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		UserDTO dto = (UserDTO) session.getAttribute("user");
+		String id = dto.getUserEmail();
+		
+		String hashedPassword = UserSHA256.getSHA256(password); // SHA-256 암호화
+
+		
+		UserDTO user = service.userLogin(id);
+		int row = 0;
+		
+		if (user.getUserPassword().equals(hashedPassword)) {
+			row = 1;
+		}
+		
+		model.addAttribute("row", row);
+		
+		return "/User/pwCheck_pro";
+	}
+	
 }
 
 // controller 에서 row 값(0,1)
