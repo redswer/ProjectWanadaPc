@@ -142,10 +142,19 @@
 						
 						<tbody class="scrollable-tbody">
 							<tr th:each="MB : ${MB}">
-								<td th:text="${MB.MB_NAME}"></td>
-								<td><img th:src="@{'/Image/Product/' + ${MB.MB_IMAGE}}" /></td>
-								<td th:text="${MB.MB_INFORMATION}"></td>
-								<td th:text="${MB.MB_PRICE}"></td>
+								<td onclick="openMbPopup(this);"
+									th:data-mb-name="${MB.MB_NAME}" style="cursor: pointer;"
+									th:text="${MB.MB_NAME}"></td>
+								<td onclick="openMbPopup(this);"
+									th:data-mb-name="${MB.MB_NAME}" style="cursor: pointer;">
+									<img th:src="@{'/Image/Product/' + ${MB.MB_IMAGE}}" />
+								</td>
+								<td onclick="openMbPopup(this);"
+									th:data-mb-name="${MB.MB_NAME}" style="cursor: pointer;"
+									th:text="${MB.MB_INFORMATION}"></td>
+								<td onclick="openMbPopup(this);"
+									th:data-mb-name="${MB.MB_NAME}" style="cursor: pointer;"
+									th:text="${MB.MB_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -154,5 +163,17 @@
 		</section>
 	</div>
 </body>
+<script>
+	function openMbPopup(element) {
+		// data-* 속성에서 CPU 이름 가져오기
+		const mbName = element.getAttribute('data-mb-name');
+		// 팝업 창 설정
+		const url = `/Product/Product_MB_Detail?MB_NAME=`
+				+ encodeURIComponent(mbName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		// 팝업 창 열기
+		window.open(url, 'MbDetailPopup', options);
+	}
+</script>
 <th:block th:replace="Util/footer :: footer"></th:block>
 </html>

@@ -142,10 +142,19 @@
 						
 						<tbody class="scrollable-tbody">
 							<tr th:each="RAM : ${RAM}">
-								<td th:text="${RAM.RAM_NAME}"></td>
-								<td><img th:src="@{'/Image/Product/' + ${RAM.RAM_IMAGE}}" /></td>
-								<td th:text="${RAM.RAM_INFORMATION}"></td>
-								<td th:text="${RAM.RAM_PRICE}"></td>
+								<td onclick="openPowerPopup(this);"
+									th:data-power-name="${RAM.RAM_NAME}" style="cursor: pointer;"
+									th:text="${RAM.RAM_NAME}"></td>
+								<td onclick="openPowerPopup(this);"
+									th:data-power-name="${RAM.RAM_NAME}" style="cursor: pointer;">
+									<img th:src="@{'/Image/Product/' + ${RAM.RAM_IMAGE}}" />
+								</td>
+								<td onclick="openPowerPopup(this);"
+									th:data-power-name="${RAM.RAM_NAME}" style="cursor: pointer;"
+									th:text="${RAM.RAM_INFORMATION}"></td>
+								<td onclick="openPowerPopup(this);"
+									th:data-power-name="${POWER.POWER_NAME}" style="cursor: pointer;"
+									th:text="${POWER.POWER_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>

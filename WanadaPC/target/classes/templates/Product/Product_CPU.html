@@ -139,13 +139,21 @@
 								</ul>
 							</th>
 						</tr>
-						
 						<tbody class="scrollable-tbody">
 							<tr th:each="CPU : ${CPU}">
-								<td th:text="${CPU.CPU_NAME}"></td>
-								<td><img th:src="@{'/Image/Product/' + ${CPU.CPU_IMAGE}}" /></td>
-								<td th:text="${CPU.CPU_INFORMATION}"></td>
-								<td th:text="${CPU.CPU_PRICE}"></td>
+								<td onclick="openCpuPopup(this);"
+									th:data-cpu-name="${CPU.CPU_NAME}" style="cursor: pointer;"
+									th:text="${CPU.CPU_NAME}"></td>
+								<td onclick="openCpuPopup(this);"
+									th:data-cpu-name="${CPU.CPU_NAME}" style="cursor: pointer;">
+									<img th:src="@{'/Image/Product/' + ${CPU.CPU_IMAGE}}" />
+								</td>
+								<td onclick="openCpuPopup(this);"
+									th:data-cpu-name="${CPU.CPU_NAME}" style="cursor: pointer;"
+									th:text="${CPU.CPU_INFORMATION}"></td>
+								<td onclick="openCpuPopup(this);"
+									th:data-cpu-name="${CPU.CPU_NAME}" style="cursor: pointer;"
+									th:text="${CPU.CPU_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -154,5 +162,17 @@
 		</section>
 	</div>
 </body>
+<script>
+	function openCpuPopup(element) {
+		// data-* 속성에서 CPU 이름 가져오기
+		const cpuName = element.getAttribute('data-cpu-name');
+		// 팝업 창 설정
+		const url = `/Product/Product_CPU_Detail?CPU_NAME=`
+				+ encodeURIComponent(cpuName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		// 팝업 창 열기
+		window.open(url, 'CpuDetailPopup', options);
+	}
+</script>
 <th:block th:replace="Util/footer :: footer"></th:block>
 </html>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wanada.mapper.ProductMapper">
+	<!-- 상품리스트 전체 출력 -->
 	<select id="getAllProducts"
 		resultType="com.wanada.dto.ProductDTO">
 		SELECT CPU_IMAGE AS image, CPU_NAME AS title, CPU_PRICE AS
@@ -40,6 +41,7 @@
 		price
 		FROM COMPUTER_RAM
 	</select>
+	<!-- 필터의 걸린 상품만 출력 -->
 	<select id="getFilteredProducts"
 		resultType="com.wanada.dto.ProductDTO">
 		<choose>
@@ -287,7 +289,7 @@
 			</when>
 		</choose>
 	</select>
-
+	<!-- 각각 부품페이지 출력 -->
 	<select id="getComputerCpuProducts"
 		resultType="com.wanada.dto.CpuDTO">
 		SELECT CPU_NAME, CPU_IMAGE, CPU_INFORMATION, CPU_PRICE
@@ -341,10 +343,42 @@
 		FROM
 		COMPUTER_SSD
 	</select>
+	<!-- 제품 상세 설명 SQL문 -->
 	<select id="getComputerCpuProductsAll"
 		resultType="com.wanada.dto.CpuDTO">
 		SELECT * FROM COMPUTER_CPU where CPU_NAME=#{CPU_NAME}
+	</select>	
+	<select id="getComputerCaseProductsAll"
+		resultType="com.wanada.dto.CaseDTO">
+		SELECT * FROM COMPUTER_CASE where CASE_NAME=#{CASE_NAME}
 	</select>
-
+	<select id="getComputerCoolerProductsAll"
+		resultType="com.wanada.dto.CoolerDTO">
+		SELECT * FROM COMPUTER_COOLER where COOLER_NAME=#{COOLER_NAME}
+	</select>
+	<select id="getComputerGpuProductsAll"
+		resultType="com.wanada.dto.GpuDTO">
+		SELECT * FROM COMPUTER_GPU where GPU_NAME=#{GPU_NAME}
+	</select>
+	<select id="getComputerHddProductsAll"
+		resultType="com.wanada.dto.HddDTO">
+		SELECT * FROM COMPUTER_HDD where HDD_NAME=#{HDD_NAME}
+	</select>
+	<select id="getComputerMbProductsAll"
+		resultType="com.wanada.dto.MainBoardDTO">
+		SELECT * FROM COMPUTER_MAINBOARD where MB_NAME=#{MB_NAME}
+	</select>
+	<select id="getComputerPowerProductsAll"
+		resultType="com.wanada.dto.PowerDTO">
+		SELECT * FROM COMPUTER_POWER where POWER_NAME=#{POWER_NAME}
+	</select>
+	<select id="getComputerRamProductsAll"
+		resultType="com.wanada.dto.RamDTO">
+		SELECT * FROM COMPUTER_RAM where RAM_NAME=#{RAM_NAME}
+	</select>
+	<select id="getComputerSsdProductsAll"
+		resultType="com.wanada.dto.RamDTO">
+		SELECT * FROM COMPUTER_SSD where SSD_NAME=#{SSD_NAME}
+	</select>
 
 </mapper>

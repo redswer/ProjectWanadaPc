@@ -19,16 +19,16 @@ import com.wanada.dto.SsdDTO;
 
 @Mapper
 public interface ProductMapper {
+	//전체 제품 조회
 	List<ProductDTO> getAllProducts();
 	// 필터링된 제품 조회
-	
 	List<ProductDTO> getFilteredProducts(@Param("COMPUTER_CPU") List<String> COMPUTER_CPU,
 			@Param("COMPUTER_COOLER") List<String> COMPUTER_COOLER, @Param("COMPUTER_GPU") List<String> COMPUTER_GPU,
 			@Param("COMPUTER_HDD") List<String> COMPUTER_HDD,
 			@Param("COMPUTER_MAINBOARD") List<String> COMPUTER_MAINBOARD,
 			@Param("COMPUTER_POWER") List<String> COMPUTER_POWER, @Param("COMPUTER_RAM") List<String> COMPUTER_RAM,
 			@Param("COMPUTER_SSD") List<String> COMPUTER_SSD, @Param("COMPUTER_CASE") List<String> COMPUTER_CASE);
-	
+	//각 제품 페이지
 	List<CpuDTO> getComputerCpuProducts();
 	List<CaseDTO> getComputerCaseProducts();
 	List<CoolerDTO> getComputerCoolerProducts();
@@ -38,8 +38,16 @@ public interface ProductMapper {
 	List<PowerDTO>getComputerPowerProducts();
 	List<RamDTO>getComputerRamProducts();
 	List<SsdDTO>getComputerSsdProducts();
-	
-	
+	//각각 제품 상세 설명 페이지
 	public CpuDTO getComputerCpuProductsAll(String CPU_NAME);
+	public CaseDTO getComputerCaseProductsAll(String CASE_NAME);
+	public CoolerDTO getComputerCoolerProductsAll(String COOLER_NAME);
+	public GpuDTO getComputerGpuProductsAll(String GPU_NAME);
+	public HddDTO getComputerHddProductsAll(String HDD_NAME);
+	public MainBoardDTO getComputerMbProductsAll(String MB_NAME);
+	public PowerDTO getComputerPowerProductsAll(String POWER_NAME);
+	public RamDTO getComputerRamProductsAll(String RAM_NAME);
+	public SsdDTO getComputerSsdProductsAll(String SSD_NAME);
+	
 	
 }

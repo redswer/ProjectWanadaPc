@@ -139,13 +139,21 @@
 								</ul>
 							</th>
 						</tr>
-						
 						<tbody class="scrollable-tbody">
 							<tr th:each="CASE : ${CASE}">
-								<td th:text="${CASE.CASE_NAME}"></td>
-								<td><img th:src="@{'/Image/Product/' + ${CASE.CASE_IMAGE}}" /></td>
-								<td th:text="${CASE.CASE_INFORMATION}"></td>
-								<td th:text="${CASE.CASE_PRICE}"></td>
+								<td onclick="openCasePopup(this);"
+									th:data-case-name="${CASE.CASE_NAME}" style="cursor: pointer;"
+									th:text="${CASE.CASE_NAME}"></td>
+								<td onclick="openCasePopup(this);"
+									th:data-case-name="${CASE.CASE_NAME}" style="cursor: pointer;">
+									<img th:src="@{'/Image/Product/' + ${CASE.CASE_IMAGE}}" />
+								</td>
+								<td onclick="openCasePopup(this);"
+									th:data-case-name="${CASE.CASE_NAME}" style="cursor: pointer;"
+									th:text="${CASE.CASE_INFORMATION}"></td>
+								<td onclick="openCasePopup(this);"
+									th:data-case-name="${CASE.CASE_NAME}" style="cursor: pointer;"
+									th:text="${CASE.CASE_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -154,5 +162,17 @@
 		</section>
 	</div>
 </body>
+<script>
+	function openCasePopup(element) {
+		// data-* 속성에서 CPU 이름 가져오기
+		const caseName = element.getAttribute('data-case-name');
+		// 팝업 창 설정
+		const url = `/Product/Product_CASE_Detail?CASE_NAME=`
+				+ encodeURIComponent(caseName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		// 팝업 창 열기
+		window.open(url, 'CaseDetailPopup', options);
+	}
+</script>
 <th:block th:replace="Util/footer :: footer"></th:block>
 </html>

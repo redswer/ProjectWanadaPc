@@ -142,10 +142,19 @@
 						
 						<tbody class="scrollable-tbody">
 							<tr th:each="GPU : ${GPU}">
-								<td th:text="${GPU.GPU_NAME}"></td>
-								<td><img th:src="@{'/Image/Product/' + ${GPU.GPU_IMAGE}}" /></td>
-								<td th:text="${GPU.GPU_INFORMATION}"></td>
-								<td th:text="${GPU.GPU_PRICE}"></td>
+								<td onclick="openGpuPopup(this);"
+									th:data-gpu-name="${GPU.GPU_NAME}" style="cursor: pointer;"
+									th:text="${GPU.GPU_NAME}"></td>
+								<td onclick="openGpuPopup(this);"
+									th:data-gpu-name="${GPU.GPU_NAME}" style="cursor: pointer;">
+									<img th:src="@{'/Image/Product/' + ${GPU.GPU_IMAGE}}" />
+								</td>
+								<td onclick="openGpuPopup(this);"
+									th:data-gpu-name="${GPU.GPU_NAME}" style="cursor: pointer;"
+									th:text="${GPU.GPU_INFORMATION}"></td>
+								<td onclick="openGpuPopup(this);"
+									th:data-gpu-name="${GPU.GPU_NAME}" style="cursor: pointer;"
+									th:text="${GPU.GPU_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -154,5 +163,17 @@
 		</section>
 	</div>
 </body>
+<script>
+	function openGpuPopup(element) {
+		// data-* 속성에서 CPU 이름 가져오기
+		const gpuName = element.getAttribute('data-gpu-name');
+		// 팝업 창 설정
+		const url = `/Product/Product_GPU_Detail?GPU_NAME=`
+				+ encodeURIComponent(gpuName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		// 팝업 창 열기
+		window.open(url, 'GpuDetailPopup', options);
+	}
+</script>
 <th:block th:replace="Util/footer :: footer"></th:block>
 </html>

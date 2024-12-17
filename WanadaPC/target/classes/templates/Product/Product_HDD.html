@@ -142,10 +142,19 @@
 						
 						<tbody class="scrollable-tbody">
 							<tr th:each="HDD : ${HDD}">
-								<td th:text="${HDD.HDD_NAME}"></td>
-								<td><img th:src="@{'/Image/Product/' + ${HDD.HDD_IMAGE}}" /></td>
-								<td th:text="${HDD.HDD_INFORMATION}"></td>
-								<td th:text="${HDD.HDD_PRICE}"></td>
+								<td onclick="openHddPopup(this);"
+									th:data-hdd-name="${HDD.HDD_NAME}" style="cursor: pointer;"
+									th:text="${HDD.HDD_NAME}"></td>
+								<td onclick="openHddPopup(this);"
+									th:data-hdd-name="${HDD.HDD_NAME}" style="cursor: pointer;">
+									<img th:src="@{'/Image/Product/' + ${HDD.HDD_IMAGE}}" />
+								</td>
+								<td onclick="openHddPopup(this);"
+									th:data-hdd-name="${HDD.HDD_NAME}" style="cursor: pointer;"
+									th:text="${HDD.HDD_INFORMATION}"></td>
+								<td onclick="openHddPopup(this);"
+									th:data-hdd-name="${HDD.HDD_NAME}" style="cursor: pointer;"
+									th:text="${HDD.HDD_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -154,5 +163,17 @@
 		</section>
 	</div>
 </body>
+<script>
+	function openHddPopup(element) {
+		// data-* 속성에서 CPU 이름 가져오기
+		const hddName = element.getAttribute('data-hdd-name');
+		// 팝업 창 설정
+		const url = `/Product/Product_HDD_Detail?HDD_NAME=`
+				+ encodeURIComponent(hddName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		// 팝업 창 열기
+		window.open(url, 'HddDetailPopup', options);
+	}
+</script>
 <th:block th:replace="Util/footer :: footer"></th:block>
 </html>

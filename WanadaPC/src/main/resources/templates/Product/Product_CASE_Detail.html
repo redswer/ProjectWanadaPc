@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CASE 상세 정보</title>
+<Style>
+    /* 전체 테이블 스타일 */
+    .Show_List_CASE {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 테이블 헤더 스타일 */
+    .Show_List_CASE th {
+        background-color: #2c3e50;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    /* 테이블 데이터 셀 스타일 */
+    .Show_List_CASE td {
+        padding: 12px;
+        font-size: 16px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    /* 테이블 제목 (첫 번째 헤더) */
+    .Show_List_CASE th[colspan="2"] {
+        background-color: #34495e;
+        font-size: 22px;
+        text-align: center;
+        padding: 15px 0;
+        border: none;
+    }
+
+    /* 홀수 줄 배경색 */
+    .Show_List_CASE tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    /* 이미지 스타일 */
+    .Show_List_CASE img {
+        max-width: 120px; /* 이미지 크기 고정 */
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 8px; /* 모서리 둥글게 */
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+
+
+    /* 글씨체 */
+    .List_CASE body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #ecf0f1;
+        color: #2c3e50;
+    }
+
+    /* 중앙 정렬 */
+    .Show_List_CASE table {
+        margin: 0 auto;
+    }
+</Style>
+</head>
+<body class="List_CASE">
+	<table class="Show_List_CASE">
+		<tr>
+			<th colspan="2">해당 제품 상세 정보 페이지</th>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td th:text="${caseDetail.CASE_NAME}"></td>
+		</tr>
+		<tr>
+			<th>제조사</th>
+			<td th:text="${caseDetail.MAKER_CASE}"></td>
+		</tr>
+		<tr>
+			<th>제품 분류</th>
+			<td th:text="${caseDetail.TYPE_CASE}"></td>
+		</tr>
+		<tr>
+			<th>케이스 크기</th>
+			<td th:text="${caseDetail.SIZE_CASE}"></td>
+		</tr>
+		<tr>
+			<th>상품이미지</th>
+			<td><img th:src="@{'/Image/Product/' + ${caseDetail.CASE_IMAGE}}"
+				alt="CASE 이미지"></td>
+		</tr>
+		<tr>
+			<th>상품가격</th>
+			<td th:text="${caseDetail.CASE_PRICE}"></td>
+		</tr>
+		<tr>
+			<th>상품정보</th>
+			<td th:text="${caseDetail.CASE_INFORMATION}"></td>
+		</tr>
+		<tr>
+			<th>저장장치 장착 갯수</th>
+			<td th:text="${caseDetail.STORAGE_DEVICE_SLOT}"></td>
+		</tr>
+		<tr>
+			<th>PCL 슬롯</th>
+			<td th:text="${caseDetail.PCI_SLOT}"></td>
+		</tr>
+		<tr>
+			<th>쿨링 팬 갯수</th>
+			<td th:text="${caseDetail.COOLING_FAN}"></td>
+		</tr>
+		<tr>
+			<th>CASE 크기</th>
+			<td th:text="${caseDetail.SIZE_WHD}"></td>
+		</tr>
+		<tr>
+			<th>지원보드규격</th>
+			<td th:text="${caseDetail.SUPPORT_BOARD_SPECIFICATIONS}"></td>
+		</tr>
+		<tr>
+			<th>최대 클럭</th>
+			<td th:text="${caseDetail.RELEASE_YEAR}"></td>
+		</tr>
+	</table>
+</body>
+</html>
