@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보 수정</title>
+   <link rel="stylesheet" href="/Css/util.css" />
     <style>
         .user_update_body {
             font-family: Arial, sans-serif;
@@ -92,47 +93,48 @@
 </head>
 <body class="user_update_body">
 	<div>
-		<%@ include file="/Util/header.jsp" %>
-		<%@ include file="/Util/side_bar.jsp" %>
+		<th:block th:replace="Util/header :: header"></th:block>
+		<th:block th:replace="Util/side_bar :: side_bar"></th:block>
 	</div>
     <div class="update-container">
         <h2>회원정보 수정</h2>
-        <form th:action="@{/user_update}"  method="POST" name="modifyForm">
+        <form th:action="@{/user_update}"  method="POST" name="modifyForm"><!-- /user_update 주소값 사용해서 controller 에서 @RequestMapping("/ ")형식으로 주소값입력 -->
             <div class="form-group">
                 <label for="userEmail">이메일</label>
-                <input type="text" id="userEmail" name="userEmail" value="${user.userEmail}" readonly>
-                <!-- read only는 수정 불가능  -->
+                <input type="text" id="userEmail" name="userEmail" th:value="${session.user.userEmail}" readonly>
+                <!-- read only는 수정 불가능  -->					<!-- session값에 정보가 담겨있기 때문에 session. 입력하면 됨. th는 thymleaf사용하였기에 입력 -->
             </div>
             <div class="form-group">
                 <label for="userPassword">현재 비밀번호</label>
-                <input type="password" id="userPassword" name="userPassword" placeholder="새 비밀번호를 입력하세요">
+                <input type="password" id="userPassword" name="userPassword" placeholder="현재 비밀번호를 입력하세요">
             </div>
             <div class="form-group">
                 <label for="userRepassword">새 비밀번호</label>
-                <input type="password" id="userRepassword" name="userRepassword" placeholder="비밀번호를 다시 입력하세요">
+                <input type="password" id="userRepassword" name="userRepassword" placeholder="새 비밀번호를 입력하세요">
             </div>
             <div class="form-group">
                 <label for="userName">이름</label>
-                <input type="text" id="userName" name="userName" value="${user.userName}">
+                <input type="text" id="userName" name="userName" th:value="${session.user.userName}">
             </div>
             <div class="form-group">
                 <label for="gender">성별</label>
-                <div>
-                    <input type="radio" id="gender" name="gender" value="M" <c:if test="${user.gender eq 'M'}">checked</c:if>> 
-                    <label for="gender">남자</label>
-                    <input type="radio" id="gender" name="gender" value="F" <c:if test="${user.gender eq 'F'}">checked</c:if>> 
-                    <label for="gender">여자</label>
-                </div>
+			<div>
+			    <input type="radio" id="genderMale" name="gender" value="M" checked>
+			    <label for="genderMale">남자</label>
+			
+			    <input type="radio" id="genderFemale" name="gender" value="F">
+			    <label for="genderFemale">여자</label>
+			</div>
             </div>
             <div class="form-group">
                 <label for="tell">휴대폰 번호</label>
-                <input type="text" id="tell" name="tell" value="${user.tell}" placeholder="휴대폰 번호를 입력하세요">
+                <input type="text" id="tell" name="tell" th:value="${session.user.tell}" placeholder="휴대폰 번호를 입력하세요">
             </div>
-            <button type="submit" class="update_button">수정하기</button>
+            <button type="submit" class="update_button" >수정하기</button>
         </form>
     </div>
     <div>
-    	<%@ include file="/Util/footer.jsp" %>
+    	<th:block th:replace="Util/footer :: footer"></th:block>
     </div>
 </body>
 </html>

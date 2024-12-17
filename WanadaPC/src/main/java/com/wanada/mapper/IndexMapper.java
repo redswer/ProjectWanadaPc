@@ -13,6 +13,7 @@ import com.wanada.dto.HddDTO;
 import com.wanada.dto.IndexBannerDTO;
 import com.wanada.dto.IndexGamePcDTO;
 import com.wanada.dto.MainBoardDTO;
+import com.wanada.dto.PcDTO;
 import com.wanada.dto.PowerDTO;
 import com.wanada.dto.RamDTO;
 import com.wanada.dto.RecommandPcDTO;
@@ -24,6 +25,17 @@ public interface IndexMapper {
 	public List<IndexGamePcDTO> indexGamePcList();
 	public List<RecommandPcDTO> recommandPcGameList();
 	public List<RecommandPcDTO> recommandPcPartsList();
+	public List<PcDTO> indexPcList(String category);
+	public PcDTO pcDetail(int product_id);
+	public CpuDTO cpu(int product_id);
+	public CoolerDTO cooler(int product_id);
+	public MainBoardDTO mainboard(int product_id);
+	public RamDTO ram(int product_id);
+	public GpuDTO gpu(int product_id);
+	public SsdDTO ssd(int product_id);
+	public PowerDTO power(int product_id);
+	public CaseDTO pc_case(int product_id);
+	
 	public List<BoardDTO> indexBoardList();
 	public IndexBannerDTO etcPC(String category);
 	public IndexGamePcDTO gamePC(String category);
