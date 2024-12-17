@@ -31,23 +31,23 @@
                 </div>
                 <div th:if="${session.user != null}">
                     <a th:href="@{/user_logout}">로그아웃</a>
-                    <a th:href="@{/User/myPage.jsp}">마이 페이지</a>
+                    <a th:href="@{/userMyPage}">마이 페이지</a>
                 </div>
             </div>
         </div>
         <div>
             <ul class="header_navigation">
                 <li><a th:href="@{/etcPC(category='home')}">조립 PC</a></li>
-                <li><a th:href="@{/Product/Product_main.jsp}">PC 부품</a></li>
-                <li><a th:href="@{/ProductCPUController}">CPU</a></li>
-                <li><a th:href="@{/ProductMBController}">메인보드</a></li>
-                <li><a th:href="@{/ProductGPUController}">그래픽카드</a></li>
-                <li><a th:href="@{/ProductRAMController}">램</a></li>
-                <li><a th:href="@{/ProductSSDController}">SSD</a></li>
-                <li><a th:href="@{/ProductCOOLERController}">쿨러/튜닝</a></li>
-                <li><a th:href="@{/ProductHDDController}">HDD</a></li>
-                <li><a href="">케이스</a></li>
-                <li><a th:href="@{/ProductPOWERController}">파워</a></li>
+                <li><a th:href="@{/Product/Product_main}">PC 부품</a></li>
+                <li><a th:href="@{/Product/Product_CPU}">CPU</a></li>
+                <li><a th:href="@{/Product/Product_MB}">메인보드</a></li>
+                <li><a th:href="@{/Product/Product_GPU}">그래픽카드</a></li>
+                <li><a th:href="@{/Product/Product_RAM}">램</a></li>
+                <li><a th:href="@{/Product/Product_SSD}">SSD</a></li>
+                <li><a th:href="@{/Product/Product_COOLER}">쿨러/튜닝</a></li>
+                <li><a th:href="@{/Product/Product_HDD}">HDD</a></li>
+                <li><a th:href="@{/Product/Product_CASE}">케이스</a></li>
+                <li><a th:href="@{/Product/Product_POWER}">파워</a></li>
                 <li><a th:href="@{/boardList}">커뮤니티</a></li>
             </ul>
         </div>

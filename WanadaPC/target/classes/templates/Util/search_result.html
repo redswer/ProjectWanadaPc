@@ -190,7 +190,7 @@
 	                	<th:block th:each="i : ${case}">
 	                            <tr th:onclick="">
 	                                <td>
-                               			<img th:src="@{/Image/CASE/{image}(image=${i.CASE_IMAGE})}" class="search_product_image"/>
+                               			<img th:src="@{/Image/Product/{image}(image=${i.CASE_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.CASE_NAME}"></span>
@@ -203,7 +203,7 @@
 	                	<th:block th:each="i : ${cooler}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/COOLER/{image}(image=${i.COOLER_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.COOLER_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.COOLER_NAME}"></span>
@@ -216,7 +216,7 @@
 	                	<th:block th:each="i : ${cpu}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/CPU/{image}(image=${i.CPU_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.CPU_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.CPU_NAME}"></span>
@@ -229,7 +229,7 @@
 	                	<th:block th:each="i : ${gpu}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/GPU/{image}(image=${i.GPU_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.GPU_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.GPU_NAME}"></span>
@@ -242,7 +242,7 @@
 	                	<th:block th:each="i : ${hdd}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/HDD/{image}(image=${i.HDD_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.HDD_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.HDD_NAME}"></span>
@@ -255,7 +255,7 @@
 	                	<th:block th:each="i : ${mainboard}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/MAINBOARD/{image}(image=${i.MAINBOARD_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.MAINBOARD_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.MAINBOARD_NAME}"></span>
@@ -268,7 +268,7 @@
 	                	<th:block th:each="i : ${power}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/POWER/{image}(image=${i.POWER_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.POWER_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.POWER_NAME}"></span>
@@ -281,7 +281,7 @@
 	                	<th:block th:each="i : ${ram}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/RAM/{image}(image=${i.RAM_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.RAM_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.RAM_NAME}"></span>
@@ -294,7 +294,7 @@
 	                	<th:block th:each="i : ${ssd}">
 	                            <tr th:onclick="location.href='/'">
 	                                <td>
-                                		<img th:src="@{/Image/SSD/{image}(image=${i.SSD_IMAGE})}" class="search_product_image"/>
+                                		<img th:src="@{/Image/Product/{image}(image=${i.SSD_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.SSD_NAME}"></span>

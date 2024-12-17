@@ -7,3 +7,5 @@
 *.class
 *.xml
 *.MF
+*.gitattributes
+*.gitignore

@@ -99,25 +99,29 @@
     /* 약관 텍스트 색상을 중간 회색으로 설정 */
     color: #555;
 }
+.join_toggle{
+	/* 약관 텍스트의 글씨 작게 설정 */
+	font-size : 0.9em;
+	/*약관 텍스트 색상을 중간 회색으로 설정 */
+	color : #555;
+}
 </style>
 
 </head>
 <body class="user_insert_body">
 	<div class="inner">
 		<h1 class="logo_wanada">
-			<a href="http://wanada.com" class="link"> <span class="blind">
+			<a th href="/index" class="link"> <span class="blind"><!--  -->
 			 <th:block th:replace="Util/main_logo :: main_logo"></th:block></span>
 			</a>
 		</h1>
 		<div class="signup-container">
 			<h1>회원가입</h1>
-			<form th:action="@{/user_insert}" method="POST" name="userForm">   <!--  th: action 수정 11.26 -->
+			<form th:action="@{/user_insert}" method="POST" name="userForm">   <!--  controller에서 그대로 사용 name 은 script에서 사용하려고 지정하는 이름-->
 					<!-- th:action 주소값이 매핑값인듯 ********** -->
-				<div class="form section">
-					<div class="join_toggle" id="divToggle">
-						<input type="checkbox" id="join_toggle" name="join_toggle" checked> 
-						<label for="join_toggle">만)19세 이상입니다</label>
-					</div>
+				<div class="join_toggle" id="divToggle">
+					<input type="checkbox" id="join_toggle" name="join_toggle" checked> 
+					<label for="join_toggle">만)19세 이상입니다</label>
 				</div>
 				<div class="form_group">
 					<label for="userEmail">1) 아이디(e-mail)</label> 
@@ -170,7 +174,7 @@
 			</form>
 		</div>
 	</div>
-</body>
+</body> 
 
 <script>
 function send() {
