@@ -14,6 +14,7 @@ import com.wanada.dto.HddDTO;
 import com.wanada.dto.IndexBannerDTO;
 import com.wanada.dto.IndexGamePcDTO;
 import com.wanada.dto.MainBoardDTO;
+import com.wanada.dto.PcDTO;
 import com.wanada.dto.PowerDTO;
 import com.wanada.dto.RamDTO;
 import com.wanada.dto.RecommandPcDTO;
@@ -51,6 +52,76 @@ public class IndexServiceImpl implements IndexService {
 		List<RecommandPcDTO> list = mapper.recommandPcPartsList();
 		
 		return list;
+	}
+	
+	@Override
+	public List<PcDTO> indexPcList(String category) {
+		List<PcDTO> list = mapper.indexPcList(category);
+		
+		return list;
+	}
+	
+	@Override
+	public PcDTO pcDetail(int product_id) {
+		PcDTO dto = mapper.pcDetail(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public CpuDTO cpu(int product_id) {
+		CpuDTO dto = mapper.cpu(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public CoolerDTO cooler(int product_id) {
+		CoolerDTO dto = mapper.cooler(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public MainBoardDTO mainboard(int product_id) {
+		MainBoardDTO dto = mapper.mainboard(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public RamDTO ram(int product_id) {
+		RamDTO dto = mapper.ram(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public GpuDTO gpu(int product_id) {
+		GpuDTO dto = mapper.gpu(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public SsdDTO ssd(int product_id) {
+		SsdDTO dto = mapper.ssd(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public PowerDTO power(int product_id) {
+		PowerDTO dto = mapper.power(product_id);
+		
+		return dto;
+	}
+	
+	@Override
+	public CaseDTO pc_case(int product_id) {
+		CaseDTO dto = mapper.pc_case(product_id);
+		
+		return dto;
 	}
 	
 	@Override

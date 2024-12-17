@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/Css/util.css" />
+<script type="text/javascript" src="/Script/script"></script>
+<meta charset="UTF-8">
+<title>게시판 상세보기</title>
+<style type="text/css">
+/* 전체 컨테이너 */
+.board_detail_body {
+    width: 1260px;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* 제목 스타일 */
+.board_detail_main h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* 테이블 스타일 */
+.board_detail_table {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.board_detail_table th {
+    padding: 10px;
+    background-color: #f2f2f2;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.board_detail_table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+/* 제목, 작성자 등의 정보 행 */
+.board_detail_table tr:first-child th {
+    text-align: left;
+    color: #555;
+    font-size: 18px;
+}
+
+/* 본문 내용 스타일 (내용칸을 더 넓게) */
+.board_detail_table tr:nth-child(3) th {
+    text-align: left;
+    font-size: 18px;
+    color: #333;
+}
+
+.board_detail_table tr:nth-child(4) td[colspan="5"] {
+    height: 300px;  /* 기본 높이 설정 */
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    vertical-align: top;  /* 텍스트 상단 정렬 */
+}
+
+/* 조회수 및 기타 링크 스타일 */
+.board_detail_table .view-count {
+    color: #999;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.board_detail_main a {
+    color: #6b3fcd;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.board_detail_main a:hover {
+    text-decoration: underline;
+}
+
+/* 버튼 스타일 */
+.board_detail_main .action-buttons a {
+    color: #fff;
+    background-color: #6b3fcd;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.board_detail_main .action-buttons a:hover {
+    background-color: #5a2db2;
+}
+
+.contents {
+	height: 200px
+}
+
+</style>
+</head>
+<body>
+    <div class="board_detail_body">
+		<th:block th:replace="Util/header :: header"></th:block>
+        <main class="board_detail_main">
+            <h1>게시판 상세보기</h1>
+            <table class="board_detail_table">
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th class="view-count">조회수</th>
+                </tr>
+                 <tr>
+                 	<tr th:if="${dto != null}">
+  					<td th:text="${dto.board_index}"></td>
+					  <td th:text="${dto.theme}"></td>
+					  <td th:text="${dto.person}"></td>
+					  <td th:text="${dto.enterdate}"></td>
+					  <td th:text="${dto.count}"></td>
+					</tr>              
+                 <tr>
+                 	<th colspan="5" >내용</th>
+                 </tr>
+                 <tr>
+                 	<td class="contents" colspan="5" th:text="${dto.content}" th:if="${dto != null}"></td>             	
+                 </tr>
+            </table>
+            <div class="action-buttons">
+            <a th:href="@{boardUpdatePage?board_index={boardIndex}(boardIndex=${dto.board_index})}">수정</a>
+			<a th:href="@{boardDelete?board_index={boardIndex}(boardIndex=${dto.board_index})}">삭제</a>			            
+                <a href="/boardList">목록으로</a>
+            </div>
+            <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+            <th:block th:replace="Util/footer :: footer"></th:block>
+        </main>
+    </div>
+</body>
+</html>

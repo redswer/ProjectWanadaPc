@@ -70,16 +70,18 @@ public class UserController {
 
 		String hashedPassword = UserSHA256.getSHA256(password); // SHA-256 암호화
 
+				
 		UserDTO dto = service.userLogin(email);
 		HttpSession session = request.getSession();
-		int row = 0;
+		int row = 0; //비밀번호 실패 
 		
 		if (dto == null) {
-			row = -1;
+			row = -1; //없는 아이디 
 		} else {
 			if (dto.getUserPassword().equals(hashedPassword)) {
 				session.setAttribute("user", dto);
-				row = 1;
+				session.setMaxInactiveInterval(60 * 30);
+				row = 1; // 로그인 성공 
 			}
 		}
 		
@@ -87,6 +89,59 @@ public class UserController {
 		
 		return "User/user_login_pro";
 	}
+	
+	@RequestMapping("/user_logout")
+	public String userLogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "User/user_logout";
+	}
+	// 마이페이지로 이동 
+	@RequestMapping("/userMyPage")
+	public String myPage() {
+		return "User/myPage"; //폴더내의 마이페이지.jsp or html로 이동하는 코드
+	}
+	
+	// 마이페이지에서 - > 회원정보수정으로 이동 
+	@RequestMapping("/user_update_page")// myPage.html 에서 th:href=""내용과 일치시켜야함 86번쨰 줄 
+	public String updatepage() {
+	return "User/user_update"; 
+	}
+	
+	//회원장보 수정시 정보 업데이트 
+	@RequestMapping("/user_update") 
+	public String update(HttpServletRequest request, Model model) {
+		String userEmail = request.getParameter("userEmail");
+		String Password  = request.getParameter("userPassword"); // 비밀번호 	
+		//String currentPassword  = request.getParameter("userPassword"); 	
+		String repassword = request.getParameter("userRepassword"); // 새 비밀번호
+		String hashedPassword = UserSHA256.getSHA256(repassword); // 새 비밀번호 암호화 
+		String name = request.getParameter("userName");
+		String gender = request.getParameter("gender");
+		String tell = request.getParameter("tell");
+		/*
+		// 로그인 할때 입력한 비밀번호와 회원 정보 수정에서 (현재 비밀번호) 란에 입력란 값이 같은지 확인 하는 작업. // 수정 241215
+	    UserDTO existingUser = service.userLogin(userEmail); // DB에서 이메일로 사용자 검색
+	    // 현재 비밀번호 대조 /추가 수정 241215
+	    if (existingUser == null || !existingUser.getUserPassword().equals(UserSHA256.getSHA256(currentPassword))) {
+	        model.addAttribute("row", 0); // 비밀번호 불일치 시 row = 0
+	        return "User/user_update_pro";
+	    }
+		*/
+		//비밀번호 일치 시 없데이트 진행 
+		UserDTO dto = new UserDTO();// UserDTO dto 변수선언
+		dto.setUserEmail(userEmail);
+		dto.setUserPassword(hashedPassword);
+		dto.setUserName(name);
+		dto.setGender(gender);
+		dto.setTell(tell);
+
+		int row = service.update(dto); //업데이트 실행
+		model.addAttribute("row", row);	//성공 여부 전달 
+		return "User/user_update_pro"; // 결과 펭지로 이동 /폴더 내의 파일 명과 일치 시켜야함.
+	}
+
 }
 
 // controller 에서 row 값(0,1)
