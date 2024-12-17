@@ -85,8 +85,10 @@ public class BoardController {
 }
 	@RequestMapping("/board_insert")
 	public String boardinsert(HttpServletRequest request, Model model) {
+		
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO) session.getAttribute("user");
+		
 		
 		String theme = request.getParameter("theme"); 
 		String content = request.getParameter("content");
@@ -99,7 +101,9 @@ public class BoardController {
 		
 		int row = service.boardinsert(dto);
 		return "Board/boardList";
-}
+
+	}
+	
 	
 	   @RequestMapping("/boardListPerson")
 	   public String boardListPerson(HttpServletRequest request, Model model) {

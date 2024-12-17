@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/Css/util.css" />
+<script type="text/javascript" src="/Script/script"></script>
+<style type="text/css">
+.pc_detail_body {
+    width: 1260px;
+    margin: 0 auto;
+    margin-top: 10px; 
+}
+
+.pc_detail_container {
+	display: flex;
+	margin-bottom: 50px;
+}
+
+.pc_image {
+	width: 450px;
+	margin-right: 100px;
+}
+
+.detail_text {
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.pc_info_table td {
+	padding-left: 50px;
+}
+
+.pc_parts_svg_up, .pc_parts_svg_down {
+	text-align: center;
+}
+
+.pc_parts_svg_up {
+	display: none;
+}
+
+.pc_parts_detail_image {
+	width: 200px;
+}
+
+.pc_parts_name {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.pc_parts_detail {
+	padding: 20px;
+	display: none;
+}
+
+.pc_parts_detail {
+	background-color: #FFF0F5;
+}
+
+.pc_parts_detail_subject {
+	width: 100px;
+	line-height: 40px;
+	background-color: #ef5151;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 5px;
+	margin-top: 50px;
+	display: none;
+}
+</style>
+<script type="text/javascript">
+function toggleDetail() {
+    const detail_content = document.querySelectorAll('.pc_parts_detail');
+    const detail_text = document.querySelectorAll('.pc_parts_detail_subject');
+    const arrow_up = document.querySelectorAll('.pc_parts_svg_up');
+    const arrow_down = document.querySelectorAll('.pc_parts_svg_down');
+    
+    // 상세보기 내용을 토글
+    let isDetailVisible = false; // 기본적으로 상세보기는 보이지 않음
+    
+    // detail_content 요소를 순회하면서 상세보기 상태를 확인
+    detail_content.forEach(detail => {
+        if (detail.style.display === "none" || detail.style.display === "") {
+            // 상세보기가 숨겨져 있으면 보이게 설정
+            detail.style.display = "block";
+            isDetailVisible = true;
+        } else {
+            // 상세보기가 보이면 숨기기
+            detail.style.display = "none";
+        }
+    });
+    detail_text.forEach(detail => {
+        if (detail.style.display === "none" || detail.style.display === "") {
+            // 상세보기가 숨겨져 있으면 보이게 설정
+            detail.style.display = "block";
+            isDetailVisible = true;
+        } else {
+            // 상세보기가 보이면 숨기기
+            detail.style.display = "none";
+        }
+    });
+    
+    // 화살표 상태 변경
+    if (isDetailVisible) {
+        // 상세보기가 보이면 위 화살표만 표시
+        arrow_up.forEach(arrow => arrow.style.display = "block");
+        arrow_down.forEach(arrow => arrow.style.display = "none");
+    } else {
+        // 상세보기가 보이지 않으면 아래 화살표만 표시
+        arrow_up.forEach(arrow => arrow.style.display = "none");
+        arrow_down.forEach(arrow => arrow.style.display = "block");
+    }
+}
+
+</script>
+</head>
+<body>
+	<div class="pc_detail_body">
+        <header>
+            <th:block th:replace="Util/header :: header"></th:block>
+            <th:block th:replace="Util/side_bar :: side_bar"></th:block>
+        </header>
+        <main>
+        	<h2 th:text="${'와나다 조립 PC ' + dto.product_name}"></h2>
+        	<div class="pc_detail_container">
+				<img th:src="@{/Image/Product/{image}(image=${dto.image})}" class="pc_image">
+	        	<table class="pc_info_table">
+	        		<tr>
+	        			<th>CPU</th>
+	        			<td th:text="${dto.cpu}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>CPU 쿨러</th>
+	        			<td th:text="${dto.cooler}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>메인보드</th>
+	        			<td th:text="${dto.mainboard}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>메모리</th>
+	        			<td th:text="${dto.ram}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>그래픽카드</th>
+	        			<td th:text="${dto.gpu != null and dto.gpu != '' ? dto.gpu : '내장그래픽'}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>SSD</th>
+	        			<td th:text="${dto.ssd}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>파워</th>
+	        			<td th:text="${dto.power}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>케이스</th>
+	        			<td th:text="${dto.pc_case}"></td>
+	        		</tr>
+	        	</table>
+        	</div>
+        	<div class="detail_btn" th:onclick="toggleDetail()">
+        		<div class="pc_parts_svg_up">
+        			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+						<path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+					</svg>
+        		</div>
+	        	<div class="detail_text">상세정보</div>
+	        	<div class="pc_parts_svg_down">
+	        		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+						<path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+					</svg>
+	        	</div>
+        	</div>
+       		<div class="pc_parts_detail_subject">CPU</div>
+        	<div class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${cpu.CPU_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${cpu.CPU_NAME}" class="pc_parts_name"></div>
+        		<span th:text="${cpu.CPU_CORE + '코어 / '}"></span>
+        		<span th:text="${cpu.CPU_THREAD + '쓰레드 / '}"></span>
+        		<span th:text="${'기본클럭 : ' + cpu.CPU_MIN_CIRCUIT + ' / '}"></span>
+        		<span th:text="${'최대클럭 : ' + cpu.CPU_MAX_CIRCUIT}"></span>
+        		<div th:text="${cpu.CPU_INFORMATION}"></div>
+        	</div>
+        	<div class="pc_parts_detail_subject">CPU 쿨러</div>
+        	<div class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${cooler.COOLER_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${cooler.COOLER_NAME}" class="pc_parts_name"></div>
+       			<span th:text="${cooler.FAN_SIZE + ' / '}"></span>
+       			<span th:text="${cooler.FAN_SPEED + ' / '}"></span>
+       			<span th:text="${'팬 : ' + cooler.FAN_NUMBER}"></span>
+        		<div th:text="${cooler.COOLER_INFORMATION}"></div>
+        	</div>
+        	<div class="pc_parts_detail_subject">메인보드</div>
+        	<div class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${mainboard.MB_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${mainboard.MB_NAME}" class="pc_parts_name"></div>
+       			<span th:text="${'소켓 : ' + mainboard.SOCKET_MAINBOARD + ' / '}"></span>
+       			<span th:text="${mainboard.MB_FORM_FACTOR + ' / '}"></span>
+       			<span th:text="${mainboard.MB_MEMORY_TYPE} + ' / '"></span>
+       			<span th:text="${'메모리 슬롯 : ' + mainboard.MB_MEMORY_SLOT + ' / '}"></span>
+       			<span th:text="${'메모리 용량 : ' + mainboard.MB_MEMORY_CAPACITY}"></span>
+        		<div th:text="${mainboard.MB_INFORMATION}"></div>
+        	</div>
+        	<div class="pc_parts_detail_subject">메모리</div>
+        	<div class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${ram.RAM_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${ram.RAM_NAME}" class="pc_parts_name"></div>
+       			<span th:text="${ram.TYPE_REM + ' / '}"></span>
+       			<span th:text="${ram.RAM_MOTION_CLOCK}"></span>
+        		<div th:text="${ram.RAM_INFORMATION}"></div>
+        	</div>
+        	<div th:if="${gpu != null}" class="pc_parts_detail_subject">그래픽카드</div>
+        	<div th:if="${gpu != null}" class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${gpu.GPU_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${gpu.GPU_NAME}" class="pc_parts_name"></div>
+       			<span th:text="${'스트림 프로세서 : ' + gpu.STSTREAM_PROCESSORREAM + ' / '}"></span>
+       			<span th:text="${gpu.GPU_MEMORY_SIZE + ' / '}"></span>
+       			<span th:text="${gpu.INTERFACE}"></span>
+        		<div th:text="${gpu.GPU_INFORMATION}"></div>
+        	</div>
+        	<div class="pc_parts_detail_subject">SSD</div>
+        	<div th:if="${ssd != null}" class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${ssd.SSD_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${ssd.SSD_NAME}" class="pc_parts_name"></div>
+       			<span th:text="${ssd.FORM_FACTOR_SSD + ' / '}"></span>
+       			<span th:text="${'읽기 : ' + ssd.SSD_SEQUENTIAL_READING + ' / '}"></span>
+       			<span th:text="${'쓰기 : ' + ssd.SSD_SEQUENTIAL_WRITING}"></span>
+        		<div th:text="${ssd.SSD_INFORMATION}"></div>
+        	</div>
+        	<div class="pc_parts_detail_subject">파워</div>
+        	<div th:if="${power != null}" class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${power.POWER_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${power.POWER_NAME}" class="pc_parts_name"></div>
+       			<span th:text="${'정격출력 : ' + power.OUTPUT_POWER + ' / '}"></span>
+       			<span th:text="${power.CERTIFICATION_POWER + ' / '}"></span>
+       			<span th:text="${'SATA : ' + power.POWER_SATA}"></span>
+        		<div th:text="${power.POWER_INFORMATION}"></div>
+        	</div>
+        	<div class="pc_parts_detail_subject">케이스</div>
+        	<div th:if="${case != null}" class="pc_parts_detail">
+        		<div>
+        			<img th:src="@{/Image/Product/{image}(image=${case.CASE_IMAGE})}" class="pc_parts_detail_image">
+        		</div>
+        		<div th:text="${case.CASE_NAME}" class="pc_parts_name"></div>
+       			<span th:text="${'사이즈 : ' + case.SIZE_WHD + ' / '}"></span>
+       			<span th:text="${case.SIZE_CASE + ' / '}"></span>
+       			<span th:text="${'쿨링팬 : ' + case.COOLING_FAN + ' / '}"></span>
+       			<span th:text="${'PCI 슬롯 : ' + case.PCI_SLOT}"></span>
+        		<div th:text="${case.CASE_INFORMATION}"></div>
+        	</div>
+        </main>
+        <footer>
+            <th:block th:replace="Util/footer :: footer"></th:block>
+        </footer>
+	</div>
+</body>
+</html>

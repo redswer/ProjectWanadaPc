@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="boardinsert" >
-		insert into boardcomment(board_index,theme,content,person) values(#{board_index},#{theme},#{content},#{person})
+		insert into boardcomment(board_index,theme,enterdate,content,person) values(#{board_index},#{theme},#{enterdate},#{content},#{person})
 	</insert>
 	<delete id="boarddelete" >
 		delete from boardcomment where board_index=#{idx}	

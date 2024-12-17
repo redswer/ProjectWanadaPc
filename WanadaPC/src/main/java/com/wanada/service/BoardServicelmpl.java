@@ -41,9 +41,10 @@ public class BoardServicelmpl implements BoardService {
 	}
 
 	@Override
-	public int boardinsert(BoardDTO dto) {
+	public int boardinsert(BoardDTO dto) {		
 		int insert=mapper.boardinsert(dto);
 		return insert;
+	
 	}
 
 	   @Override
