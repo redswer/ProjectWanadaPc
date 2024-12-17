@@ -7,17 +7,18 @@
 	<select id="boarddetail" resultType="com.wanada.dto.BoardDTO">
 		select * from boardcomment where board_index=#{idx}	
 	</select>
-	
+	<select id="boardIndex" resultType="int">
+		select max(board_index) from boardcomment
+	</select>
 	<insert id="boardinsert" >
-		insert into boardcomment(board_index,theme,enterdate,content,person) values(#{board_index},#{theme},#{enterdate},#{content},#{person})
+		insert into boardcomment(board_index,theme,enterdate,content,person) values(#{board_index},#{theme},sysdate,#{content},#{person})
 	</insert>
 	<delete id="boarddelete" >
 		delete from boardcomment where board_index=#{idx}	
 	</delete>
 
 	<update id="boardupdate" >
-		update boardcomment set theme = #{theme},content=#{content} where board
-		_index = #{board_index}
+		update boardcomment set theme = #{theme},content=#{content} where board_index = #{board_index}
 	</update>
  
    <select id="boardListPerson" resultType="com.wanada.dto.BoardDTO">

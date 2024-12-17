@@ -1,22 +1,23 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="/Css/util.css" />
-<script type="text/javascript" src="/Script/script"></script>
-
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
-	<div>
-잘못된 입력입니다.
+    <div th:if="${row == 1}">
+        <script>
+            alert("수정 완료");
+            window.location = `/boardList`; 
+        </script>
+    </div>
 
-</div>
-<a href = "/">
-home  
-</a>
+    <!-- 회원가입 실패 메시지 -->
+    <div th:if="${row == 0}">
+        <script>
+            alert("등록 실패");
+            history.back();
+        </script>
+    </div>
 </body>
 </html>
-
-	

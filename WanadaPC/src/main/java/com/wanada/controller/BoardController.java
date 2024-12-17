@@ -33,13 +33,21 @@ public class BoardController {
 	public String boardupdate(HttpServletRequest request, Model model) {
 
 	    // HttpServletRequest에서 idx 파라미터를 받아오기
-	    int idx = Integer.parseInt(request.getParameter("idx"));
+	    int idx = Integer.parseInt(request.getParameter("board_index"));
+	    String theme = request.getParameter("theme");
+	    String content = request.getParameter("content");
 
+	    BoardDTO dto = new BoardDTO();
+	    dto.setBoard_index(idx);
+	    dto.setTheme(theme);
+	    dto.setContent(content);
+	    
 	    // idx를 사용하여 서비스 호출
-	    int update = service.boardupdate(idx);
-	    model.addAttribute("boardupdate", update);
+	    int update = service.boardupdate(dto);
+	    model.addAttribute("row", update);
+	    model.addAttribute("board_index", idx);
 
-	    return "Board/boardupdate";
+	    return "Board/boardUpdatePro";
 	}
 
 
@@ -85,23 +93,22 @@ public class BoardController {
 }
 	@RequestMapping("/board_insert")
 	public String boardinsert(HttpServletRequest request, Model model) {
-		
-		HttpSession session = request.getSession();
-		UserDTO user = (UserDTO) session.getAttribute("user");
-		
-		
+		int board_index = service.boardIndex() + 1;
+		String person = request.getParameter("person");
 		String theme = request.getParameter("theme"); 
 		String content = request.getParameter("content");
-		String person = user.getUserEmail();
 		
 		BoardDTO dto = new BoardDTO();
+		dto.setBoard_index(board_index);
 		dto.setTheme(theme);
 		dto.setPerson(person);
 		dto.setContent(content);
 		
 		int row = service.boardinsert(dto);
-		return "Board/boardList";
-
+		
+		model.addAttribute("row", row);
+		
+		return "Board/boardInsertPro";
 	}
 	
 	

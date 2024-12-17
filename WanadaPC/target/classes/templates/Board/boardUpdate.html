@@ -80,7 +80,7 @@
     <div class="board_update_body">
 		<th:block th:replace="Util/header :: header"></th:block>
         <main>
-        	<form action="/boardUpdate" method="post" name="board_update_table" class="board_update_form">
+        	<form th:action="@{/boardUpdate}" method="post" name="board_update_table" class="board_update_form">
         		<table>
         			<tr class="none_change_input">
 	                    <th>번호</th>

@@ -23,8 +23,8 @@ public class BoardServicelmpl implements BoardService {
 	}
 
 	@Override
-	public int boardupdate(int idx) {
-		int update=mapper.boardupdate(idx);
+	public int boardupdate(BoardDTO dto) {
+		int update=mapper.boardupdate(dto);
 		return update;
 	}
 
@@ -47,6 +47,12 @@ public class BoardServicelmpl implements BoardService {
 	
 	}
 
+	@Override
+	public int boardIndex() {
+		int index = mapper.boardIndex();
+		
+		return index;
+	}
 	   @Override
 	   public List<BoardDTO> boardListPerson(String person) {
 	      List<BoardDTO> list = mapper.boardListPerson(person);

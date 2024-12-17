@@ -137,8 +137,8 @@
                  </tr>
             </table>
             <div class="action-buttons">
-            <a th:href="@{boardUpdatePage?board_index={boardIndex}(boardIndex=${dto.board_index})}">수정</a>
-			<a th:href="@{boardDelete?board_index={boardIndex}(boardIndex=${dto.board_index})}">삭제</a>			            
+            <a th:if="${session.user != null and session.user.userEmail == dto.person}" th:href="@{boardUpdatePage?board_index={boardIndex}(boardIndex=${dto.board_index})}">수정</a>
+			<a th:if="${session.user != null and session.user.userEmail == dto.person}" th:href="@{boardDelete?board_index={boardIndex}(boardIndex=${dto.board_index})}">삭제</a>			            
                 <a href="/boardList">목록으로</a>
             </div>
             <th:block th:replace="Util/side_bar :: side_bar"></th:block>
