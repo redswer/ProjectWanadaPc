@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <div th:if="${row == 1}">
+        <script>
+        	self.close();
+        	window.opener.location = "/user_update_page";
+        </script>
+   </div>
+    <div th:if="${row == 0}">
+        <script>
+        	alert("비밀번호가 다릅니다");
+            self.close();
+        </script>
+    </div>
+</body>
+</html>

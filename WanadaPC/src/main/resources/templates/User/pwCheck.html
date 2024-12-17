@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>비밀번호를 입력하세요</h1>
+	<form th:action="@{/userPwCheck}" method="post">
+		<input type="password" name="password">
+		<button type="submit">확인</button>
+	</form>
+</body>
+</html>

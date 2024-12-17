@@ -48,4 +48,5 @@ public interface IndexService {
 	public List<PowerDTO> searchPower(String text);
 	public List<RamDTO> searchRam(String text);
 	public List<SsdDTO> searchSsd(String text);
+	public List<PcDTO> searchPc(String text);
 }

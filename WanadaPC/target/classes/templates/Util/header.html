@@ -23,7 +23,7 @@
             </div>
             <div class="header_link">
             	<div th:if="${session.user != null}">
-            		<span class="userInfo" th:text="${session.user.userEmail}"></span>
+            		<span class="userInfo" th:text="${session.user.userName}"></span>
             	</div>
                 <div th:if="${session.user == null}">
                     <a th:href="@{/userLoginPage}">로그인</a>

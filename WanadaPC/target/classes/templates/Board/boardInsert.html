@@ -25,6 +25,7 @@
             <h2>글 등록</h2>
             <!-- 글 등록 폼 -->
             <form th:action="@{/board_insert}" method="post" name="board_insert_form">
+            	<input type="hidden" th:value="${session.user.userEmail}" name="person">
                 <table>
                     <tr>
                         <th>제목</th>
@@ -37,9 +38,10 @@
                         <td><textarea name="content" class="board_insert_text" cols="100" rows="30" th:value="${content}"></textarea></td>
                     </tr>
                 </table>
-                <button type="submit">등록</button>
-                <button type="button" onclick="history.back()">취소</button>
-            </form>
+    			<button type="submit">등록</button>
+				<button type="button" th:onclick="|javascript:history.back()|">취소</button>
+				</form>
+	
         </main>
     </div>
 

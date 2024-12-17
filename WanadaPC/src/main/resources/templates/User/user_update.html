@@ -90,6 +90,33 @@
             background-color: #bbb;
         }
     </style>
+    <script type="text/javascript">
+    	function send() {
+    		if (!modifyForm.userPassword.value) {
+    			alert("비밀번호를 입력하세요");
+    			return;
+    		}
+    		if (!modifyForm.userRepassword.value) {
+    			alert("비밀번호 확인을 입력하세요");
+    			return;
+    		}
+    		if (!modifyForm.userName.value) {
+    			alert("이름을 입력하세요");
+    			return;
+    		}
+    		if (!modifyForm.tell.value) {
+    			alert("전화번호를 입력하세요");
+    			return;
+    		}
+    		
+    		if (modifyForm.userPassword.value != modifyForm.userRepassword.value) {
+    			alert("비밀번호가 다릅니다");
+    			return;
+    		}
+    		
+    		modifyForm.submit();
+    	}
+    </script>
 </head>
 <body class="user_update_body">
 	<div>
@@ -105,11 +132,11 @@
                 <!-- read only는 수정 불가능  -->					<!-- session값에 정보가 담겨있기 때문에 session. 입력하면 됨. th는 thymleaf사용하였기에 입력 -->
             </div>
             <div class="form-group">
-                <label for="userPassword">현재 비밀번호</label>
+                <label for="userPassword">새 비밀번호</label>
                 <input type="password" id="userPassword" name="userPassword" placeholder="현재 비밀번호를 입력하세요">
             </div>
             <div class="form-group">
-                <label for="userRepassword">새 비밀번호</label>
+                <label for="userRepassword">비밀번호 확인</label>
                 <input type="password" id="userRepassword" name="userRepassword" placeholder="새 비밀번호를 입력하세요">
             </div>
             <div class="form-group">
@@ -130,7 +157,8 @@
                 <label for="tell">휴대폰 번호</label>
                 <input type="text" id="tell" name="tell" th:value="${session.user.tell}" placeholder="휴대폰 번호를 입력하세요">
             </div>
-            <button type="submit" class="update_button" >수정하기</button>
+            <button type="button" onclick="history.back()" class="update_button" >취소</button>
+            <button type="button" onclick="send()" class="update_button" >수정하기</button>
         </form>
     </div>
     <div>

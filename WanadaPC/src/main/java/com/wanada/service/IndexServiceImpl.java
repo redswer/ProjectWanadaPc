@@ -214,4 +214,11 @@ public class IndexServiceImpl implements IndexService {
 		
 		return list;
 	}
+	
+	@Override
+	public List<PcDTO> searchPc(String text) {
+		List<PcDTO> list = mapper.searchPc(text);
+		
+		return list;
+	}
 }

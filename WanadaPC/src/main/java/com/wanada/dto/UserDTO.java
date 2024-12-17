@@ -13,5 +13,8 @@ public class UserDTO {
 	private String gender;
 	private String userName;
 	private String tell;
-	private String userBirthdate; 
+	private String userBirthdate;
+	public String getUserEmail(String string) {
+		return null;
+	} 
 }
