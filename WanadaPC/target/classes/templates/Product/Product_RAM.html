@@ -142,19 +142,19 @@
 						
 						<tbody class="scrollable-tbody">
 							<tr th:each="RAM : ${RAM}">
-								<td onclick="openPowerPopup(this);"
-									th:data-power-name="${RAM.RAM_NAME}" style="cursor: pointer;"
+								<td onclick="openRamPopup(this);"
+									th:data-ram-name="${RAM.RAM_NAME}" style="cursor: pointer;"
 									th:text="${RAM.RAM_NAME}"></td>
-								<td onclick="openPowerPopup(this);"
-									th:data-power-name="${RAM.RAM_NAME}" style="cursor: pointer;">
+								<td onclick="openRamPopup(this);"
+									th:data-ram-name="${RAM.RAM_NAME}" style="cursor: pointer;">
 									<img th:src="@{'/Image/Product/' + ${RAM.RAM_IMAGE}}" />
 								</td>
-								<td onclick="openPowerPopup(this);"
-									th:data-power-name="${RAM.RAM_NAME}" style="cursor: pointer;"
+								<td onclick="openRamPopup(this);"
+									th:data-ram-name="${RAM.RAM_NAME}" style="cursor: pointer;"
 									th:text="${RAM.RAM_INFORMATION}"></td>
-								<td onclick="openPowerPopup(this);"
-									th:data-power-name="${POWER.POWER_NAME}" style="cursor: pointer;"
-									th:text="${POWER.POWER_PRICE}"></td>
+								<td onclick="openRamPopup(this);"
+									th:data-ram-name="${RAM.RAM_NAME}" style="cursor: pointer;"
+									th:text="${RAM.RAM_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -163,5 +163,17 @@
 		</section>
 	</div>
 </body>
+<script>
+	function openRamPopup(element) {
+		// data-* 속성에서 CPU 이름 가져오기
+		const ramName = element.getAttribute('data-ram-name');
+		// 팝업 창 설정
+		const url = `/Product/Product_RAM_Detail?RAM_NAME=`
+				+ encodeURIComponent(ramName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		// 팝업 창 열기
+		window.open(url, 'RamDetailPopup', options);
+	}
+</script>
 <th:block th:replace="Util/footer :: footer"></th:block>
 </html>

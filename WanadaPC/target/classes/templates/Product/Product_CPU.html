@@ -166,18 +166,10 @@
 	function openCpuPopup(element) {
 		// data-* 속성에서 CPU 이름 가져오기
 		const cpuName = element.getAttribute('data-cpu-name');
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 		// 팝업 창 설정
 		const url = `/Product/Product_CPU_Detail?CPU_NAME=`
 				+ encodeURIComponent(cpuName);
 		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 		// 팝업 창 열기
 		window.open(url, 'CpuDetailPopup', options);
 	}
