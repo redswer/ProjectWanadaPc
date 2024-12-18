@@ -87,11 +87,12 @@
 		</tr>
 		<tr>
 			<th>제품 분류</th>
-			<td th:text="${coolerDetail.PRODUCT_TYPE}"></td>
+			<td th:text="${coolerDetail.PRODUCT_TYPE == 'CPU_Cooler' ? 'CPU쿨러' : (coolerDetail.PRODUCT_TYPE == 'Thermal_Grease' ? '써멀구리스' : (coolerDetail.PRODUCT_TYPE == 'System_Cooler' ? '시스템쿨러' : (coolerDetail.PRODUCT_TYPE == 'M2SSD_Cooler' ? 'M.2 SSD쿨러' : coolerDetail.PRODUCT_TYPE)))}">
+		</td>
 		</tr>
 		<tr>
 			<th>냉각 형태</th>
-			<td th:text="${coolerDetail.MAKER_COOLER == 'WATER' ? '수냉' : '공랭'}"></td>
+			<td th:text="${coolerDetail.COOLER_METHOD == 'water' ? '수냉' : (coolerDetail.COOLER_METHOD == 'air' ? '공랭' : coolerDetail.COOLER_METHOD)}"></td>
 		</tr>
 		<tr>
 			<th>상품이미지</th>

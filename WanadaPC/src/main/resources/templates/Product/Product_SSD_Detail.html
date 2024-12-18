@@ -2,10 +2,10 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>HDD 상세 정보</title>
+<title>SSD 상세 정보</title>
 <Style>
     /* 전체 테이블 스타일 */
-    .Show_List_HDD {
+    .Show_List_SSD {
         width: 90%;
         margin: 20px auto;
         border-collapse: collapse;
@@ -15,7 +15,7 @@
     }
 
     /* 테이블 헤더 스타일 */
-    .Show_List_HDD th {
+    .Show_List_SSD th {
         background-color: #2c3e50;
         color: white;
         padding: 10px;
@@ -25,7 +25,7 @@
     }
 
     /* 테이블 데이터 셀 스타일 */
-    .Show_List_HDD td {
+    .Show_List_SSD td {
         padding: 12px;
         font-size: 16px;
         text-align: left;
@@ -33,7 +33,7 @@
     }
 
     /* 테이블 제목 (첫 번째 헤더) */
-    .Show_List_HDD th[colspan="2"] {
+    .Show_List_SSD th[colspan="2"] {
         background-color: #34495e;
         font-size: 22px;
         text-align: center;
@@ -42,12 +42,12 @@
     }
 
     /* 홀수 줄 배경색 */
-    .Show_List_HDD tr:nth-child(odd) {
+    .Show_List_SSD tr:nth-child(odd) {
         background-color: #f2f2f2;
     }
 
     /* 이미지 스타일 */
-    .Show_List_HDD img {
+    .Show_List_SSD img {
         max-width: 120px; /* 이미지 크기 고정 */
         height: auto;
         display: block;
@@ -59,7 +59,7 @@
 
 
     /* 글씨체 */
-    .List_HDD body {
+    .List_SSD body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
         background-color: #ecf0f1;
@@ -67,73 +67,78 @@
     }
 
     /* 중앙 정렬 */
-    .Show_List_HDD table {
+    .Show_List_SSD table {
         margin: 0 auto;
     }
 </Style>
 </head>
-<body class="List_HDD">
-	<table class="Show_List_HDD">
+<body class="List_SSD">
+	<table class="Show_List_SSD">
 		<tr>
 			<th colspan="2">해당 제품 상세 정보 페이지</th>
 		</tr>
 		<tr>
 			<th>이름</th>
-			<td th:text="${HddDetail.HDD_NAME}"></td>
+			<td th:text="${SsdDetail.SSD_NAME}"></td>
 		</tr>
 		<tr>
 			<th>제조사</th>
-			<td th:text="${#strings.replace(HddDetail.MAKER_HDD,'_', ' ')}"></td>
+			<td th:text="${#strings.replace(SsdDetail.MAKER_SSD,'_', ' ')}"></td>
 		</tr>
 		<tr>
-			<th>디스크 크기</th>
-			<td th:text="${HddDetail.SIZE_HDD == '3_5_inch' ? '8.9cm(3.5인치)' : (HddDetail.SIZE_HDD == '2_5_inch' ? '6.4cm(2.5인치)' : (HddDetail.SIZE_HDD == '1_8_inch' ? '4.6cm(1.8인치)' : HddDetail.SIZE_HDD))}">
+			<th>폼팩터</th>
+			<td th:text="${SsdDetail.FORM_FACTOR_SSD == 'M2_2280' ? 'M.2(2280)' : (SsdDetail.FORM_FACTOR_SSD == '2_5_inch' ? '6.4cm(2.5형)' : (SsdDetail.FORM_FACTOR_SSD == 'M2_2230' ? 'M.2(2230)' : (SsdDetail.FORM_FACTOR_SSD == 'M2_2242' ? 'M.2(2242)' : (SsdDetail.FORM_FACTOR_SSD == 'Mini_SATA' ? 'Mini SATA(mSATA)' : SsdDetail.FORM_FACTOR_SSD))))}">
 			</td>
 		</tr>
 		<tr>
-			<th>디스크 용량</th>
-			<td th:text="${HddDetail.CAPACITY_HDD}"></td>
+			<th>용량</th>
+			<td th:text="${#strings.contains(SsdDetail.SSD_NAME, '(') && #strings.contains(SsdDetail.SSD_NAME, ')') ? #strings.substring(SsdDetail.SSD_NAME, #strings.indexOf(SsdDetail.SSD_NAME, '(') + 1, #strings.indexOf(SsdDetail.SSD_NAME, ')')) : SsdDetail.SSD_NAME}">
+			</td>
 		</tr>
 		<tr>
 			<th>상품이미지</th>
-			<td><img th:src="@{'/Image/Product/' + ${HddDetail.HDD_IMAGE}}"
-				alt="HDD 이미지"></td>
+			<td><img th:src="@{'/Image/Product/' + ${SsdDetail.SSD_IMAGE}}"
+				alt="SSD 이미지"></td>
 		</tr>
 		<tr>
 			<th>상품가격</th>
-			<td th:text="${HddDetail.HDD_PRICE}"></td>
+			<td th:text="${SsdDetail.SSD_PRICE}"></td>
 		</tr>
 		<tr>
 			<th>상품정보</th>
-			<td th:text="${HddDetail.HDD_INFORMATION}"></td>
+			<td th:text="${SsdDetail.SSD_INFORMATION}"></td>
 		</tr>
 		<tr>
-			<th>회전수</th>
-			<td th:text="${HddDetail.HDD_ROTATIONS}"></td>
+			<th>인터페이스</th>
+			<td th:text="${SsdDetail.SSD_INTERFACE}"></td>
 		</tr>
 		<tr>
-			<th>버퍼 용량</th>
-			<td th:text="${HddDetail.HDD_BUFFER_CAPACITY}"></td>
+			<th>컨트롤러</th>
+			<td th:text="${SsdDetail.SSD_CONTROLLER}"></td>
 		</tr>
 		<tr>
-			<th>전송 속도</th>
-			<td th:text="${HddDetail.HDD_TRANSMISSION_SPEED}"></td>
+			<th>순차읽기</th>
+			<td th:text="${SsdDetail.SSD_SEQUENTIAL_READING}"></td>
 		</tr>
 		<tr>
-			<th>두께</th>
-			<td th:text="${HddDetail.HDD_THICKNESS}"></td>
+			<th>순차쓰기</th>
+			<td th:text="${SsdDetail.SSD_SEQUENTIAL_WRITING}"></td>
 		</tr>
 		<tr>
-			<th>메모리 용량</th>
-			<td th:text="${HddDetail.HDD_AS_INFORMATION}"></td>
+			<th>읽기IOPS</th>
+			<td th:text="${SsdDetail.SSD_READ_IOPS}"></td>
 		</tr>
 		<tr>
-			<th>기록방식</th>
-			<td th:text="${HddDetail.HDD_RECORDING_METHOD}"></td>
+			<th>쓰기IOPS</th>
+			<td th:text="${SsdDetail.SSD_WRITE_IOPS}"></td>
 		</tr>
 		<tr>
-			<th>출시 년도</th>
-			<td th:text="${HddDetail.RELEASE_YEAR}"></td>
+			<th>지원기능</th>
+			<td th:text="${SsdDetail.SSD_SUPPORT_FEATURES}"></td>
+		</tr>
+		<tr>
+			<th>출시년도</th>
+			<td th:text="${SsdDetail.RELEASE_YEAR}"></td>
 		</tr>
 	</table>
 </body>

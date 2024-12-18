@@ -377,7 +377,7 @@
 		SELECT * FROM COMPUTER_RAM where RAM_NAME=#{RAM_NAME}
 	</select>
 	<select id="getComputerSsdProductsAll"
-		resultType="com.wanada.dto.RamDTO">
+		resultType="com.wanada.dto.SsdDTO">
 		SELECT * FROM COMPUTER_SSD where SSD_NAME=#{SSD_NAME}
 	</select>
 

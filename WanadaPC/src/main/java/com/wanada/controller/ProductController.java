@@ -1,6 +1,8 @@
 package com.wanada.controller;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.wanada.dto.CaseDTO;
 import com.wanada.dto.CoolerDTO;
@@ -100,6 +103,12 @@ public class ProductController {
 	@GetMapping("/Product_CPU_Detail")
 	public String getCpuDetail(@RequestParam("CPU_NAME") String name, Model model) {
         CpuDTO cpuDetail = productService.getComputerCpuProductsAll(name);
+        /*
+        if (cpuDetail.getCPU_DATE() != null) {
+            LocalDate date = LocalDate.parse(cpuDetail.getCPU_DATE(), DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
+            cpuDetail.setCPU_DATE(formattedDate);
+        }*/
         model.addAttribute("cpuDetail", cpuDetail);
         return "Product/Product_CPU_Detail";
     }
@@ -142,7 +151,20 @@ public class ProductController {
 	@GetMapping("/Product_POWER_Detail")
 	public String getPowerDetail(@RequestParam("POWER_NAME") String name, Model model) {
 		PowerDTO PowerDetail=productService.getComputerPowerProductsAll(name);
+		PowerDTO PowerDetail1=productService.getComputerPowerProductsAll(name);
+		if (PowerDetail1 != null && PowerDetail1.getPOWER_NAME() != null) {
+	        String name1 = PowerDetail1.getPOWER_NAME();
+	        Pattern pattern = Pattern.compile("\\b(600|650|700|750|800|850|900|950|1000|1050)\\b");
+	        Matcher matcher = pattern.matcher(name1);
+
+	        if (matcher.find()) {
+	            name1 = matcher.group(1) + "W";
+	        }
+
+	        PowerDetail1.setPOWER_NAME(name1); // 결과 업데이트
+	    }
 		model.addAttribute("PowerDetail",PowerDetail);
+		model.addAttribute("PowerDetail1",PowerDetail1);
 		return "Product/Product_POWER_Detail";
 	}
 	//Ram 상세페이지
@@ -154,7 +176,7 @@ public class ProductController {
 	}
 	//Ssd 상세페이지
 	@GetMapping("/Product_SSD_Detail")
-	public String getSddDetail(@RequestParam("SSD_NAME") String name, Model model) {
+	public String getSsdDetail(@RequestParam("SSD_NAME") String name, Model model) {
 		SsdDTO SsdDetail=productService.getComputerSsdProductsAll(name);
 		model.addAttribute("SsdDetail",SsdDetail);
 		return "Product/Product_SSD_Detail";

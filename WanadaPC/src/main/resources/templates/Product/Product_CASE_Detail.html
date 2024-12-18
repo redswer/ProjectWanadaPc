@@ -4,72 +4,71 @@
 <meta charset="UTF-8">
 <title>CASE 상세 정보</title>
 <Style>
-    /* 전체 테이블 스타일 */
-    .Show_List_CASE {
-        width: 90%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+/* 전체 테이블 스타일 */
+.Show_List_CASE {
+	width: 90%;
+	margin: 20px auto;
+	border-collapse: collapse;
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    /* 테이블 헤더 스타일 */
-    .Show_List_CASE th {
-        background-color: #2c3e50;
-        color: white;
-        padding: 10px;
-        font-size: 18px;
-        text-align: left;
-        border: 1px solid #ddd;
-    }
+/* 테이블 헤더 스타일 */
+.Show_List_CASE th {
+	background-color: #2c3e50;
+	color: white;
+	padding: 10px;
+	font-size: 18px;
+	text-align: left;
+	border: 1px solid #ddd;
+}
 
-    /* 테이블 데이터 셀 스타일 */
-    .Show_List_CASE td {
-        padding: 12px;
-        font-size: 16px;
-        text-align: left;
-        border: 1px solid #ddd;
-    }
+/* 테이블 데이터 셀 스타일 */
+.Show_List_CASE td {
+	padding: 12px;
+	font-size: 16px;
+	text-align: left;
+	border: 1px solid #ddd;
+}
 
-    /* 테이블 제목 (첫 번째 헤더) */
-    .Show_List_CASE th[colspan="2"] {
-        background-color: #34495e;
-        font-size: 22px;
-        text-align: center;
-        padding: 15px 0;
-        border: none;
-    }
+/* 테이블 제목 (첫 번째 헤더) */
+.Show_List_CASE th[colspan="2"] {
+	background-color: #34495e;
+	font-size: 22px;
+	text-align: center;
+	padding: 15px 0;
+	border: none;
+}
 
-    /* 홀수 줄 배경색 */
-    .Show_List_CASE tr:nth-child(odd) {
-        background-color: #f2f2f2;
-    }
+/* 홀수 줄 배경색 */
+.Show_List_CASE tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
 
-    /* 이미지 스타일 */
-    .Show_List_CASE img {
-        max-width: 120px; /* 이미지 크기 고정 */
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        border-radius: 8px; /* 모서리 둥글게 */
-        border: 1px solid #ddd;
-        padding: 5px;
-    }
+/* 이미지 스타일 */
+.Show_List_CASE img {
+	max-width: 120px; /* 이미지 크기 고정 */
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	border-radius: 8px; /* 모서리 둥글게 */
+	border: 1px solid #ddd;
+	padding: 5px;
+}
 
+/* 글씨체 */
+.List_CASE body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	background-color: #ecf0f1;
+	color: #2c3e50;
+}
 
-    /* 글씨체 */
-    .List_CASE body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        background-color: #ecf0f1;
-        color: #2c3e50;
-    }
-
-    /* 중앙 정렬 */
-    .Show_List_CASE table {
-        margin: 0 auto;
-    }
+/* 중앙 정렬 */
+.Show_List_CASE table {
+	margin: 0 auto;
+}
 </Style>
 </head>
 <body class="List_CASE">
@@ -91,11 +90,14 @@
 		</tr>
 		<tr>
 			<th>케이스 크기</th>
-			<td th:text="${caseDetail.SIZE_CASE}"></td>
+			<td
+				th:text="${caseDetail.SIZE_CASE == 'BigTower' ? '빅타워' : (caseDetail.SIZE_CASE == 'MidTower' ? '미들타워' : (caseDetail.SIZE_CASE == 'MiniTower' ? '미니타워' : (caseDetail.SIZE_CASE == 'MiniTowerLP' ? '미니타워(LP)' : (caseDetail.SIZE_CASE == 'MiniITX' ? '미니ITX(리를밸리)' : caseDetail.SIZE_CASE))))}">
+			</td>
 		</tr>
 		<tr>
 			<th>상품이미지</th>
-			<td><img th:src="@{'/Image/Product/' + ${caseDetail.CASE_IMAGE}}"
+			<td><img
+				th:src="@{'/Image/Product/' + ${caseDetail.CASE_IMAGE}}"
 				alt="CASE 이미지"></td>
 		</tr>
 		<tr>

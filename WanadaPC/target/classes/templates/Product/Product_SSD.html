@@ -142,10 +142,19 @@
 						
 						<tbody class="scrollable-tbody">
 							<tr th:each="SSD : ${SSD}">
-								<td th:text="${SSD.SSD_NAME}"></td>
-								<td><img th:src="@{'/Image/Product/' + ${SSD.SSD_IMAGE}}" /></td>
-								<td th:text="${SSD.SSD_INFORMATION}"></td>
-								<td th:text="${SSD.SSD_PRICE}"></td>
+								<td onclick="openSsdPopup(this);"
+									th:data-ssd-name="${SSD.SSD_NAME}" style="cursor: pointer;"
+									th:text="${SSD.SSD_NAME}"></td>
+								<td onclick="openSsdPopup(this);"
+									th:data-ssd-name="${SSD.SSD_NAME}" style="cursor: pointer;">
+									<img th:src="@{'/Image/Product/' + ${SSD.SSD_IMAGE}}" />
+								</td>
+								<td onclick="openSsdPopup(this);"
+									th:data-ssd-name="${SSD.SSD_NAME}" style="cursor: pointer;"
+									th:text="${SSD.SSD_INFORMATION}"></td>
+								<td onclick="openSsdPopup(this);"
+									th:data-ssd-name="${SSD.SSD_NAME}" style="cursor: pointer;"
+									th:text="${SSD.SSD_PRICE}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -154,5 +163,17 @@
 		</section>
 	</div>
 </body>
+<script>
+	function openSsdPopup(element) {
+		// data-* 속성에서 CPU 이름 가져오기
+		const ssdName = element.getAttribute('data-ssd-name');
+		// 팝업 창 설정
+		const url = `/Product/Product_SSD_Detail?SSD_NAME=`
+				+ encodeURIComponent(ssdName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		// 팝업 창 열기
+		window.open(url, 'SsdDetailPopup', options);
+	}
+</script>
 <th:block th:replace="Util/footer :: footer"></th:block>
 </html>

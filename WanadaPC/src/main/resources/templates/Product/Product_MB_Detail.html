@@ -87,11 +87,12 @@
 		</tr>
 		<tr>
 			<th>제품 분류</th>
-			<td th:text="${MbDetail.TYPE_MAINBOARD}"></td>
+			<td th:text="${#strings.replace(#strings.replace(MbDetail.TYPE_MAINBOARD, 'Intel_Socket', '인텔 소켓'), 'AMD_Socket', 'AMD 소켓')}"></td>
 		</tr>
 		<tr>
 			<th>CPU 소켓</th>
-			<td th:text="${MbDetail.SOCKET_MAINBOARD}"></td>
+			<td th:text="${MbDetail.SOCKET_MAINBOARD == 'Intel_1700' ? '인텔(소켓1700)' : (MbDetail.SOCKET_MAINBOARD == 'Intel_1200' ? '인텔(소켓1200)' : (MbDetail.SOCKET_MAINBOARD == 'AMD_AM5' ? 'AMD(소켓AM5)' : (MbDetail.SOCKET_MAINBOARD == 'AMD_AM4' ? 'AMD(소켓AM4)' : MbDetail.SOCKET_MAINBOARD)))}">
+		</td>
 		</tr>
 		<tr>
 			<th>상품이미지</th>
