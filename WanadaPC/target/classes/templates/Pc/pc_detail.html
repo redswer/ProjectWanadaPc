@@ -28,6 +28,10 @@
 	font-size: 20px;
 }
 
+.detail_text:hover {
+	color: red;
+}
+
 .pc_info_table td {
 	padding-left: 50px;
 }
@@ -217,7 +221,7 @@ function toggleDetail() {
         			<img th:src="@{/Image/Product/{image}(image=${ram.RAM_IMAGE})}" class="pc_parts_detail_image">
         		</div>
         		<div th:text="${ram.RAM_NAME}" class="pc_parts_name"></div>
-       			<span th:text="${ram.TYPE_REM + ' / '}"></span>
+       			<span th:text="${ram.TYPE_RAM + ' / '}"></span>
        			<span th:text="${ram.RAM_MOTION_CLOCK}"></span>
         		<div th:text="${ram.RAM_INFORMATION}"></div>
         	</div>
@@ -227,7 +231,7 @@ function toggleDetail() {
         			<img th:src="@{/Image/Product/{image}(image=${gpu.GPU_IMAGE})}" class="pc_parts_detail_image">
         		</div>
         		<div th:text="${gpu.GPU_NAME}" class="pc_parts_name"></div>
-       			<span th:text="${'스트림 프로세서 : ' + gpu.STSTREAM_PROCESSORREAM + ' / '}"></span>
+       			<span th:text="${'스트림 프로세서 : ' + gpu.STREAM_PROCESSORREAM + ' / '}"></span>
        			<span th:text="${gpu.GPU_MEMORY_SIZE + ' / '}"></span>
        			<span th:text="${gpu.INTERFACE}"></span>
         		<div th:text="${gpu.GPU_INFORMATION}"></div>
