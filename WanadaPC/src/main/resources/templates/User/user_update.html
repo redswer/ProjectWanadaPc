@@ -94,23 +94,28 @@
     	function send() {
     		if (!modifyForm.userPassword.value) {
     			alert("비밀번호를 입력하세요");
+    			modifyForm.userPassword.focus();
     			return;
     		}
     		if (!modifyForm.userRepassword.value) {
     			alert("비밀번호 확인을 입력하세요");
+    			modifyForm.userRepassword.focus();
     			return;
     		}
     		if (!modifyForm.userName.value) {
     			alert("이름을 입력하세요");
+    			modifyForm.userName.focus();
     			return;
     		}
     		if (!modifyForm.tell.value) {
     			alert("전화번호를 입력하세요");
+    			modifyForm.tell.value.focus();
     			return;
     		}
     		
     		if (modifyForm.userPassword.value != modifyForm.userRepassword.value) {
     			alert("비밀번호가 다릅니다");
+    			modifyForm.userRepassword.focus();
     			return;
     		}
     		
@@ -133,11 +138,11 @@
             </div>
             <div class="form-group">
                 <label for="userPassword">새 비밀번호</label>
-                <input type="password" id="userPassword" name="userPassword" placeholder="현재 비밀번호를 입력하세요">
+                <input type="password" id="userPassword" name="userPassword" placeholder="새 비밀번호를 입력하세요">
             </div>
             <div class="form-group">
                 <label for="userRepassword">비밀번호 확인</label>
-                <input type="password" id="userRepassword" name="userRepassword" placeholder="새 비밀번호를 입력하세요">
+                <input type="password" id="userRepassword" name="userRepassword" placeholder="비밀번호를 입력하세요">
             </div>
             <div class="form-group">
                 <label for="userName">이름</label>

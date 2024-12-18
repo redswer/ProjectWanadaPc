@@ -43,8 +43,14 @@ public class UserController {
 		dto.setUserBirthdate(birthdate);
 		dto.setGender(gender);
 		dto.setTell(tell);
-
-		int row = service.userWirte(dto);
+		
+		int row = 0;
+		
+		if (service.userLogin(email) != null) {
+			row = 0;
+		} else {
+			row = service.userWirte(dto);
+		}
 
 		model.addAttribute("row", row);
 

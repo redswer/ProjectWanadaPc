@@ -24,4 +24,7 @@
    <select id="boardListPerson" resultType="com.wanada.dto.BoardDTO">
       select * from boardcomment where person = #{person}
    </select>
+   <update id="boardCount">
+   	  update boardcomment set count = count + 1 where board_index = #{idx}
+   </update>
 </mapper>

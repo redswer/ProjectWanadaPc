@@ -56,7 +56,8 @@ public class BoardController {
 	    // "boarddetail" 파라미터를 가져와서 int로 변환
 		int idx = Integer.parseInt(request.getParameter("board_index"));
 		 BoardDTO detail = service.boarddetail(idx);
-		    model.addAttribute("dto", detail);
+		 model.addAttribute("dto", detail);
+		 service.boardCount(idx);
 	    
 	    return "Board/boardDetail";
 	}
