@@ -119,7 +119,106 @@
 	justify-content:space-between;
 	align-items: center;
 }
+
+.search_parts:hover * {
+    color: #6b3fcd;
+    font-weight: bold;
+}
+
+.search_parts a:hover {
+    color: #6b3fcd;
+    font-weight: bold;
+}
 </style>
+<script>
+	function openCasePopup(element) {
+		const caseName = element.querySelector('.case_name').innerText;
+		const url = `/Product/Product_CASE_Detail?CASE_NAME=`
+				+ encodeURIComponent(caseName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'CaseDetailPopup', options);
+	}
+	
+	function openCoolerPopup(element) {
+		const coolerName = element.querySelector('.cooler_name').innerText;
+		const url = `/Product/Product_COOLER_Detail?COOLER_NAME=`
+				+ encodeURIComponent(coolerName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'CoolerDetailPopup', options);
+	}
+	
+	function openCpuPopup(element) {
+		const cpuName = element.querySelector('.cpu_name').innerText;
+		const url = `/Product/Product_CPU_Detail?CPU_NAME=`
+				+ encodeURIComponent(cpuName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'CpuDetailPopup', options);
+	}
+	
+	function openGpuPopup(element) {
+		const gpuName = element.querySelector('.gpu_name').innerText;
+		const url = `/Product/Product_GPU_Detail?GPU_NAME=`
+				+ encodeURIComponent(gpuName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'GpuDetailPopup', options);
+	}
+	
+	function openHddPopup(element) {
+		const hddName = element.querySelector('.hdd_name').innerText;
+		const url = `/Product/Product_HDD_Detail?HDD_NAME=`
+				+ encodeURIComponent(hddName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'HddDetailPopup', options);
+	}
+	
+	function openMbPopup(element) {
+		const mbName = element.querySelector('.mb_name').innerText;
+		const url = `/Product/Product_MB_Detail?MB_NAME=`
+				+ encodeURIComponent(mbName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'MbDetailPopup', options);
+	}
+	
+	function openPowerPopup(element) {
+		const powerName = element.querySelector('.power_name').innerText;
+		const url = `/Product/Product_POWER_Detail?POWER_NAME=`
+				+ encodeURIComponent(powerName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'PowerDetailPopup', options);
+	}
+	
+	function openRamPopup(element) {
+		const ramName = element.querySelector('.ram_name').innerText;
+		const url = `/Product/Product_RAM_Detail?RAM_NAME=`
+				+ encodeURIComponent(ramName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'RamDetailPopup', options);
+	}
+	
+	function openSsdPopup(element) {
+		const ssdName = element.querySelector('.ssd_name').innerText;
+		const url = `/Product/Product_SSD_Detail?SSD_NAME=`
+				+ encodeURIComponent(ssdName);
+		const options = 'width=600,height=800,resizable=no,scrollbars=yes';
+		
+		window.open(url, 'SsdDetailPopup', options);
+	}
+	
+	function openPcPage(element) {
+		const pcId = element.querySelector('.pc_id').innerText;
+		const url = `/pcDetail?product_id=` + pcId;
+		
+		location.href=url;
+	}
+</script>
 </head>
 <body>
     <div class="search_page_body">
@@ -134,12 +233,12 @@
             <div>
             	<div class="search_board_header">
 	                <h2 class="search_result_h2"><a th:href="@{/boardList}">게시판</a></h2>
-	               	<th:block th:if="${session.user != null}">
-		           		<a class="board_insert_btn" th:href="@{/boardinsertpage}">글쓰기</a>
-		           	</th:block>
 	                <div th:if="${#lists.isEmpty(board)}">
 	                    <div>검색 내용이 없습니다</div>
 	           		</div>
+	               	<th:block th:if="${session.user != null}">
+		           		<a class="board_insert_btn" th:href="@{/boardinsertpage}">글쓰기</a>
+		           	</th:block>
            		</div>
                 <div th:if="${not #lists.isEmpty(board)}">
                     <table class="board_list_table">
@@ -188,12 +287,12 @@
                 			or not #lists.isEmpty(ssd)}">
                 	<table class="board_list_table">
 	                	<th:block th:each="i : ${case}">
-	                            <tr th:onclick="">
+	                            <tr onclick="openCasePopup(this)" class="search_parts">
 	                                <td>
                                			<img th:src="@{/Image/Product/{image}(image=${i.CASE_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.CASE_NAME}"></span>
+	                                	<span th:text="${i.CASE_NAME}" class="case_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.CASE_INFORMATION}"></span>
@@ -201,12 +300,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${cooler}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openCoolerPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.COOLER_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.COOLER_NAME}"></span>
+	                                	<span th:text="${i.COOLER_NAME}" class="cooler_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.COOLER_INFORMATION}"></span>
@@ -214,12 +313,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${cpu}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openCpuPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.CPU_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.CPU_NAME}"></span>
+	                                	<span th:text="${i.CPU_NAME}" class="cpu_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.CPU_INFORMATION}"></span>
@@ -227,12 +326,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${gpu}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openGpuPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.GPU_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.GPU_NAME}"></span>
+	                                	<span th:text="${i.GPU_NAME}" class="gpu_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.GPU_INFORMATION}"></span>
@@ -240,12 +339,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${hdd}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openHddPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.HDD_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.HDD_NAME}"></span>
+	                                	<span th:text="${i.HDD_NAME}" class="hdd_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.HDD_INFORMATION}"></span>
@@ -253,12 +352,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${mainboard}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openMbPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.MB_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.MB_NAME}"></span>
+	                                	<span th:text="${i.MB_NAME}" class="mb_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.MB_INFORMATION}"></span>
@@ -266,12 +365,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${power}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openPowerPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.POWER_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.POWER_NAME}"></span>
+	                                	<span th:text="${i.POWER_NAME}" class="power_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.POWER_INFORMATION}"></span>
@@ -279,12 +378,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${ram}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openRamPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.RAM_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.RAM_NAME}"></span>
+	                                	<span th:text="${i.RAM_NAME}" class="ram_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.RAM_INFORMATION}"></span>
@@ -292,12 +391,12 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${ssd}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openSsdPopup(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.SSD_IMAGE})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	<span th:text="${i.SSD_NAME}"></span>
+	                                	<span th:text="${i.SSD_NAME}" class="ssd_name"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.SSD_INFORMATION}"></span>
@@ -305,12 +404,13 @@
 	                            </tr>
 	                	</th:block>
 	                	<th:block th:each="i : ${pc}">
-	                            <tr th:onclick="location.href='/'">
+	                            <tr onclick="openPcPage(this)" class="search_parts">
 	                                <td>
                                 		<img th:src="@{/Image/Product/{image}(image=${i.image})}" class="search_product_image"/>
 	                                </td>
 	                                <td>
-	                                	조립 PC
+	                                	<span>조립 PC</span>
+	                                	<span th:text="${i.product_id}" class="pc_id"></span>
 	                                </td>
 	                                <td>
 	                                	<span th:text="${i.product_name}"></span>

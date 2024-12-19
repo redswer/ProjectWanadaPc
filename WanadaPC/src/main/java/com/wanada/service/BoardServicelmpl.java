@@ -59,4 +59,11 @@ public class BoardServicelmpl implements BoardService {
 	      
 	      return list;
 	   }
+	   
+	@Override
+	public int boardCount(int idx) {
+		int row = mapper.boardCount(idx);
+		
+		return row;
+	}
 }
