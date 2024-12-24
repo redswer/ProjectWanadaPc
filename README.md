@@ -43,6 +43,7 @@
 #### 마이 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EB%A7%88%EC%9D%B4-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
  - 세부 페이지(내가 쓴 글, 회원정보 수정)로 이동
 
+
 #### 로그인 - <a href="">상세보기(WIKI)</a>
  - DB 의 정보와 비교
  - 로그인 시 session 생성
@@ -52,6 +53,7 @@
  - 패스워드 인코딩
 #### 회원정보수정 - <a href="">상세보기(WIKI)</a>
  - 비밀번호 확인 후 페이지 이동
+
 
 #### 상품 상세 페이지 - <a href="">상세보기(WIKI)</a>
  - 제품 목록
