@@ -26,21 +26,21 @@
 
 
 ## 📌 주요 기능
-#### Index 페이지 - <a href="">상세보기(WIKI)</a>
+#### Index 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki">상세보기(WIKI)</a>
  - 이미지 슬라이드
  - 네비게이션 메뉴
  - 메뉴 별 Pc 리스트
  - 페이지 최상위로 이동 버튼
  - 커뮤니티 최신 글 표시
  - 로그인 시 헤더의 메뉴 변경
-#### Pc 상세 페이지 - <a href="">상세보기(WIKI)</a>
+#### Pc 상세 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/Pc-%EC%83%81%EC%84%B8-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
  - Pc 정보 (DB 의 상품 테이블들을 참조하여 Pc 테이블 생성)
  - Pc 의 부품 상세 정보 팝업 창으로 표시
-#### 검색 페이지 - <a href="">상세보기(WIKI)</a>
+#### 검색 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EA%B2%80%EC%83%89-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
  - 검색 내용 표시
  - 커뮤니티 글 검색
  - 상품 정보 검색
-#### 마이 페이지 - <a href="">상세보기(WIKI)</a>
+#### 마이 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EB%A7%88%EC%9D%B4-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
  - 세부 페이지(내가 쓴 글, 회원정보 수정)로 이동
 
 #### 로그인 - <a href="">상세보기(WIKI)</a>
