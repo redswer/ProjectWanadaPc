@@ -26,7 +26,7 @@
 
 
 ## 📌 주요 기능
-### 안진혁 (Team Leader)
+### 🧑‍🤝‍🧑 안진혁 (Team Leader)
 #### Index 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki">상세보기(WIKI)</a>
  - 이미지 슬라이드
  - 네비게이션 메뉴
@@ -50,7 +50,7 @@
  - 회원정보 수정 클릭 시 비밀번호 확인 팝업 창 표시
 
 
-### 조유남 (Team Membmer)
+### 🧑‍🤝‍🧑 조유남 (Team Membmer)
 #### 로그인 - <a href="">상세보기(WIKI)</a>
  - DB 의 정보와 비교
  - 로그인 시 session 생성
@@ -62,7 +62,7 @@
  - 비밀번호 확인 후 페이지 이동
 
 
-### 김현규 (Sub Leader)
+### 🧑‍🤝‍🧑 김현규 (Sub Leader)
 #### 카테고리 별 상품 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%B3%84-%EC%83%81%ED%92%88-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
  - 제품 목록
  - 상품 범주별 항목 보여주기
@@ -72,7 +72,7 @@
  - 가격 및 이미지
 
 
-### 서광제 (Team Member)
+### 🧑‍🤝‍🧑 서광제 (Team Member)
 #### 커뮤니티 - <a href="">상세보기(WIKI)</a>
  - 글 작성, 읽기, 수정, 삭제 (CRUD)
  - 글 작성, 수정, 삭제는 로그인 시 가능
