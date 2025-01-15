@@ -54,11 +54,11 @@
 #### 로그인 - <a href="">상세보기(WIKI)</a>
  - DB 의 정보와 비교
  - 로그인 시 session 생성
-#### 회원가입 - <a href="">상세보기(WIKI)</a>
+#### 회원가입 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85">상세보기(WIKI)</a>
  - 유효성 검사
  - ID 중복체크
  - 패스워드 인코딩
-#### 회원정보수정 - <a href="">상세보기(WIKI)</a>
+#### 회원정보수정 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4-%EC%88%98%EC%A0%95">상세보기(WIKI)</a>
  - 비밀번호 확인 후 페이지 이동
 
 #
