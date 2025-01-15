@@ -54,8 +54,10 @@
 #### 회원정보수정 - <a href="">상세보기(WIKI)</a>
  - 비밀번호 확인 후 페이지 이동
 
-
-#### 상품 상세 페이지 - <a href="">상세보기(WIKI)</a>
+#### 카테고리 별 상품 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%B3%84-%EC%83%81%ED%92%88-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
+ - 제품 목록
+ - 상품 범주별 항목 보여주기
+#### 상품 상세 페이지 - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EC%83%81%ED%92%88-%EC%83%81%EC%84%B8-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
  - 제품 목록
  - 카탈로그
  - 가격 및 이미지
