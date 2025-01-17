@@ -27,7 +27,7 @@ Danawa PCサイトを参考にして作った Spring boot / Thyemleaf プロジ�
 
 ## 📌 主要機能
 ### 🧑‍🤝‍🧑 アン・ジンヒョク (Team Leader)
-#### Indexページ - <a href="[https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki](https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/Home%E2%80%90japanese)">상세보기(WIKI)</a>
+#### Indexページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/Home%E2%80%90japanese">상세보기(WIKI)</a>
  - イメージ　スライド
  - ナビゲーション メニュー
  - カテゴリー別　PC　リスト
