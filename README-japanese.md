@@ -44,7 +44,7 @@ Danawa PCサイトを参考にして作った Spring boot / Thyemleaf プロジ�
 #### 検索ページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%E6%A4%9C%E7%B4%A2%E3%83%9A%E3%83%BC%E3%82%B8">상세보기(WIKI)</a>
  - 検索したキーワードを表示
  - 検索した内容表示（コミュニティ、商品）
-#### マイページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EB%A7%88%EC%9D%B4-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
+#### マイページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%E3%83%9E%E3%82%A4%E3%83%9A%E3%83%BC%E3%82%B8">상세보기(WIKI)</a>
  - 詳細ページ(私が書いた文章、会員情報の修正)に移動
 
 
