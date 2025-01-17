@@ -38,7 +38,7 @@ Danawa PCサイトを参考にして作った Spring boot / Thyemleaf プロジ�
  - カテゴリー別PCの情報 (DBの商品テーブルを参照してPCテーブルを作成)
  - カテゴリー　メニューを選択時、カテゴリに合うPCリストを表示 (性能順に4つまで)
  - おすすめpcリスト表示 (性能順に4つまで)
-#### PC詳細ページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/pc-%EC%83%81%EC%84%B8-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
+#### PC詳細ページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/PC%E8%A9%B3%E7%B4%B0%E3%83%9A%E3%83%BC%E3%82%B8">상세보기(WIKI)</a>
  - PCとその部品の情報を紹介
  - 詳細表示 ボタンを活用してPCの部品の詳細情報を表示
 #### 検索ページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EA%B2%80%EC%83%89-%ED%8E%98%EC%9D%B4%EC%A7%80">상세보기(WIKI)</a>
