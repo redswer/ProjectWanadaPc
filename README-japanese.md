@@ -12,7 +12,7 @@ Danawa PCサイトを参考にして作ったSpring boot／Thyemleafプロジェ
 
 
 ### 🧑‍🤝‍🧑 チームメンバー
- - Team Leader : アン・ジンヒョク - index、pc 詳細ページ、検索ぺージ、マイページ、効用(header、footer、トップボタン)
+ - Team Leader : アン・ジンヒョク - index、pc 詳細ページ、検索ぺージ、マイページ、効用（header、footer、トップボタン）
  - Sub Leader : キム・ヒョンギュ - 商品詳細ぺージ、カテゴリー別商品ページ
  - Team Member 1 : ソ・グァンジェ - コミュニティ
  - Team Member 2 : ジョ・ユナン - ログイン、会員加入、会員情報修正
