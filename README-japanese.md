@@ -34,7 +34,7 @@ Danawa PCサイトを参考にして作った Spring boot / Thyemleaf プロジ�
  - トップ　ボタン
  - コミュニティの最新の書き込み表示
  - ログイン時のヘッダーメニューの変更
-#### カテゴリー別PCリストページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%B3%84-Pc-%EB%A6%AC%EC%8A%A4%ED%8A%B8">상세보기(WIKI)</a>
+#### カテゴリー別PCリストページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E5%88%A5PC%E3%83%AA%E3%82%B9%E3%83%88">상세보기(WIKI)</a>
  - カテゴリー別PCの情報 (DBの商品テーブルを参照してPCテーブルを作成)
  - カテゴリー　メニューを選択時、カテゴリに合うPCリストを表示 (性能順に4つまで)
  - おすすめpcリスト表示 (性能順に4つまで)
