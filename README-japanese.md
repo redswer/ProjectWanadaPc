@@ -50,10 +50,10 @@ Danawa PCサイトを参考にして作ったSpring boot／Thyemleafプロジェ
 
 #
 ### 🧑‍🤝‍🧑 キム・ヒョンギュ（Sub Leader）
-#### カテゴリー別商品ページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%B3%84-%EC%83%81%ED%92%88-%ED%8E%98%EC%9D%B4%EC%A7%80">ページの詳細（WIKI）</a>
+#### カテゴリー別商品ページ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E5%88%A5PC%E3%83%AA%E3%82%B9%E3%83%88">ページの詳細（WIKI）</a>
  - 商品リスト
  - 商品カテゴリ別項目を表示
-#### 商品詳細ぺージ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%EC%83%81%ED%92%88-%EC%83%81%EC%84%B8-%ED%8E%98%EC%9D%B4%EC%A7%80">ページの詳細（WIKI）</a>
+#### 商品詳細ぺージ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/%E5%95%86%E5%93%81%E8%A9%B3%E7%B4%B0%E3%83%9A%E3%83%BC%E3%82%B8">ページの詳細（WIKI）</a>
  - 商品リスト
  - カタログ
  - 価格及びイメージ
