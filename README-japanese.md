@@ -74,7 +74,7 @@ Danawa PCサイトを参考にして作ったSpring boot／Thyemleafプロジェ
 
 #
 ### 🧑‍🤝‍🧑 ソ・グァンジェ（Team Member）
-#### コミュニティ - <a href="">ページの詳細（WIKI）</a>
+#### コミュニティ - <a href="https://github.com/redswer/ProjectWanadaPc-SpringBootThymeleaf/wiki/Wanada-PC-community-%EC%84%9C%EA%B4%91%EC%A0%9C">ページの詳細（WIKI）</a>
  - 書き込み、読み取り、修正、削除 (CRUD)
  - 書き込みはログイン時可能（ログイン時ボタン活性化）
  - 修正、削除は作成者とログインしたIDが同じ時のみ可能（作成者とログインしたIDが同じ時ボタン活性化）
